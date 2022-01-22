@@ -21,6 +21,10 @@ public class Villager : MonoBehaviour
     private MeshFilter _meshFilter;
     public int Fatness;
 
+    [SerializeField]
+    private int _baseLife;
+    public int Life;
+
     public FoodType GetFoodType { get { return _typeOfFood; } }
 
 
@@ -29,6 +33,7 @@ public class Villager : MonoBehaviour
     {
         UIArrow = GetComponentInChildren<UIArrow>();
         Fatness = 0;
+        Life = _baseLife;
     }
 
     // Update is called once per frame
@@ -40,5 +45,16 @@ public class Villager : MonoBehaviour
     public void EatFood()
     {
         Fatness += 1;
+    }
+
+    public void Die()
+    {
+        StartCoroutine(DieCoroutine());
+    } 
+
+    private IEnumerator DieCoroutine()
+    {
+        yield return null;
+        Destroy(gameObject);
     }
 }

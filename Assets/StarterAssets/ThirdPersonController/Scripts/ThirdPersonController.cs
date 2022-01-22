@@ -66,6 +66,7 @@ namespace StarterAssets
         [SerializeField]
         private float _dashSpeed;
         private bool _isDashing;
+        private bool _inTargetRange;
 
         // inventory
         private Inventory _inventory;
@@ -150,6 +151,7 @@ namespace StarterAssets
             if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
             {
                 DetectTarget();
+                Attack();
             }
 
         }
@@ -200,13 +202,18 @@ namespace StarterAssets
 
         private void DetectTarget()
         {
-            if (!_input.dash)
+            if (_targetScope.TargetList.Count > 0)
             {
                 float closestDistance = Mathf.Infinity;
                 Collider closestCollider = null;
 
                 foreach (Collider collider in _targetScope.TargetList)
                 {
+                    if (collider == null)
+                    {
+                        closestCollider = collider;
+                        break;
+                    }
                     float distanceFromTarget = (collider.transform.position - transform.position).magnitude;
                     if (distanceFromTarget < closestDistance)
                     {
@@ -230,7 +237,8 @@ namespace StarterAssets
 
                     if (_targetVillager != null)
                     {
-                        if ((closestCollider.transform.position - transform.position).magnitude < _targetScope.StopDistance)
+                        float distanecToTarget = (closestCollider.transform.position - transform.position).magnitude;
+                        if (_inTargetRange || distanecToTarget < _targetScope.StopDistance)
                         {
                             _targetVillager.UIArrow.ShowArrow(false);
                             _targetScope.TargetList.Remove(closestCollider);
@@ -240,12 +248,28 @@ namespace StarterAssets
                         _targetVillager.UIArrow.ShowArrow(true);
                     }
                 }
+                else
+                {
+                    _targetScope.TargetList.Remove(closestCollider);
+                }
             }
         }
 
         private void Attack()
         {
+            if (_targetVillager != null && _canDoAtion)
+            {
+                _targetVillager.Life -= 1;
 
+                if (_targetVillager.Life <= 0)
+                {
+                    _targetVillager.Die();
+                    _inTargetRange = false;
+                    _targetVillager = null;
+                }
+
+                _canDoAtion = false;
+            }
         }
 
         #endregion
@@ -266,9 +290,23 @@ namespace StarterAssets
                 _canDoAtion = true;
                 _input.action = false;
             }
+
+            if (other.tag == "Target")
+            {
+                _inTargetRange = true;
+            }
         }
 
-		private void AssignAnimationIDs()
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Target")
+            {
+                _canDoAtion = false;
+                _inTargetRange = false;
+            }
+        }
+
+        private void AssignAnimationIDs()
 		{
 			_animIDSpeed = Animator.StringToHash("Speed");
 			_animIDGrounded = Animator.StringToHash("Grounded");

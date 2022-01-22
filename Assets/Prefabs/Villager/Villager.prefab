@@ -160,6 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeOfFood: 0
   Fatness: 0
+  _baseLife: 1
+  Life: 0
 --- !u!65 &6317566246508061877
 BoxCollider:
   m_ObjectHideFlags: 0

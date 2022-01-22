@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff423540076d0514cb707bf406a02e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentTimeOfDay: 2

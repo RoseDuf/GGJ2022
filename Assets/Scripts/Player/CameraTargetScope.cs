@@ -18,7 +18,7 @@ public class CameraTargetScope : MonoBehaviour
         _targetList = new List<Collider>();
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Target" && !collider.isTrigger && (collider.transform.position - _player.position).magnitude > 1 && !_targetList.Contains(collider))
         {
