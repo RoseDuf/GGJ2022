@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaytimeManager : MonoBehaviour
+public class FoodDatabase : MonoBehaviour
 {
-    private static DaytimeManager _instance;
+    private static FoodDatabase _instance;
 
-    public static DaytimeManager Instance { get { return _instance; } }
+    public static FoodDatabase Instance { get { return _instance; } }
 
-    public enum TimeOfDay
-    {
-        Day,
-        Evening,
-        Night
-    }
+    [SerializeField]
+    private List<FoodData> _foodData;
 
-    public TimeOfDay CurrentTimeOfDay;
+    public List<FoodData> FoodData { get { return _foodData; } }
 
     private void Awake()
     {

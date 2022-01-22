@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Target
+  - Food
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Food
   - 
   - 
   - 

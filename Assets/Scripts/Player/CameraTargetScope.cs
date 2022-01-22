@@ -20,7 +20,7 @@ public class CameraTargetScope : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Target" && (collider.transform.position - _player.position).magnitude > 1 && !_targetList.Contains(collider))
+        if (collider.tag == "Target" && !collider.isTrigger && (collider.transform.position - _player.position).magnitude > 1 && !_targetList.Contains(collider))
         {
             _targetList.Add(collider.GetComponent<Collider>());
         }

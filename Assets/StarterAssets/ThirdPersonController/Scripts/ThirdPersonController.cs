@@ -67,6 +67,13 @@ namespace StarterAssets
         private float _dashSpeed;
         private bool _isDashing;
 
+        // inventory
+        private Inventory _inventory;
+        private GameObject _targetFood;
+
+        // Interactions
+        private bool _canDoAtion;
+
         // cinemachine
         private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
@@ -112,6 +119,7 @@ namespace StarterAssets
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
+            _inventory = GetComponent<Inventory>();
 
 			AssignAnimationIDs();
 
@@ -132,15 +140,63 @@ namespace StarterAssets
 			Move();
 
             //DayTime behaviour
+            if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+            {
+                GrabItem();
+                GiveItem();
+            }
 
             //NightTime behaviour
-            DetectTarget();
+            if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+            {
+                DetectTarget();
+            }
+
         }
 
 		private void LateUpdate()
 		{
 			CameraRotation();
 		}
+
+        #region Grab/Give Food
+        private void GrabItem()
+        {
+            if (_targetFood != null && _canDoAtion)
+            {
+                _inventory.Food.Add(_targetFood);
+                _canDoAtion = false;
+            }
+        }
+
+        private void GiveItem()
+        {
+            if (_targetVillager != null && _canDoAtion)
+            {
+                GameObject givenFood = null;
+
+                foreach (GameObject food in _inventory.Food)
+                {
+                    if (food.GetComponent<Food>().Type.ToString() == _targetVillager.GetFoodType.ToString())
+                    {
+                        givenFood = food;
+                        break;
+                    }
+                }
+
+                if (givenFood != null)
+                {
+                    _targetVillager.EatFood();
+                    _inventory.Food.Remove(givenFood);
+                    Destroy(givenFood);
+                }
+
+                _canDoAtion = false;
+            }
+        }
+        #endregion
+
+        #region Attacking
 
         private void DetectTarget()
         {
@@ -184,6 +240,31 @@ namespace StarterAssets
                         _targetVillager.UIArrow.ShowArrow(true);
                     }
                 }
+            }
+        }
+
+        private void Attack()
+        {
+
+        }
+
+        #endregion
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.tag == "Food" && _input.action && _inventory.Food.Count < _inventory.FoodCapacity)
+            {
+                _canDoAtion = true;
+                _targetFood = other.gameObject;
+                _targetFood.SetActive(false);
+                _input.action = false;
+            }
+
+            if (other.tag == "Target" && _input.action)
+            {
+                _targetVillager = other.transform.parent.GetComponent<Villager>();
+                _canDoAtion = true;
+                _input.action = false;
             }
         }
 
