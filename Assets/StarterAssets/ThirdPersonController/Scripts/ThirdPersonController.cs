@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
+using System.Collections;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -59,12 +60,19 @@ namespace StarterAssets
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
 
-		// cinemachine
-		private float _cinemachineTargetYaw;
+        [Header("Attack variables")]
+        private CameraTargetScope _targetScope;
+        private Villager _targetVillager;
+        [SerializeField]
+        private float _dashSpeed;
+        private bool _isDashing;
+
+        // cinemachine
+        private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
 
-		// player
-		private float _speed;
+        // player
+        private float _speed;
 		private float _animationBlend;
 		private float _targetRotation = 0.0f;
 		private float _rotationVelocity;
@@ -93,11 +101,10 @@ namespace StarterAssets
 
 		private void Awake()
 		{
-			// get a reference to our main camera
-			if (_mainCamera == null)
-			{
-				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-			}
+            // get a reference to our main camera
+            _mainCamera = Camera.main.gameObject;
+
+            _targetScope =  _mainCamera.GetComponentInChildren<CameraTargetScope>();
 		}
 
 		private void Start()
@@ -111,21 +118,74 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
-		}
+            _isDashing = false;
+
+        }
 
 		private void Update()
 		{
 			_hasAnimator = TryGetComponent(out _animator);
-			
-			JumpAndGravity();
-			GroundedCheck();
+
+            //AllTime behaviour
+            GroundedCheck();
+            JumpAndGravity();
 			Move();
-		}
+
+            //DayTime behaviour
+
+            //NightTime behaviour
+            DetectTarget();
+        }
 
 		private void LateUpdate()
 		{
 			CameraRotation();
 		}
+
+        private void DetectTarget()
+        {
+            if (!_input.dash)
+            {
+                float closestDistance = Mathf.Infinity;
+                Collider closestCollider = null;
+
+                foreach (Collider collider in _targetScope.TargetList)
+                {
+                    float distanceFromTarget = (collider.transform.position - transform.position).magnitude;
+                    if (distanceFromTarget < closestDistance)
+                    {
+                        closestDistance = distanceFromTarget;
+                        closestCollider = collider;
+                    }
+                    else
+                    {
+                        Villager villager = collider.GetComponent<Villager>();
+
+                        if (villager != null)
+                        {
+                            villager.UIArrow.ShowArrow(false);
+                        }
+                    }
+                }
+
+                if (closestCollider != null)
+                {
+                    _targetVillager = closestCollider.GetComponent<Villager>();
+
+                    if (_targetVillager != null)
+                    {
+                        if ((closestCollider.transform.position - transform.position).magnitude < _targetScope.StopDistance)
+                        {
+                            _targetVillager.UIArrow.ShowArrow(false);
+                            _targetScope.TargetList.Remove(closestCollider);
+                            return;
+                        }
+
+                        _targetVillager.UIArrow.ShowArrow(true);
+                    }
+                }
+            }
+        }
 
 		private void AssignAnimationIDs()
 		{
@@ -170,12 +230,12 @@ namespace StarterAssets
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            
+            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
-			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
-
-			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+            // if there is no input, set the target speed to 0
+            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -198,9 +258,9 @@ namespace StarterAssets
 				_speed = targetSpeed;
 			}
 			_animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-
-			// normalise input direction
-			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            
+            // normalise input direction
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
@@ -212,12 +272,35 @@ namespace StarterAssets
 				// rotate to face input direction relative to camera position
 				transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 			}
-
-
+            
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-			// move the player
-			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+
+            if (_targetVillager != null && _input.dash)
+            {
+                float distanceToTarget = (_targetVillager.transform.position - transform.position).magnitude;
+                float rotationToTarget = Vector3.Angle(_targetVillager.transform.position, transform.forward);
+                Vector3 direction = (_targetVillager.transform.position - transform.position).normalized;
+
+                if (distanceToTarget > _targetScope.StopDistance)
+                {
+                    _speed = _dashSpeed;
+                    targetDirection = direction;
+                    transform.LookAt(_targetVillager.transform.position);
+                }
+                else
+                {
+                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                    _speed = 0;
+                    _targetVillager = null;
+                    _input.dash = false;
+                }
+            }
+
+            // move the player
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
 			// update animator if using character
 			if (_hasAnimator)
