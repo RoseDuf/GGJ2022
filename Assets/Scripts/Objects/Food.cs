@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Food : MonoBehaviour
+public class Food : PoolableObject
 {
     public enum FoodType
     {
         Apple,
         Fish,
-        Bread,
+        Cake,
         Cheese
     }
+    public NavMeshAgent Agent;
 
     [SerializeField]
     private FoodType _typeOfFood;
@@ -32,6 +34,12 @@ public class Food : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        Agent.enabled = false;
     }
 
     private void InitializeFood()
