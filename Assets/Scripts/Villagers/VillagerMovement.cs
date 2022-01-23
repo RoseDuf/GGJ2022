@@ -69,13 +69,16 @@ public class VillagerMovement : MonoBehaviour
 
     private void HandleGainSight(Player player)
     {
-        if (GetComponent<Villager>().Aggressivity == 0)
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
-            State = VillagerState.RunAway;
-        }
-        else
-        {
-            State = VillagerState.Chase;
+            if (GetComponent<Villager>().Aggressivity == 0)
+            {
+                State = VillagerState.RunAway;
+            }
+            else
+            {
+                State = VillagerState.Chase;
+            }
         }
     }
 
@@ -88,18 +91,6 @@ public class VillagerMovement : MonoBehaviour
     {
         OnStateChange?.Invoke(VillagerState.Spawn, DefaultState);
     }
-
-    //private void StartChasing()
-    //{
-    //    if (FollowCoroutine == null)
-    //    {
-    //        FollowCoroutine = StartCoroutine(FollowTarget());
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("Called StartChasing on Enemy tht is already chasing!");
-    //    }
-    //}
 
     private IEnumerator DoIdleMotion()
     {

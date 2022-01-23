@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface IGrabable
 {
-    void TakeDamage(int damage);
-    void ReceiveItem();
-
     Transform GetTransform();
 }

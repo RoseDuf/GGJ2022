@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _interactionRadius: {fileID: 770556547635415920}
+  _attackDelay: 0.2
   _animator: {fileID: 8117219036606193325}
 --- !u!95 &8117219036606193325
 Animator:
@@ -395,7 +396,7 @@ GameObject:
   - component: {fileID: 4546039731054460662}
   - component: {fileID: 4546039731054460651}
   - component: {fileID: 4546039731054460660}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,3 +555,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 1
   _attackDelay: 0.5
+  CanDoAction: 0

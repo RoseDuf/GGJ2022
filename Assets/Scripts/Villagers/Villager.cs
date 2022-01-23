@@ -23,6 +23,8 @@ public class Villager : PoolableObject, IDamageable
     [SerializeField]
     private InteractionRadius _interactionRadius;
     [SerializeField]
+    private float _attackDelay;
+    [SerializeField]
     private Animator _animator;
     private Coroutine LookCoroutine;
 
@@ -32,16 +34,25 @@ public class Villager : PoolableObject, IDamageable
     public int Aggressivity;
 
     [SerializeField]
-    private int _base_health;
-    public int _health { get; set; }
+    private int _baseHealth;
+    public int _health;
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
 
     private const string k_Attack = "Attack";
 
+    private Coroutine AttackCoroutine;
+
     private void Awake()
     {
         _interactionRadius.OnAttack += OnAttack;
+        _interactionRadius.OnGive += OnGive;
+    }
+
+    private void OnGive(IDamageable target)
+    {
+        _animator.SetTrigger(k_Attack);
+        LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
     }
 
     private void OnAttack(IDamageable target)
@@ -58,7 +69,10 @@ public class Villager : PoolableObject, IDamageable
 
     private IEnumerator LookAt(Transform target)
     {
-        Quaternion lookRotation = Quaternion.LookRotation(target.position - transform.position);
+        var lookPos = target.position - transform.position;
+        lookPos.y = 0;
+
+        Quaternion lookRotation = Quaternion.LookRotation(lookPos);
 
         float time = 0;
 
@@ -78,7 +92,7 @@ public class Villager : PoolableObject, IDamageable
         UIArrow = GetComponentInChildren<UIArrow>();
         Fatness = 0;
         Aggressivity = 1; //TODO: change this to increase per level
-        _health = _base_health;
+        _health = _baseHealth;
     }
 
     public override void OnDisable()
@@ -87,29 +101,33 @@ public class Villager : PoolableObject, IDamageable
         Agent.enabled = false;
     }
 
-    public void EatFood()
+    private void Update()
     {
-        Fatness += 1;
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            if (_interactionRadius.CanDoAction && AttackCoroutine == null)
+            {
+                AttackCoroutine = StartCoroutine(_interactionRadius.Attack(InteractionRadius.AttackStyle.Repeat, _attackDelay));
+            }
+            if (!_interactionRadius.CanDoAction && AttackCoroutine != null)
+            {
+                AttackCoroutine = null;
+            }
+        }
     }
-
-    //public void Die()
-    //{
-    //    StartCoroutine(DieCoroutine());
-    //} 
-
-    //private IEnumerator DieCoroutine()
-    //{
-    //    yield return null;
-    //    Destroy(gameObject);
-    //}
 
     public void TakeDamage(int damage)
     {
         _health -= damage;
-        if (_health < 0)
+        if (_health <= 0) //Dies
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void ReceiveItem()
+    {
+        Fatness += 1;
     }
 
     public Transform GetTransform()

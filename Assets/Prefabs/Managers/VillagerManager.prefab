@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2714778263206318569, guid: 93b6abcf1f5e0b64a9caa360d1c2c5f3, type: 3}
-  _numberVillagersToSpawn: 1
+  _numberVillagersToSpawn: 10
   _spawnDelay: 0
   VillagerPrefabs:
   - {fileID: 2138331616037543165, guid: 525c361d7902c754b9af457a2fcf09ec, type: 3}

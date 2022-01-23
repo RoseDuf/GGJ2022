@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Food : PoolableObject
+public class Food : PoolableObject, IGrabable
 {
     public enum FoodType
     {
@@ -46,5 +46,10 @@ public class Food : PoolableObject
     {
         _meshRenderer.material = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
         _meshFilter.mesh = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Mesh;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

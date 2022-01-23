@@ -140,18 +140,10 @@ namespace StarterAssets
             JumpAndGravity();
 			Move();
 
-            //DayTime behaviour
-            if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
-            {
-                GrabItem();
-                GiveItem();
-            }
-
             //NightTime behaviour
             if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
             {
                 DetectTarget();
-                Attack();
             }
 
         }
@@ -161,43 +153,6 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
-        #region Grab/Give Food
-        private void GrabItem()
-        {
-            if (_targetFood != null && _canDoAtion)
-            {
-                _inventory.Food.Add(_targetFood);
-                _canDoAtion = false;
-            }
-        }
-
-        private void GiveItem()
-        {
-            if (_targetVillager != null && _canDoAtion)
-            {
-                GameObject givenFood = null;
-
-                foreach (GameObject food in _inventory.Food)
-                {
-                    if (food.GetComponent<Food>().Type.ToString() == _targetVillager.Type.ToString())
-                    {
-                        givenFood = food;
-                        break;
-                    }
-                }
-
-                if (givenFood != null)
-                {
-                    _targetVillager.EatFood();
-                    _inventory.Food.Remove(givenFood);
-                    Destroy(givenFood);
-                }
-
-                _canDoAtion = false;
-            }
-        }
-        #endregion
-
         #region Attacking
 
         private void DetectTarget()
@@ -205,9 +160,9 @@ namespace StarterAssets
             if (_targetScope.TargetList.Count > 0)
             {
                 float closestDistance = Mathf.Infinity;
-                Collider closestCollider = null;
+                Transform closestCollider = null;
 
-                foreach (Collider collider in _targetScope.TargetList)
+                foreach (Transform collider in _targetScope.TargetList)
                 {
                     if (collider == null)
                     {
@@ -255,49 +210,7 @@ namespace StarterAssets
             }
         }
 
-        private void Attack()
-        {
-            if (_targetVillager != null && _canDoAtion)
-            {
-                _targetVillager.TakeDamage(1);
-
-                _canDoAtion = false;
-            }
-        }
-
         #endregion
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.tag == "Food" && _input.action && _inventory.Food.Count < _inventory.FoodCapacity)
-            {
-                _canDoAtion = true;
-                _targetFood = other.gameObject;
-                _targetFood.SetActive(false);
-                _input.action = false;
-            }
-
-            if (other.tag == "Target" && _input.action)
-            {
-                _targetVillager = other.transform.parent.GetComponent<Villager>();
-                _canDoAtion = true;
-                _input.action = false;
-            }
-
-            if (other.tag == "Target")
-            {
-                _inTargetRange = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.tag == "Target")
-            {
-                _canDoAtion = false;
-                _inTargetRange = false;
-            }
-        }
 
         private void AssignAnimationIDs()
 		{
