@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class VillagerSpawner : MonoBehaviour
 {
     [SerializeField]
-    private Transform _player;
+    private GameObject _player;
     [SerializeField]
     private int _numberVillagersToSpawn = 5;
     [SerializeField]
@@ -80,7 +80,7 @@ public class VillagerSpawner : MonoBehaviour
             Vector3 randomPoint = GetRandomLocation();
 
             villager.Agent.Warp(randomPoint);
-            villager.Movement.Target = _player;
+            villager.Movement.Target = FindObjectOfType<Player>().transform;
             villager.Agent.enabled = true;
             villager.Type = foodTypes[randomFoodType];
             villager.Movement.Spawn();

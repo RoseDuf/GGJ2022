@@ -19,11 +19,17 @@ public class Villager : PoolableObject
     public UIArrow UIArrow { get; set; }
 
     [SerializeField]
+    private SphereCollider _interactionCollider;
+    [SerializeField]
+    private SphereCollider _lineOfSightCollider;
+
+    [SerializeField]
     private FoodType _typeOfFood;
 
     private MeshRenderer _meshRenderer;
     private MeshFilter _meshFilter;
     public int Fatness;
+    public int Aggressivity;
 
     [SerializeField]
     private int _baseLife;
@@ -36,7 +42,16 @@ public class Villager : PoolableObject
     void Start()
     {
         UIArrow = GetComponentInChildren<UIArrow>();
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            _lineOfSightCollider.enabled = false;
+        }
+        else
+        {
+            _lineOfSightCollider.enabled = true;
+        }
         Fatness = 0;
+        Aggressivity = 0; //TODO: change this to increase per level
         Life = _baseLife;
     }
 

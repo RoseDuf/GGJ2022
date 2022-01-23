@@ -13,7 +13,11 @@ public class VillagerMovement : MonoBehaviour
     [SerializeField]
     private float IdleLocationRadius = 4f;
     [SerializeField]
-    private float IdleMovespeedMultiplier = 0.5f;
+    private float IdleMovespeed = 2f;
+    [SerializeField]
+    private float RunMoveSpeed = 4f;
+    [SerializeField]
+    private VillagerLineOfSightChecker _lineOfSightChecker;
 
     [SerializeField]
     private Animator Animator = null;
@@ -48,6 +52,8 @@ public class VillagerMovement : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
 
+        _lineOfSightChecker.OnGainSight = HandleGainSight;
+        _lineOfSightChecker.OnLoseSight = HandleLoseSight;
         OnStateChange += HandleStateChange;
     }
 
@@ -59,6 +65,23 @@ public class VillagerMovement : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    private void HandleGainSight(Player player)
+    {
+        if (GetComponent<Villager>().Aggressivity == 0)
+        {
+            State = VillagerState.RunAway;
+        }
+        else
+        {
+            State = VillagerState.Chase;
+        }
+    }
+
+    private void HandleLoseSight(Player player)
+    {
+        State = DefaultState;
     }
 
     public void Spawn()
@@ -82,7 +105,9 @@ public class VillagerMovement : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
 
-        Agent.speed *= IdleMovespeedMultiplier;
+        Agent.speed = IdleMovespeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
 
         while (true)
         {
@@ -109,11 +134,35 @@ public class VillagerMovement : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
 
+        Agent.speed = RunMoveSpeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
+
         while (gameObject.activeSelf)
         {
             if (Agent.enabled)
             {
                 Agent.SetDestination(Target.position);
+            }
+            yield return wait;
+        }
+    }
+
+    private IEnumerator RunAwayFromTarget()
+    {
+        WaitForSeconds wait = new WaitForSeconds(UpdateRate);
+
+        Agent.speed = RunMoveSpeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
+
+        while (gameObject.activeSelf)
+        {
+            if (Agent.enabled)
+            {
+                Vector3 moveDir = (Agent.transform.position - Target.position).normalized * 10;
+                
+                Agent.SetDestination(moveDir);
             }
             yield return wait;
         }
@@ -128,11 +177,6 @@ public class VillagerMovement : MonoBehaviour
                 StopCoroutine(FollowCoroutine);
             }
 
-            if (oldSatte == VillagerState.Idle)
-            {
-                Agent.speed /= IdleMovespeedMultiplier;
-            }
-
             switch (newState)
             {
                 case VillagerState.Idle:
@@ -141,7 +185,11 @@ public class VillagerMovement : MonoBehaviour
                 case VillagerState.Chase:
                     FollowCoroutine = StartCoroutine(FollowTarget());
                     break;
+                case VillagerState.RunAway:
+                    FollowCoroutine = StartCoroutine(RunAwayFromTarget());
+                    break;
             }
         }
     }
+    
 }

@@ -6,5 +6,6 @@ public enum VillagerState
 {
     Spawn,
     Idle,
-    Chase
+    Chase,
+    RunAway
 }
