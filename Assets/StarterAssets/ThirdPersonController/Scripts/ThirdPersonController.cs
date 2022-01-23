@@ -259,14 +259,7 @@ namespace StarterAssets
         {
             if (_targetVillager != null && _canDoAtion)
             {
-                _targetVillager.Life -= 1;
-
-                if (_targetVillager.Life <= 0)
-                {
-                    _targetVillager.Die();
-                    _inTargetRange = false;
-                    _targetVillager = null;
-                }
+                _targetVillager.TakeDamage(1);
 
                 _canDoAtion = false;
             }

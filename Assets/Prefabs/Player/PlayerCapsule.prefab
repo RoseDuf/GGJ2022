@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2113425554487726899}
   - component: {fileID: 4546039730557905079}
   - component: {fileID: 4523888441216991845}
+  - component: {fileID: 8117219036606193325}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -37,6 +38,7 @@ Transform:
   - {fileID: 7735723216855410869}
   - {fileID: 4546039730516531815}
   - {fileID: 4546039731054460662}
+  - {fileID: 4514933245234703027}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -264,6 +266,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6126005c98100a40b4d43c89b13768e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 10
+  _interactionRadius: {fileID: 770556547635415920}
+  _animator: {fileID: 8117219036606193325}
+--- !u!95 &8117219036606193325
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714778263206318569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4546039730516531808
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +395,6 @@ GameObject:
   - component: {fileID: 4546039731054460662}
   - component: {fileID: 4546039731054460651}
   - component: {fileID: 4546039731054460660}
-  - component: {fileID: 4546039731054460661}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -442,19 +465,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4546039731054460661
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4546039731054460663}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7735723216855410866
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,3 +495,62 @@ Transform:
   m_Father: {fileID: 3379675401137490771}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9002707560094452828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4514933245234703027}
+  - component: {fileID: 8769791455669617357}
+  - component: {fileID: 770556547635415920}
+  m_Layer: 9
+  m_Name: InteractionRadius
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4514933245234703027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002707560094452828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.859, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3379675401137490771}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8769791455669617357
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002707560094452828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &770556547635415920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002707560094452828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f8de60eb1ea1b469a0d5bec607a686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _attackDelay: 0.5

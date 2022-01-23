@@ -142,7 +142,7 @@ public class VillagerMovement : MonoBehaviour
         {
             if (Agent.enabled)
             {
-                Agent.SetDestination(Target.position);
+                Agent.SetDestination(Target.position - (Target.position - transform.position).normalized * 0.5f);
             }
             yield return wait;
         }
@@ -159,10 +159,8 @@ public class VillagerMovement : MonoBehaviour
         while (gameObject.activeSelf)
         {
             if (Agent.enabled)
-            {
-                Vector3 moveDir = (Agent.transform.position - Target.position).normalized * 10;
-                
-                Agent.SetDestination(moveDir);
+            {   
+                Agent.SetDestination(Target.position);
             }
             yield return wait;
         }
