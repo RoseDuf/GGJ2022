@@ -36,21 +36,29 @@ public class DaytimeManager : MonoBehaviour
         }
     }
 
+    private TimeOfDay lastTimeOfDay;
     private void Update()
     {
         float currentTime = dayNightCycle.time;
+        lastTimeOfDay = CurrentTimeOfDay;
 
-        if (currentTime < 0.25)
+        if (currentTime >= 0.25 && currentTime < 0.55)
         {
             CurrentTimeOfDay = TimeOfDay.Day;
         }
-        else if (currentTime < 0.55)
+        else if (currentTime >= 0.55 && currentTime < 0.75) 
         {
             CurrentTimeOfDay = TimeOfDay.Evening;
         }
-        else if (currentTime < 0.7)
+        else if (currentTime >= 0.6)
         {
             CurrentTimeOfDay = TimeOfDay.Night;
+            
+        }
+
+        if (CurrentTimeOfDay != lastTimeOfDay)
+        {
+            Debug.Log("Time of Day: " + CurrentTimeOfDay.ToString());
         }
     }
 }
