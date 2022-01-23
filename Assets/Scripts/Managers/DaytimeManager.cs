@@ -7,12 +7,14 @@ using UnityEngine;
 public class DaytimeManager : MonoBehaviour
 {
     private static DaytimeManager _instance;
-    
-    public static DaytimeManager Instance { get { return _instance; } }
 
-    [SerializeField]
-    private DayNightCycle dayNightCycle;
-    
+    public static DaytimeManager Instance
+    {
+        get { return _instance; }
+    }
+
+    [SerializeField] private DayNightCycle dayNightCycle;
+
     public enum TimeOfDay
     {
         Day,
@@ -32,16 +34,23 @@ public class DaytimeManager : MonoBehaviour
         {
             _instance = this;
         }
-
-        if (dayNightCycle != null)
-        {
-            dayNightCycle.nightThreshold += UpdateCurrentTimeOfDay;
-        }
     }
 
-    void UpdateCurrentTimeOfDay(object sender, DayNightCycle.ThresholdReachedEventArgs e)
+    private void Update()
     {
-        CurrentTimeOfDay = e.Period;
-        Debug.Log("Time of day: " + CurrentTimeOfDay.ToString());
+        float currentTime = dayNightCycle.time;
+
+        if (currentTime < 0.25)
+        {
+            CurrentTimeOfDay = TimeOfDay.Day;
+        }
+        else if (currentTime < 0.55)
+        {
+            CurrentTimeOfDay = TimeOfDay.Evening;
+        }
+        else if (currentTime < 0.7)
+        {
+            CurrentTimeOfDay = TimeOfDay.Night;
+        }
     }
 }

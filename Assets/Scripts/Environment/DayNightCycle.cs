@@ -78,44 +78,5 @@ public class DayNightCycle : MonoBehaviour
         RenderSettings.ambientIntensity = lightIntensityMultiplier.Evaluate(time);
         RenderSettings.reflectionIntensity = reflectiontIntensityMultiplier.Evaluate(time);
 
-        if (time < 0.6)
-        {
-            ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
-            args.Period = DaytimeManager.TimeOfDay.Day;
-            args.TimeReached = time;
-            OnNightThresholdReached(args);
-        }
-        else if (time >= 0.6 && time < 0.8)
-        {
-            ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
-            args.Period = DaytimeManager.TimeOfDay.Evening;
-            args.TimeReached = time;
-            OnNightThresholdReached(args);
-        }
-        else if (time >= 0.8)
-        {
-            ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
-            args.Period = DaytimeManager.TimeOfDay.Night;
-            args.TimeReached = time;
-            OnNightThresholdReached(args);
-        }
-        
-    }
-    
-    protected virtual void OnNightThresholdReached(ThresholdReachedEventArgs e)
-    {
-        EventHandler<ThresholdReachedEventArgs> handler = nightThreshold;
-        if (handler != null)
-        {
-            handler(this, e);
-        }
-    }
-    
-    public event EventHandler<ThresholdReachedEventArgs> nightThreshold;
-    
-    public class ThresholdReachedEventArgs : EventArgs
-    {
-        public DaytimeManager.TimeOfDay Period { get; set; }
-        public float TimeReached { get; set; }
     }
 }
