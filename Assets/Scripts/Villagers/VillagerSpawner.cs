@@ -77,10 +77,13 @@ public class VillagerSpawner : MonoBehaviour
             Villager.FoodType[] foodTypes = { Villager.FoodType.Apple, Villager.FoodType.Fish, Villager.FoodType.Cake, Villager.FoodType.Cheese };
             int randomFoodType = Random.Range(0, foodTypes.Length);
 
-            villager.Agent.Warp(GetRandomLocation());
+            Vector3 randomPoint = GetRandomLocation();
+
+            villager.Agent.Warp(randomPoint);
             villager.Movement.Target = _player;
             villager.Agent.enabled = true;
             villager.Type = foodTypes[randomFoodType];
+            villager.Movement.Spawn();
 
         }
         else

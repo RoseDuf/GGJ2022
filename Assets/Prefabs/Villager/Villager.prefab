@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521560694}
   - component: {fileID: 4235691193820486377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -56,11 +56,11 @@ GameObject:
   - component: {fileID: 2138331616037543166}
   - component: {fileID: 2138331616037543153}
   - component: {fileID: 2138331616037543164}
-  - component: {fileID: 2138331616037543165}
   - component: {fileID: 6317566246508061877}
   - component: {fileID: 250361830}
+  - component: {fileID: 2138331616037543165}
   - component: {fileID: 8027395557422849091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Villager
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -148,23 +148,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &2138331616037543165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138331616037543155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60ddd831e01c544d80489d9743f4b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Movement: {fileID: 8027395557422849091}
-  Agent: {fileID: 250361830}
-  _typeOfFood: 0
-  Fatness: 0
-  _baseLife: 1
 --- !u!65 &6317566246508061877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -186,9 +169,9 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138331616037543155}
   m_Enabled: 0
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -198,8 +181,25 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2138331616037543165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138331616037543155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60ddd831e01c544d80489d9743f4b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movement: {fileID: 8027395557422849091}
+  Agent: {fileID: 250361830}
+  _typeOfFood: 0
+  Fatness: 0
+  _baseLife: 1
 --- !u!114 &8027395557422849091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,12 +212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37687f21e8e894146a7b18c56e39ad84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   UpdateRate: 0.1
+  Agent: {fileID: 250361830}
+  IdleLocationRadius: 8
+  IdleMovespeedMultiplier: 1
   Animator: {fileID: 0}
-  DefaultState: 0
-  IdleLocationRadius: 4
-  IdleMovespeedMultiplier: 0.5
+  DefaultState: 1
 --- !u!1 &2138331617410033974
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 2138331617410033975}
   - component: {fileID: 2138331617410033973}
   - component: {fileID: 2138331617410033972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2138331617857849527}
   - component: {fileID: 2138331617857849526}
   - component: {fileID: 2138331617857849525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Target
   m_Icon: {fileID: 0}

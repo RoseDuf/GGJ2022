@@ -6,14 +6,20 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class VillagerMovement : MonoBehaviour
 {
-    public Transform Target;
-    public float UpdateRate = 0.1f;
+    [SerializeField]
+    private float UpdateRate = 0.1f;
+    [SerializeField]
     private NavMeshAgent Agent;
+    [SerializeField]
+    private float IdleLocationRadius = 4f;
+    [SerializeField]
+    private float IdleMovespeedMultiplier = 0.5f;
 
     [SerializeField]
     private Animator Animator = null;
 
-    public VillagerState DefaultState;
+    [SerializeField]
+    private VillagerState DefaultState;
     private VillagerState _state;
     public VillagerState State
     {
@@ -27,11 +33,10 @@ public class VillagerMovement : MonoBehaviour
             _state = value;
         }
     }
+    public Transform Target { get; set; }
 
     public delegate void StateChangeEvent(VillagerState oldState, VillagerState newState);
     public StateChangeEvent OnStateChange;
-    public float IdleLocationRadius = 4f;
-    public float IdleMovespeedMultiplier = 0.5f;
 
     private const string IsWalking = "IsWalking";
     private const string IsWimpering = "IsWimpering";
@@ -56,36 +61,22 @@ public class VillagerMovement : MonoBehaviour
         
     }
 
-    private void HandleStateChange(VillagerState oldSatte, VillagerState newState)
-    {
-        if (oldSatte != newState)
-        {
-            //if (FollowCoroutine != null)
-            //{
-            //    StopCoroutine(FollowCoroutine);
-            //}
-
-            if (oldSatte == VillagerState.Idle)
-            {
-                Agent.speed /= IdleMovespeedMultiplier;
-            }
-
-            switch(newState)
-            {
-                case VillagerState.Idle:
-                    FollowCoroutine = StartCoroutine(DoIdleMotion());
-                    break;
-                case VillagerState.Chase:
-                    FollowCoroutine = StartCoroutine(FollowTarget());
-                    break;
-            }
-        }
-    }
-
-    private void Spawn()
+    public void Spawn()
     {
         OnStateChange?.Invoke(VillagerState.Spawn, DefaultState);
     }
+
+    //private void StartChasing()
+    //{
+    //    if (FollowCoroutine == null)
+    //    {
+    //        FollowCoroutine = StartCoroutine(FollowTarget());
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("Called StartChasing on Enemy tht is already chasing!");
+    //    }
+    //}
 
     private IEnumerator DoIdleMotion()
     {
@@ -114,18 +105,6 @@ public class VillagerMovement : MonoBehaviour
         }
     }
 
-    private void StartChasing()
-    {
-        if (FollowCoroutine == null)
-        {
-            FollowCoroutine = StartCoroutine(FollowTarget());
-        }
-        else
-        {
-            Debug.LogWarning("Called StartChasing on Enemy tht is already chasing!");
-        }
-    }
-
     private IEnumerator FollowTarget()
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
@@ -137,6 +116,32 @@ public class VillagerMovement : MonoBehaviour
                 Agent.SetDestination(Target.position);
             }
             yield return wait;
+        }
+    }
+
+    private void HandleStateChange(VillagerState oldSatte, VillagerState newState)
+    {
+        if (oldSatte != newState)
+        {
+            if (FollowCoroutine != null)
+            {
+                StopCoroutine(FollowCoroutine);
+            }
+
+            if (oldSatte == VillagerState.Idle)
+            {
+                Agent.speed /= IdleMovespeedMultiplier;
+            }
+
+            switch (newState)
+            {
+                case VillagerState.Idle:
+                    FollowCoroutine = StartCoroutine(DoIdleMotion());
+                    break;
+                case VillagerState.Chase:
+                    FollowCoroutine = StartCoroutine(FollowTarget());
+                    break;
+            }
         }
     }
 }
