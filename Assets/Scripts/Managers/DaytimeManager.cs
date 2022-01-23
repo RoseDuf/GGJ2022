@@ -22,8 +22,6 @@ public class DaytimeManager : MonoBehaviour
 
     public TimeOfDay CurrentTimeOfDay;
 
-    
-
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -34,5 +32,16 @@ public class DaytimeManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        if (dayNightCycle != null)
+        {
+            dayNightCycle.nightThreshold += UpdateCurrentTimeOfDay;
+        }
+    }
+
+    void UpdateCurrentTimeOfDay(object sender, DayNightCycle.ThresholdReachedEventArgs e)
+    {
+        CurrentTimeOfDay = e.Period;
+        Debug.Log("Time of day: " + CurrentTimeOfDay.ToString());
     }
 }
