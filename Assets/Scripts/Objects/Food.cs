@@ -21,12 +21,16 @@ public class Food : PoolableObject, IGrabable
     private MeshFilter _meshFilter;
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshFilter = GetComponent<MeshFilter>();
+        
+    }
+
+    void Start()
+    {
         InitializeFood();
     }
 

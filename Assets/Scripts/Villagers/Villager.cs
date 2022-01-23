@@ -29,7 +29,6 @@ public class Villager : PoolableObject, IDamageable
     private Coroutine LookCoroutine;
 
     private MeshRenderer _meshRenderer;
-    private MeshFilter _meshFilter;
     public int Fatness;
     public int Aggressivity;
 
@@ -45,8 +44,24 @@ public class Villager : PoolableObject, IDamageable
 
     private void Awake()
     {
+        _meshRenderer = GetComponent<MeshRenderer>();
         _interactionRadius.OnAttack += OnAttack;
         _interactionRadius.OnGive += OnGive;
+    }
+
+    void Start()
+    {
+        InitializeVillager();
+        
+        UIArrow = GetComponentInChildren<UIArrow>();
+        Fatness = 0;
+        Aggressivity = 1; //TODO: change this to increase per level
+        _health = _baseHealth;
+    }
+
+    private void InitializeVillager()
+    {
+        _meshRenderer.material = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
     }
 
     private void OnGive(IDamageable target)
@@ -84,15 +99,6 @@ public class Villager : PoolableObject, IDamageable
         }
 
         transform.rotation = lookRotation;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        UIArrow = GetComponentInChildren<UIArrow>();
-        Fatness = 0;
-        Aggressivity = 1; //TODO: change this to increase per level
-        _health = _baseHealth;
     }
 
     public override void OnDisable()
