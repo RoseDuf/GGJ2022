@@ -179,7 +179,7 @@ namespace StarterAssets
 
                 foreach (GameObject food in _inventory.Food)
                 {
-                    if (food.GetComponent<Food>().Type.ToString() == _targetVillager.GetFoodType.ToString())
+                    if (food.GetComponent<Food>().Type.ToString() == _targetVillager.Type.ToString())
                     {
                         givenFood = food;
                         break;

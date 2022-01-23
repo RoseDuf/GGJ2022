@@ -73,10 +73,14 @@ public class VillagerSpawner : MonoBehaviour
         if (poolableobject != null)
         {
             Villager villager = poolableobject.GetComponent<Villager>();
-            
+
+            Villager.FoodType[] foodTypes = { Villager.FoodType.Apple, Villager.FoodType.Fish, Villager.FoodType.Cake, Villager.FoodType.Cheese };
+            int randomFoodType = Random.Range(0, foodTypes.Length);
+
             villager.Agent.Warp(GetRandomLocation());
             villager.Movement.Target = _player;
             villager.Agent.enabled = true;
+            villager.Type = foodTypes[randomFoodType];
 
         }
         else

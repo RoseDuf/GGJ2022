@@ -9,7 +9,7 @@ public class Villager : PoolableObject
     {
         Apple,
         Fish,
-        Bread,
+        Cake,
         Cheese
     }
 
@@ -29,7 +29,7 @@ public class Villager : PoolableObject
     private int _baseLife;
     public int Life { get; set; }
 
-    public FoodType GetFoodType { get { return _typeOfFood; } }
+    public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
 
 
     // Start is called before the first frame update

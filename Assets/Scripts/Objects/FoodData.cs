@@ -9,7 +9,7 @@ public class FoodData : ScriptableObject
     {
         Apple,
         Fish,
-        Bread,
+        Cake,
         Cheese
     }
 
