@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Villager : MonoBehaviour
+public class Villager : PoolableObject
 {
     public enum FoodType
     {
@@ -11,6 +12,9 @@ public class Villager : MonoBehaviour
         Bread,
         Cheese
     }
+
+    public VillagerMovement Movement;
+    public NavMeshAgent Agent;
 
     public UIArrow UIArrow { get; set; }
 
@@ -23,7 +27,7 @@ public class Villager : MonoBehaviour
 
     [SerializeField]
     private int _baseLife;
-    public int Life;
+    public int Life { get; set; }
 
     public FoodType GetFoodType { get { return _typeOfFood; } }
 
@@ -40,6 +44,12 @@ public class Villager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        Agent.enabled = false;
     }
 
     public void EatFood()
