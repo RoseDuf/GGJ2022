@@ -27,9 +27,13 @@ public class FoodSpawner : MonoBehaviour
     private void Start()
     {
         _triangulation = NavMesh.CalculateTriangulation();
-        StartCoroutine(SpawnFoods());
-    }
 
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            StartCoroutine(SpawnFoods());
+        }
+    }
+    
     private IEnumerator SpawnFoods()
     {
         WaitForSeconds Wait = new WaitForSeconds(_spawnDelay);
@@ -56,15 +60,15 @@ public class FoodSpawner : MonoBehaviour
     {
         int spawnIndex = spawnedFoods % FoodPrefabs.Count;
 
-        DoSpawnEnemy(spawnIndex);
+        DoSpawnFood(spawnIndex);
     }
 
     private void SpawnRandomFood()
     {
-        DoSpawnEnemy(Random.Range(0, FoodPrefabs.Count));
+        DoSpawnFood(Random.Range(0, FoodPrefabs.Count));
     }
 
-    private void DoSpawnEnemy(int index)
+    private void DoSpawnFood(int index)
     {
         PoolableObject poolableobject = _FoodObjectPools[index].GetObject();
 

@@ -31,9 +31,12 @@ public class Food : PoolableObject, IGrabable
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            this.enabled = false;
+        }
     }
 
     public override void OnDisable()
