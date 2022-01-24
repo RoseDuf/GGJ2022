@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c554bdba866404aa6b60e444cbdcc1, type: 3}
   m_Name: CakeVillager
   m_EditorClassIdentifier: 
-  TypeOfFood: 0
-  Material: {fileID: 0}
+  TypeOfFood: 2
+  Material: {fileID: 2100000, guid: ced5260b5abd34540847ccdf4d47de05, type: 2}

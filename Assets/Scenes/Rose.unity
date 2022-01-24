@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c714c5476fb1f44987361f804bcc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetList: []
   _stopDistance: 1
   _player: {fileID: 1293029875367036827}
 --- !u!1 &547730336

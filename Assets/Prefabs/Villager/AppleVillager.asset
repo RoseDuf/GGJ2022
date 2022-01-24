@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AppleVillager
   m_EditorClassIdentifier: 
   TypeOfFood: 0
-  Material: {fileID: 0}
+  Material: {fileID: 2100000, guid: 9f59ccdf448664b499fd406b7e0296e9, type: 2}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c554bdba866404aa6b60e444cbdcc1, type: 3}
   m_Name: FishVillager
   m_EditorClassIdentifier: 
-  TypeOfFood: 0
-  Material: {fileID: 0}
+  TypeOfFood: 1
+  Material: {fileID: 2100000, guid: 04258cb0d04e4dd42961631626c0ad88, type: 2}
