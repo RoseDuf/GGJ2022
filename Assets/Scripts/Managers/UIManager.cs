@@ -16,8 +16,12 @@ public class UIManager : MonoBehaviour
     //--------------------
 
     private const int TIME_N = 2;
-    [Tooltip("0 : HOUR_UI\n1 : MINUTE_UI")]
+    [HideInInspector]
     public TextMeshProUGUI[] TimeUI = new TextMeshProUGUI[TIME_N];
+    
+    
+    public RectTransform DayNightCircleRectTransform;
+    public RectTransform IndicatorDayNightRectTransform;
     
     private void Awake()
     {
@@ -26,18 +30,7 @@ public class UIManager : MonoBehaviour
         else
             _instance = this;
     }
-
-    private void Start()
-    {
-        InstantiateUI();
-    }
-
-    private void InstantiateUI()
-    {
-        Instantiate(TimeUI[0]);
-        Instantiate(TimeUI[1]);
-        //Instantiate(Canva)
-    }
+    
     void OnValidate()
     {
         if (TimeUI.Length != TIME_N)

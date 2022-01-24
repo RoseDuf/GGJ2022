@@ -34,13 +34,15 @@ public class DaytimeManager : MonoBehaviour
 
     private TimeOfDay lastTimeOfDay;
 
+    private bool timeIsStop = false;
+
     private void Update()
     {
-        UpdateTimeOfDay();
-            
-        UpdateHourMinute();
-        UIManager.Instance.TimeUI[0].text = String.Format("{0:00}", hour);
-        UIManager.Instance.TimeUI[1].text = String.Format("{0:00}", minute);
+        if (!timeIsStop)
+        {
+            UpdateTimeOfDay();
+            UpdateIndicatorPosition();
+        }
     }
 
     private void UpdateTimeOfDay()
@@ -56,7 +58,37 @@ public class DaytimeManager : MonoBehaviour
             CurrentTimeOfDay = TimeOfDay.Night;
 
         if (CurrentTimeOfDay != lastTimeOfDay)
-            Debug.Log("Time of Day: " + CurrentTimeOfDay.ToString());
+        {
+            //Debug.Log("Time of Day: " + CurrentTimeOfDay.ToString());
+        }
+    }
+
+    private void UpdateIndicatorPosition()
+    {
+        float timeAngle = (currentTime * -360);
+
+        Quaternion quat;
+        
+        Debug.Log("timeAngle: " + timeAngle);
+        if (timeAngle < -90 && timeAngle >= -270)
+        {
+            // Day
+            UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0,0,0);
+            quat = Quaternion.Euler(0,0,timeAngle);
+        }
+        else
+        {
+            // Night
+            UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0, 0, -180);
+            quat = Quaternion.Euler(0,0,timeAngle - 180);
+        }
+        
+        UIManager.Instance.IndicatorDayNightRectTransform.rotation = quat;
+    }
+
+    private void UpdateCycleCircle()
+    {
+        
     }
 
     private void UpdateHourMinute()
