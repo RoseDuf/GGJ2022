@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum VillagerState
+public interface IGrabable
 {
-    Spawn,
-    Idle,
-    Chase,
-    RunAway
+    Transform GetTransform();
 }

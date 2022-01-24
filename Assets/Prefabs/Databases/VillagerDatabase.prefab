@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3625876748674888949
+--- !u!1 &1824772070666500726
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1937606036260301281}
-  - component: {fileID: 3351043529754554284}
+  - component: {fileID: 271032864846434028}
+  - component: {fileID: 5861557250289389012}
   m_Layer: 0
-  m_Name: ManagersManager
+  m_Name: VillagerDatabase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1937606036260301281
+--- !u!4 &271032864846434028
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3625876748674888949}
+  m_GameObject: {fileID: 1824772070666500726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24422932, y: 1.4564604, z: -0.5239496}
+  m_LocalPosition: {x: -11.191032, y: -8.663862, z: 1.1539822}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3351043529754554284
+--- !u!114 &5861557250289389012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3625876748674888949}
+  m_GameObject: {fileID: 1824772070666500726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91107818575da04083c20b7e1d9be33, type: 3}
+  m_Script: {fileID: 11500000, guid: c78bf39f28b48034e86fbca7edf409ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Managers:
-  - {fileID: 1110304283540952525, guid: 10e026e71030eaf4cb98f4dda8420b7b, type: 3}
-  - {fileID: 5725768680001235698, guid: e39f4736893521848b1705eae54dc902, type: 3}
-  - {fileID: 4691657366030023192, guid: 057e3bdb12b20b7449f45d4dae5d38dc, type: 3}
-  - {fileID: 4691657366030023192, guid: 55906067329f98342bb83749677853d1, type: 3}
-  - {fileID: 1824772070666500726, guid: 30efea6982bbd5846a0e1ddfc3acb718, type: 3}
+  _villagerData:
+  - {fileID: 11400000, guid: e0094961c5c46b04395e62a80d7081dd, type: 2}
+  - {fileID: 11400000, guid: 67029fc8917a245409b2d7c24e124c61, type: 2}
+  - {fileID: 11400000, guid: 1743d34cf40c386409776e92bbfdf358, type: 2}
+  - {fileID: 11400000, guid: 075a5a45f0c15b9458dc378ec4d186c3, type: 2}

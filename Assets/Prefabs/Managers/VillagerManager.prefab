@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a0afd7d7d73cd46b765fb93eea11a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 2714778263206318569, guid: 93b6abcf1f5e0b64a9caa360d1c2c5f3, type: 3}
   _numberVillagersToSpawn: 10
   _spawnDelay: 0
   VillagerPrefabs:

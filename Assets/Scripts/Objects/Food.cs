@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Food : PoolableObject
+public class Food : PoolableObject, IGrabable
 {
     public enum FoodType
     {
@@ -21,19 +21,26 @@ public class Food : PoolableObject
     private MeshFilter _meshFilter;
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshFilter = GetComponent<MeshFilter>();
+        
+    }
+
+    void Start()
+    {
         InitializeFood();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            this.enabled = false;
+        }
     }
 
     public override void OnDisable()
@@ -46,5 +53,10 @@ public class Food : PoolableObject
     {
         _meshRenderer.material = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
         _meshFilter.mesh = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Mesh;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

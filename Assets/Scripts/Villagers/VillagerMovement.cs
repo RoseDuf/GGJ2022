@@ -6,14 +6,24 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class VillagerMovement : MonoBehaviour
 {
-    public Transform Target;
-    public float UpdateRate = 0.1f;
+    [SerializeField]
+    private float UpdateRate = 0.1f;
+    [SerializeField]
     private NavMeshAgent Agent;
+    [SerializeField]
+    private float IdleLocationRadius = 4f;
+    [SerializeField]
+    private float IdleMovespeed = 2f;
+    [SerializeField]
+    private float RunMoveSpeed = 4f;
+    [SerializeField]
+    private VillagerLineOfSightChecker _lineOfSightChecker;
 
     [SerializeField]
     private Animator Animator = null;
 
-    public VillagerState DefaultState;
+    [SerializeField]
+    private VillagerState DefaultState;
     private VillagerState _state;
     public VillagerState State
     {
@@ -27,11 +37,10 @@ public class VillagerMovement : MonoBehaviour
             _state = value;
         }
     }
+    public Transform Target { get; set; }
 
     public delegate void StateChangeEvent(VillagerState oldState, VillagerState newState);
     public StateChangeEvent OnStateChange;
-    public float IdleLocationRadius = 4f;
-    public float IdleMovespeedMultiplier = 0.5f;
 
     private const string IsWalking = "IsWalking";
     private const string IsWimpering = "IsWimpering";
@@ -43,6 +52,8 @@ public class VillagerMovement : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
 
+        _lineOfSightChecker.OnGainSight = HandleGainSight;
+        _lineOfSightChecker.OnLoseSight = HandleLoseSight;
         OnStateChange += HandleStateChange;
     }
 
@@ -56,33 +67,27 @@ public class VillagerMovement : MonoBehaviour
         
     }
 
-    private void HandleStateChange(VillagerState oldSatte, VillagerState newState)
+    private void HandleGainSight(Player player)
     {
-        if (oldSatte != newState)
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
-            //if (FollowCoroutine != null)
-            //{
-            //    StopCoroutine(FollowCoroutine);
-            //}
-
-            if (oldSatte == VillagerState.Idle)
+            if (GetComponent<Villager>().Aggressivity == 0)
             {
-                Agent.speed /= IdleMovespeedMultiplier;
+                State = VillagerState.RunAway;
             }
-
-            switch(newState)
+            else
             {
-                case VillagerState.Idle:
-                    FollowCoroutine = StartCoroutine(DoIdleMotion());
-                    break;
-                case VillagerState.Chase:
-                    FollowCoroutine = StartCoroutine(FollowTarget());
-                    break;
+                State = VillagerState.Chase;
             }
         }
     }
 
-    private void Spawn()
+    private void HandleLoseSight(Player player)
+    {
+        State = DefaultState;
+    }
+
+    public void Spawn()
     {
         OnStateChange?.Invoke(VillagerState.Spawn, DefaultState);
     }
@@ -91,7 +96,9 @@ public class VillagerMovement : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
 
-        Agent.speed *= IdleMovespeedMultiplier;
+        Agent.speed = IdleMovespeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
 
         while (true)
         {
@@ -114,29 +121,64 @@ public class VillagerMovement : MonoBehaviour
         }
     }
 
-    private void StartChasing()
-    {
-        if (FollowCoroutine == null)
-        {
-            FollowCoroutine = StartCoroutine(FollowTarget());
-        }
-        else
-        {
-            Debug.LogWarning("Called StartChasing on Enemy tht is already chasing!");
-        }
-    }
-
     private IEnumerator FollowTarget()
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
+
+        Agent.speed = RunMoveSpeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
 
         while (gameObject.activeSelf)
         {
             if (Agent.enabled)
             {
+                Agent.SetDestination(Target.position - (Target.position - transform.position).normalized * 0.5f);
+            }
+            yield return wait;
+        }
+    }
+
+    private IEnumerator RunAwayFromTarget()
+    {
+        WaitForSeconds wait = new WaitForSeconds(UpdateRate);
+
+        Agent.speed = RunMoveSpeed;
+        Agent.isStopped = true;
+        Agent.ResetPath();
+
+        while (gameObject.activeSelf)
+        {
+            if (Agent.enabled)
+            {   
                 Agent.SetDestination(Target.position);
             }
             yield return wait;
         }
     }
+
+    private void HandleStateChange(VillagerState oldSatte, VillagerState newState)
+    {
+        if (oldSatte != newState)
+        {
+            if (FollowCoroutine != null)
+            {
+                StopCoroutine(FollowCoroutine);
+            }
+
+            switch (newState)
+            {
+                case VillagerState.Idle:
+                    FollowCoroutine = StartCoroutine(DoIdleMotion());
+                    break;
+                case VillagerState.Chase:
+                    FollowCoroutine = StartCoroutine(FollowTarget());
+                    break;
+                case VillagerState.RunAway:
+                    FollowCoroutine = StartCoroutine(RunAwayFromTarget());
+                    break;
+            }
+        }
+    }
+    
 }

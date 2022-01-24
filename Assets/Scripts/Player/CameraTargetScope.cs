@@ -4,34 +4,33 @@ using UnityEngine;
 
 public class CameraTargetScope : MonoBehaviour
 {
-    private List<Collider> _targetList;
-    public List<Collider> TargetList { get { return _targetList; } }
+    public List<IDamageable> Damageables = new List<IDamageable>();
+    public List<Transform> TargetList = new List<Transform>();
     [SerializeField]
     private float _stopDistance;
     [SerializeField]
     private Transform _player;
 
     public float StopDistance { get { return _stopDistance; } }
-
-    private void Start()
-    {
-        _targetList = new List<Collider>();
-    }
+    
 
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Target" && !collider.isTrigger && (collider.transform.position - _player.position).magnitude > 1 && !_targetList.Contains(collider))
+        IDamageable damageable = collider.GetComponent<IDamageable>();
+        if (damageable != null && !Damageables.Contains(damageable))
         {
-            _targetList.Add(collider.GetComponent<Collider>());
+            Damageables.Add(damageable);
+            TargetList.Add(damageable.GetTransform());
         }
     }
     
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.tag == "Target" && _targetList.Contains(collider))
+        IDamageable damageable = collider.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            _targetList.Remove(collider);
-
+            Damageables.Remove(damageable);
+            TargetList.Remove(damageable.GetTransform());
             Villager villager = collider.GetComponent<Villager>();
 
             if (villager != null)

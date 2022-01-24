@@ -16,10 +16,10 @@ TagManager:
   - UI
   - Player
   - Food
-  - 
-  - 
-  - 
-  - 
+  - Villager
+  - PlayerInteractionRadius
+  - VillagerInteractionRadius
+  - Scope
   - 
   - 
   - 
