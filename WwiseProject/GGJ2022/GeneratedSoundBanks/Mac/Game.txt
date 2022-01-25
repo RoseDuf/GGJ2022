@@ -1,6 +1,8 @@
 Event	ID	Name			Wwise Object Path	Notes
 	1588368213	Bababooey			\Default Work Unit\Bababooey	
+	3231935906	DayMusic			\Default Work Unit\DayMusic	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	417442959	DayMusic	D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\.cache\Mac\SFX\DayMusic_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\DayMusic\DayMusic		13625920
 	1064851420	bababooey	D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\.cache\Mac\SFX\bababooey_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\bababooey		152128
 

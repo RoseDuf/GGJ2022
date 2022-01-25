@@ -36,5 +36,7 @@ namespace Game
 
         public void PlayBababooeySound() => events.BababooeyEvent.Post(gameObject);
         public void PlayMenuMusic() => events.MenuMusicEvent.Post(gameObject);
+        public void PlayDayMusic() => events.DayMusicEvent.Post(gameObject);
+        public void PlayNightMusic() => events.NightMusicEvent.Post(gameObject);
     }
 }

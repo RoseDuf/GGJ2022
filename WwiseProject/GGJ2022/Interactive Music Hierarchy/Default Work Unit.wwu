@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}" SchemaVersion="103">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSegment Name="DayMusic" ID="{8CF2A7FB-1E50-4595-991E-AE76B68EE7BC}" ShortID="287801665">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="70968"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{69D4BD79-01EF-4DDE-AD55-018F0F9F689F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="DayMusic" ID="{FDEEFF2F-A0B6-4F23-A8A2-AC6BF776EEF8}" ShortID="949870848">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="DayMusic" ID="{1DC34D18-3ADA-477B-BE58-006A7151F187}">
+									<Language>SFX</Language>
+									<AudioFile>DayMusic.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="417442959"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{0A432449-4E26-4DA0-A3E1-6C5563B4C47D}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{2FBE9496-F918-4AED-9A98-11D5637424FE}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="DayMusic" ID="{1CAF5930-BDCF-4E62-B52C-CBCB65190E21}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="70968"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="DayMusic" ID="{1DC34D18-3ADA-477B-BE58-006A7151F187}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{B2D9B2A7-5974-4F6B-9276-E2EED91969B1}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{53D5C469-EE3C-4466-B4D4-4BC75FA54510}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="70968"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>

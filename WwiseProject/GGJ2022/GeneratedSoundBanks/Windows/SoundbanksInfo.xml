@@ -11,14 +11,19 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="702482391" Language="SFX" Hash="2566419637">
+		<SoundBank Id="702482391" Language="SFX" Hash="3976592823">
 			<ObjectPath>\SoundBanks\Default Work Unit\Game</ObjectPath>
 			<ShortName>Game</ShortName>
 			<Path>Game.bnk</Path>
 			<IncludedEvents>
 				<Event Id="1588368213" Name="Bababooey" ObjectPath="\Events\Default Work Unit\Bababooey" DurationType="OneShot" DurationMin="0.862041" DurationMax="0.862041"/>
+				<Event Id="3231935906" Name="DayMusic" ObjectPath="\Events\Default Work Unit\DayMusic" DurationType="OneShot" DurationMin="70.968002" DurationMax="70.968002"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="417442959" Language="SFX">
+					<ShortName>DayMusic.wav</ShortName>
+					<Path>SFX\DayMusic_D79FB2B7.wem</Path>
+				</File>
 				<File Id="1064851420" Language="SFX">
 					<ShortName>bababooey.wav</ShortName>
 					<Path>SFX\bababooey_10C4C929.wem</Path>
