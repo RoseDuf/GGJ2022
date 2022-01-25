@@ -29,6 +29,9 @@ public class DayNightCycle : MonoBehaviour
     [Header("Other Lighting")] public AnimationCurve lightIntensityMultiplier;
     public AnimationCurve reflectiontIntensityMultiplier;
 
+    public void Stop() => enabled = false;
+    public void Resume() => enabled = true;
+    
     private void Start()
     {
         timeRate = 1.0f / fullDayLength;

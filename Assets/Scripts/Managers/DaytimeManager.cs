@@ -1,13 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using TMPro;
 using UnityEngine;
 
-public class DaytimeManager : MonoBehaviour
+public class DaytimeManager : Singleton<DaytimeManager>
 {
     private static DaytimeManager _instance;
-    public static DaytimeManager Instance { get { return _instance; }    }
+
+    public static DaytimeManager Instance
+    {
+        get { return _instance; }
+    }
 
     [SerializeField] private DayNightCycle dayNightCycle;
 
@@ -17,6 +22,8 @@ public class DaytimeManager : MonoBehaviour
         Evening,
         Night
     }
+
+    public event Action<TimeOfDay> OnTimeOfDayChanged;
 
     public TimeOfDay CurrentTimeOfDay;
     private double hour = 0;
@@ -34,15 +41,13 @@ public class DaytimeManager : MonoBehaviour
 
     private TimeOfDay lastTimeOfDay;
 
-    private bool timeIsStop = false;
+    public void Stop() => dayNightCycle.Stop();
+    public void Resume() => dayNightCycle.Resume();
 
     private void Update()
     {
-        if (!timeIsStop)
-        {
-            UpdateTimeOfDay();
-            UpdateIndicatorPosition();
-        }
+        UpdateTimeOfDay();
+        UpdateIndicatorPosition();
     }
 
     private void UpdateTimeOfDay()
@@ -59,7 +64,8 @@ public class DaytimeManager : MonoBehaviour
 
         if (CurrentTimeOfDay != lastTimeOfDay)
         {
-            //Debug.Log("Time of Day: " + CurrentTimeOfDay.ToString());
+            OnTimeOfDayChanged?.Invoke(CurrentTimeOfDay);
+            Debug.Log("Time of Day: " + CurrentTimeOfDay);
         }
     }
 
@@ -69,7 +75,6 @@ public class DaytimeManager : MonoBehaviour
 
         Quaternion quat;
         
-        Debug.Log("timeAngle: " + timeAngle);
         if (timeAngle < -90 && timeAngle >= -270)
         {
             // Day
