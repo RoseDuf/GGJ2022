@@ -8,13 +8,15 @@ namespace Game
     {
         public event Action<int> OnDayStarted;
         public event Action<int> OnNightStarted;
+        public event Action OnDayNightTransitionStarted;
         public event Action OnDayNightTransitionFinished;
 
-        private int currentDay = 1;
+        private int currentDay = 0;
 
         public int CurrentDay => currentDay;
         public DaytimeManager.TimeOfDay CurrentTimeOfDay => DaytimeManager.HasInstance ? DaytimeManager.Instance.CurrentTimeOfDay : DaytimeManager.TimeOfDay.Day;
-
+        public bool IsStartOfGame => currentDay <= 1 && CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day;
+        
         private void Start()
         {
             if (!DaytimeManager.HasInstance)
@@ -46,21 +48,37 @@ namespace Game
 
         private IEnumerator TimeOfDayTransitionRoutine(DaytimeManager.TimeOfDay timeOfDay)
         {
-            DaytimeManager.Instance.Stop();
-            // TODO Black Screen hiding things
             if (timeOfDay == DaytimeManager.TimeOfDay.Day)
-            {
                 ++currentDay;
-                OnDayStarted?.Invoke(currentDay);
-            }
-            else if (timeOfDay == DaytimeManager.TimeOfDay.Night)
+            
+            if (!IsStartOfGame)
+                DaytimeManager.Instance.Stop();
+            
+            OnDayNightTransitionStarted?.Invoke();
+            if (!IsStartOfGame && UIManager.HasInstance)
             {
+                UIManager.Instance.ShowDayNightTransition();
+                yield return null;
+                yield return new WaitUntil(() => UIManager.Instance.DayNightTransitionIsFinished);
+            }
+
+            if (timeOfDay == DaytimeManager.TimeOfDay.Day)
+                OnDayStarted?.Invoke(currentDay);
+            else if (timeOfDay == DaytimeManager.TimeOfDay.Night)
                 OnNightStarted?.Invoke(currentDay);
+            
+            if (!IsStartOfGame)
+                yield return new WaitForSeconds(2f);
+            
+            if (!IsStartOfGame && UIManager.HasInstance)
+            {
+                UIManager.Instance.HideDayNightTransition();
+                yield return null;
+                yield return new WaitUntil(() => UIManager.Instance.DayNightTransitionIsFinished);
             }
             
-            yield return new WaitForSeconds(2f); // TODO Wait until everything has changed
-            // TODO Black screen disappears
             OnDayNightTransitionFinished?.Invoke();
+            DaytimeManager.Instance.Resume();
         }
     }
 }

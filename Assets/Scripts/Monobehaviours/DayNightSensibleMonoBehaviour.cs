@@ -17,6 +17,7 @@ namespace Game
             {
                 GameManager.Instance.OnDayStarted += OnDay;
                 GameManager.Instance.OnNightStarted += OnNight;
+                GameManager.Instance.OnDayNightTransitionStarted += OnDayNightTransitionStarted;
                 GameManager.Instance.OnDayNightTransitionFinished += OnDayNightTransitionFinished;
             }
         }
@@ -27,12 +28,14 @@ namespace Game
             {
                 GameManager.Instance.OnDayStarted -= OnDay;
                 GameManager.Instance.OnNightStarted -= OnNight;
+                GameManager.Instance.OnDayNightTransitionStarted -= OnDayNightTransitionStarted;
                 GameManager.Instance.OnDayNightTransitionFinished -= OnDayNightTransitionFinished;
             }
         }
 
         protected abstract void OnDay(int dayNumber);
         protected abstract void OnNight(int nightNumber);
+        protected virtual void OnDayNightTransitionStarted() {}
         protected virtual void OnDayNightTransitionFinished() {}
     }
 }

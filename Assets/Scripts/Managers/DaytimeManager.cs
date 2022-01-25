@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class DaytimeManager : Singleton<DaytimeManager>
 {
-    private static DaytimeManager _instance;
-
-    public static DaytimeManager Instance
-    {
-        get { return _instance; }
-    }
-
     [SerializeField] private DayNightCycle dayNightCycle;
 
     public enum TimeOfDay
@@ -27,14 +20,6 @@ public class DaytimeManager : Singleton<DaytimeManager>
     private double minute = 0;
 
     [Range(0.0f, 1.0f)] private float currentTime;
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
 
     private TimeOfDay lastTimeOfDay;
 
