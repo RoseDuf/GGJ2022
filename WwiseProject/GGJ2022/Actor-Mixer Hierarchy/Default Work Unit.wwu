@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{0EA58522-DE7A-498D-AF5A-EA920B035552}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{0EA58522-DE7A-498D-AF5A-EA920B035552}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="bababooey" ID="{46A379C4-1AD6-45BB-8E06-D7DDAE232918}" ShortID="791792791">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{69D4BD79-01EF-4DDE-AD55-018F0F9F689F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="bababooey" ID="{87ED23BA-0767-42D4-A82E-7096F047A61F}">
+							<Language>SFX</Language>
+							<AudioFile>bababooey.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="1064851420"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="bababooey" ID="{87ED23BA-0767-42D4-A82E-7096F047A61F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
