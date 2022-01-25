@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using StarterAssets;
 
@@ -32,6 +33,11 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B)) 
+        {
+            SoundSystem.Instance.PlayBababooeySound();
+        }
+        
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             if (_interactionRadius.CanDoAction && _input.action)

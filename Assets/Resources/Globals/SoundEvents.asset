@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4cd117c4a93f5459e91a2fa0cdc830, type: 3}
+  m_Name: SoundEvents
+  m_EditorClassIdentifier: 
+  soundBankPrefab: {fileID: 3187738381392806732, guid: 2eafd8876223883459a5ffb0823d9519, type: 3}
+  bababooey:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e5b5a2414c2c1e3429ca97d19c1cb010, type: 2}
+  menuMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e5b5a2414c2c1e3429ca97d19c1cb010, type: 2}
