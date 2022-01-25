@@ -33,11 +33,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) 
-        {
-            SoundSystem.Instance.PlayBababooeySound();
-        }
-        
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             if (_interactionRadius.CanDoAction && _input.action)
