@@ -20,7 +20,7 @@ public class VillagerMovement : MonoBehaviour
     private VillagerLineOfSightChecker _lineOfSightChecker;
 
     [SerializeField]
-    private Animator Animator = null;
+    private Animator _animator = null;
 
     [SerializeField]
     private VillagerState DefaultState;
@@ -43,7 +43,8 @@ public class VillagerMovement : MonoBehaviour
     public StateChangeEvent OnStateChange;
 
     private const string IsWalking = "IsWalking";
-    private const string IsWimpering = "IsWimpering";
+    private bool isWalking;
+    private const string IsRunningAway = "IsRunningAway";
     private const string IsAttacking = "IsAttacking";
 
     private Coroutine FollowCoroutine;
@@ -62,9 +63,22 @@ public class VillagerMovement : MonoBehaviour
         _state = DefaultState;
     }
 
+    Vector3 curPos;
+    Vector3 lastPos;
     private void Update()
     {
-        
+        Vector3 curPos = transform.position;
+        if (curPos == lastPos && isWalking)
+        {
+            _animator.SetBool("IsIdle", isWalking);
+            isWalking = false;
+        }
+        else if (curPos != lastPos && !isWalking)
+        {
+            isWalking = true;
+            _animator.SetBool("IsWalking", isWalking);
+        }
+        lastPos = curPos;
     }
 
     private void HandleGainSight(Player player)

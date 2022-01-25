@@ -47,5 +47,5 @@ MonoBehaviour:
   _numberVillagersToSpawn: 10
   _spawnDelay: 0
   VillagerPrefabs:
-  - {fileID: 2138331616037543165, guid: 525c361d7902c754b9af457a2fcf09ec, type: 3}
+  - {fileID: 2033586434340165956, guid: 119fdf4b4cd797f499519d04a937824c, type: 3}
   villagerSpawnMethod: 0

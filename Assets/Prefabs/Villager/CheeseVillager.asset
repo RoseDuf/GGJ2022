@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CheeseVillager
   m_EditorClassIdentifier: 
   TypeOfFood: 3
-  Material: {fileID: 2100000, guid: bdf3363456be6204aa15b788a71f2c9c, type: 2}
+  Material: {fileID: 2100000, guid: 7c30038505a17c74086bf6216faaf2b3, type: 2}

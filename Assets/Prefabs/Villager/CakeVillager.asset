@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CakeVillager
   m_EditorClassIdentifier: 
   TypeOfFood: 2
-  Material: {fileID: 2100000, guid: ced5260b5abd34540847ccdf4d47de05, type: 2}
+  Material: {fileID: 2100000, guid: 02303b1a715a87444ace42ea3fb92348, type: 2}
