@@ -28,7 +28,7 @@ public class Villager : PoolableObject, IDamageable
     private Animator _animator;
     private Coroutine LookCoroutine;
 
-    private MeshRenderer _meshRenderer;
+    private SkinnedMeshRenderer _meshRenderer;
     public int Fatness;
     public int Aggressivity;
 
@@ -44,7 +44,7 @@ public class Villager : PoolableObject, IDamageable
 
     private void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
+        _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         _interactionRadius.OnAttack += OnAttack;
         _interactionRadius.OnGive += OnGive;
     }
@@ -61,7 +61,9 @@ public class Villager : PoolableObject, IDamageable
 
     private void InitializeVillager()
     {
-        _meshRenderer.material = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
+        Material[] newMaterials = new Material[1];
+        newMaterials[0] = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
+        _meshRenderer.materials = newMaterials;
     }
 
     private void OnGive(IDamageable target)
