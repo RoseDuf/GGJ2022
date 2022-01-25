@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game;
-using TMPro;
 using UnityEngine;
 
 public class DaytimeManager : Singleton<DaytimeManager>
