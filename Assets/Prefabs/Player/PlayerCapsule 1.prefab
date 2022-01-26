@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2068708546683838367}
   - component: {fileID: 4537135981117678619}
   - component: {fileID: 4551440201999896265}
-  - component: {fileID: 8162710117640147457}
   m_Layer: 6
   m_Name: PlayerCapsule 1
   m_TagString: Player
@@ -270,26 +269,8 @@ MonoBehaviour:
   _health: 10
   _interactionRadius: {fileID: 815278211200436188}
   _attackDelay: 0.2
-  _animator: {fileID: 8162710117640147457}
---- !u!95 &8162710117640147457
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2615806728289361221}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  _animator: {fileID: 0}
+  _controller: {fileID: 0}
 --- !u!1 &4537135981163108044
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,10 +363,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.089578
+  m_Height: 1.8159634
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.09201885, z: 0}
 --- !u!1 &4537135981698937435
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,11 +563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.067
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.234
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
       propertyPath: m_LocalPosition.z
@@ -624,10 +605,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: doggo
       objectReference: {fileID: 0}
+    - target: {fileID: 8823367528140899523, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
+      propertyPath: m_Name
+      value: Doggo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
+--- !u!1 &3618163959013411847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
+  m_PrefabInstance: {fileID: 4537135979840975190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4142639168225138365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
   m_PrefabInstance: {fileID: 4537135979840975190}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &5284202968715194976
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3618163959013411847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b95f61e63d0c3a43acd4d18d283ceb5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

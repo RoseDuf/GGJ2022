@@ -330,7 +330,7 @@ namespace StarterAssets
 			// update animator if using character
 			if (_hasAnimator)
 			{
-				_animator.SetFloat(_animIDSpeed, _animationBlend);
+				_animator.SetFloat("Speed", _animationBlend);
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
 		}
