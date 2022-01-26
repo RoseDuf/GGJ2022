@@ -22,7 +22,7 @@ namespace Game
             }
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
             if (GameManager.HasInstance)
             {
