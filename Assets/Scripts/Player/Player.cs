@@ -5,16 +5,11 @@ using StarterAssets;
 
 public class Player : DayNightSensibleMonoBehaviour, IDamageable
 {
-    [SerializeField]
-    private float _health = 10f;
-    [SerializeField]
-    private InteractionRadius _interactionRadius;
-    [SerializeField]
-    private float _attackDelay;
-    [SerializeField]
-    private Animator _animator;
-    [SerializeField]
-    private ThirdPersonController _controller;
+    [SerializeField] private float _health = 10f;
+    [SerializeField] private InteractionRadius _interactionRadius;
+    [SerializeField] private float _attackDelay;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private ThirdPersonController _controller;
     private Inventory _inventory;
 
     [SerializeField] private GameObject daydoggo;
@@ -51,7 +46,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         if (!_inputsActivated)
             return;
-        
+
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             if (_interactionRadius.CanDoAction && _input.action)
@@ -65,7 +60,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         {
             if (_interactionRadius.CanDoAction && AttackCoroutine == null && _input.action)
             {
-                AttackCoroutine = StartCoroutine(_interactionRadius.Attack(InteractionRadius.AttackStyle.Singular, _attackDelay));
+                AttackCoroutine =
+                    StartCoroutine(_interactionRadius.Attack(InteractionRadius.AttackStyle.Singular, _attackDelay));
                 _input.action = false;
             }
 
@@ -73,6 +69,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             {
                 AttackCoroutine = null;
             }
+
         }
     }
 
@@ -85,7 +82,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _inventory.Food.Add(item);
         item.SetActive(false);
     }
-    
+
     private void OnAttack(IDamageable target)
     {
         _animator.SetTrigger(k_Attack);
@@ -137,15 +134,19 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         return transform;
     }
-
     protected override void OnDay(int dayNumber)
     {
         // TODO Switch visual to day visuals
+        
+        daydoggo.SetActive(true);
+        nightdoggo.SetActive(false);
     }
 
     protected override void OnNight(int nightNumber)
     {
         // TODO Switch visual to night visuals
+        daydoggo.SetActive(false);
+        nightdoggo.SetActive(true);
     }
 
     protected override void OnDayNightTransitionStarted()

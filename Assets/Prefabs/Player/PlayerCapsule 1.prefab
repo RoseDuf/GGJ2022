@@ -35,11 +35,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4142639168225138365}
+  - {fileID: 3103822879523935346}
   - {fileID: 7690790721618863129}
   - {fileID: 4537135981163108043}
   - {fileID: 4537135981698937434}
   - {fileID: 4560354166300354079}
-  - {fileID: 3103822879523935346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -272,8 +272,8 @@ MonoBehaviour:
   _attackDelay: 0.2
   _animator: {fileID: 0}
   _controller: {fileID: 0}
-  daydoggo: {fileID: 919132149155446097, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
-  nightdoggo: {fileID: 0}
+  daydoggo: {fileID: 3618163959013411847}
+  nightdoggo: {fileID: 2330945797210853064}
 --- !u!1 &4537135981163108044
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.9, z: 0.75}
   m_Children: []
   m_Father: {fileID: 3388649690834913279}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4537135981163108040
 MeshFilter:
@@ -400,7 +400,7 @@ Transform:
   m_LocalScale: {x: 0.42633, y: 0.42633, z: 0.42633}
   m_Children: []
   m_Father: {fileID: 3388649690834913279}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4537135981698937415
 MeshFilter:
@@ -479,7 +479,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3388649690834913279}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9012240504929747184
 GameObject:
@@ -511,7 +511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3388649690834913279}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8670956448704843361
 SphereCollider:
@@ -550,7 +550,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 20eb1a030c11ba4429d0dd5f2f28fa6c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 20eb1a030c11ba4429d0dd5f2f28fa6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,6 +595,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 20eb1a030c11ba4429d0dd5f2f28fa6c, type: 3}
       propertyPath: m_Name
       value: curseDogo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20eb1a030c11ba4429d0dd5f2f28fa6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20eb1a030c11ba4429d0dd5f2f28fa6c, type: 3}
@@ -693,6 +697,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
       propertyPath: m_Name
       value: doggo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8823367528140899523, guid: 5018fab1c2bb3884ba7a5a3516665b31, type: 3}
       propertyPath: m_Name
