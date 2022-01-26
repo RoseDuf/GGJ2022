@@ -270,6 +270,7 @@ MonoBehaviour:
   _interactionRadius: {fileID: 770556547635415920}
   _attackDelay: 0.2
   _animator: {fileID: 8117219036606193325}
+  _controller: {fileID: 2714778263206318562}
 --- !u!95 &8117219036606193325
 Animator:
   serializedVersion: 3

@@ -1,8 +1,9 @@
 using System.Collections;
+using Game;
 using UnityEngine;
 using StarterAssets;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : DayNightSensibleMonoBehaviour, IDamageable
 {
     [SerializeField]
     private float _health = 10f;
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour, IDamageable
     private float _attackDelay;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private ThirdPersonController _controller;
     private Inventory _inventory;
 
     private StarterAssetsInputs _input;
@@ -20,6 +23,18 @@ public class Player : MonoBehaviour, IDamageable
 
     private const string k_Attack = "Attack";
     private const string k_Grab = "Grab";
+
+    private bool _inputsActivated = true;
+
+    private bool InputsActivated
+    {
+        get => _inputsActivated;
+        set
+        {
+            _inputsActivated = value;
+            if (_controller) _controller.enabled = value;
+        }
+    }
 
     private void Awake()
     {
@@ -31,6 +46,9 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (!_inputsActivated)
+            return;
+        
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             if (_interactionRadius.CanDoAction && _input.action)
@@ -113,5 +131,25 @@ public class Player : MonoBehaviour, IDamageable
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    protected override void OnDay(int dayNumber)
+    {
+        // TODO Switch visual to day visuals
+    }
+
+    protected override void OnNight(int nightNumber)
+    {
+        // TODO Switch visual to night visuals
+    }
+
+    protected override void OnDayNightTransitionStarted()
+    {
+        InputsActivated = false;
+    }
+
+    protected override void OnDayNightTransitionFinished()
+    {
+        InputsActivated = true;
     }
 }
