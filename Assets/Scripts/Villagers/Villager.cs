@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -41,6 +42,7 @@ public class Villager : PoolableObject, IDamageable
     private const string k_Attack = "Attack";
 
     private Coroutine AttackCoroutine;
+    private bool _isMoving = true;
 
     private void Awake()
     {
@@ -57,6 +59,9 @@ public class Villager : PoolableObject, IDamageable
         Fatness = 0;
         Aggressivity = 1; //TODO: change this to increase per level
         _health = _baseHealth;
+        
+        if (GameManager.HasInstance)
+            UpdateStatsForDay(GameManager.Instance.CurrentDay);
     }
 
     private void InitializeVillager()
@@ -111,6 +116,9 @@ public class Villager : PoolableObject, IDamageable
 
     private void Update()
     {
+        if (!_isMoving)
+            return;
+        
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
             if (_interactionRadius.CanDoAction && AttackCoroutine == null)
@@ -141,5 +149,26 @@ public class Villager : PoolableObject, IDamageable
     public Transform GetTransform()
     {
         return transform;
+    }
+
+    public void UpdateStatsForDay(int dayNumber)
+    {
+        var stats = DayStatsSystem.Instance.GetForDay(dayNumber);
+        Aggressivity = (int) stats.BaseAggressivity;
+    }
+
+    public void StopMoving()
+    {
+        Agent.SetDestination(transform.position);
+        Movement.enabled = false;
+        _isMoving = false;
+        Agent.enabled = false;
+    }
+
+    public void ResumeMoving()
+    {
+        Movement.enabled = true;
+        _isMoving = true;
+        Agent.enabled = true;
     }
 }

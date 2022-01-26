@@ -1,42 +1,45 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Game;
 using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    //------Singleton------
-    private static UIManager _instance;
-
-    public static UIManager Instance
-    {
-        get { return _instance; }
-    }
-    //--------------------
-
     private const int TIME_N = 2;
-    [HideInInspector]
-    public TextMeshProUGUI[] TimeUI = new TextMeshProUGUI[TIME_N];
-    
+    private static readonly int Show = Animator.StringToHash("Show");
+    private static readonly int Hide = Animator.StringToHash("Hide");
+
+    [SerializeField] private Animator dayNightTransitionAnimator;
+    [HideInInspector] public TextMeshProUGUI[] TimeUI = new TextMeshProUGUI[TIME_N];
     
     public RectTransform DayNightCircleRectTransform;
     public RectTransform IndicatorDayNightRectTransform;
-    
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
-    
+
+    public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
+                                                dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1;
+
     void OnValidate()
     {
         if (TimeUI.Length != TIME_N)
         {
             Debug.LogWarning("Don't change the number of possible object this object");
             Array.Resize(ref TimeUI, TIME_N);
+        }
+    }
+
+    public void ShowDayNightTransition()
+    {
+        if (dayNightTransitionAnimator)
+        {
+            dayNightTransitionAnimator.SetTrigger(Show);
+        }
+    }
+
+    public void HideDayNightTransition()
+    {
+        if (dayNightTransitionAnimator)
+        {
+            dayNightTransitionAnimator.SetTrigger(Hide);
         }
     }
     
