@@ -19,6 +19,8 @@ namespace Game
         
         private void Start()
         {
+            SoundSystem.Instance.PlayDayMusic(); // TODO Move that so we can play night music on swap
+            
             if (!DaytimeManager.HasInstance)
             {
                 Debug.Log($"{nameof(GameManager)} could not find any {nameof(DaytimeManager)}. The game cannot be started.");

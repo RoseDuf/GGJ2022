@@ -139,9 +139,12 @@ public class VillagerMovement : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(UpdateRate);
 
-        Agent.speed = RunMoveSpeed;
-        Agent.isStopped = true;
-        Agent.ResetPath();
+        if (Agent.enabled)
+        {
+            Agent.speed = RunMoveSpeed;
+            Agent.isStopped = true;
+            Agent.ResetPath();
+        }
 
         while (gameObject.activeSelf)
         {
