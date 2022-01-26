@@ -36,12 +36,10 @@ public class DaytimeManager : Singleton<DaytimeManager>
     {
         currentTime = dayNightCycle.time;
         lastTimeOfDay = CurrentTimeOfDay;
-
-        if (currentTime >= 0.25 && currentTime < 0.55)
+        
+        if (currentTime >= 0.25 && currentTime < 0.75)
             CurrentTimeOfDay = TimeOfDay.Day;
-        else if (currentTime >= 0.55 && currentTime < 0.75)
-            CurrentTimeOfDay = TimeOfDay.Evening;
-        else if (currentTime >= 0.6)
+        else
             CurrentTimeOfDay = TimeOfDay.Night;
 
         if (CurrentTimeOfDay != lastTimeOfDay)
