@@ -119,6 +119,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _health -= damage;
         if (_health <= 0)
         {
+            if (DaytimeManager.HasInstance)
+                DaytimeManager.Instance.Stop();
             gameObject.SetActive(false);
         }
     }

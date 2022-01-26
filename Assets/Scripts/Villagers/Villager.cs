@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -58,6 +59,9 @@ public class Villager : PoolableObject, IDamageable
         Fatness = 0;
         Aggressivity = 1; //TODO: change this to increase per level
         _health = _baseHealth;
+        
+        if (GameManager.HasInstance)
+            UpdateStatsForDay(GameManager.Instance.CurrentDay);
     }
 
     private void InitializeVillager()
@@ -149,7 +153,8 @@ public class Villager : PoolableObject, IDamageable
 
     public void UpdateStatsForDay(int dayNumber)
     {
-        // TODO: Update stats
+        var stats = DayStatsSystem.Instance.GetForDay(dayNumber);
+        Aggressivity = (int) stats.BaseAggressivity;
     }
 
     public void StopMoving()
