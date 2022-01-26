@@ -1,47 +1,47 @@
 fileFormatVersion: 2
-guid: 5018fab1c2bb3884ba7a5a3516665b31
+guid: 20eb1a030c11ba4429d0dd5f2f28fa6c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 5115629268117321413
-    second: Armature|EyeL_LOW|Take 001|BaseLayer
+      74: 1364586653664890646
+    second: Armature|Armature|Armature|EyeL_LOW|Take 001|BaseLayer.001|Armature|EyeL
   - first:
-      74: -1931546621996668109
-    second: Armature|EyeL_LOW|Take 001|BaseLayer.001
+      74: 1244263315360618554
+    second: Armature|Armature|Armature|EyeL_LOW|Take 001|BaseLayer.002|Armature|EyeL
   - first:
-      74: 2921349966568131471
-    second: Armature|EyeL_LOW|Take 001|BaseLayer.002
+      74: 6509615640157509894
+    second: Armature|Armature|Armature|EyeL_LOW|Take 001|BaseLayer|Armature|EyeL_LOW
   - first:
-      74: -8624483055816852479
-    second: Armature|EyeR_LOW.001|Take 001|BaseLayer
+      74: -5837289926199425738
+    second: Armature|Armature|Armature|EyeR_LOW.001|Take 001|BaseLayer|Armature|EyeR
   - first:
-      74: 4256741969135490762
-    second: Armature|EyeR_LOW|Take 001|BaseLayer
+      74: 8356363607937698583
+    second: Armature|Armature|Armature|EyeR_LOW|Take 001|BaseLayer.002|Armature|EyeR
   - first:
-      74: -9103692625040071652
-    second: Armature|EyeR_LOW|Take 001|BaseLayer.002
+      74: 1308577268116223986
+    second: Armature|Armature|Armature|EyeR_LOW|Take 001|BaseLayer|Armature|EyeR_LOW
   - first:
-      74: -8945691123924629249
-    second: Armature|Idle
+      74: 5787086959904975762
+    second: Armature|Armature|Armature|IdleTransition|Armature|IdleTransition
   - first:
-      74: -4420359986869244758
-    second: Armature|IdleTransition
+      74: 3949184196891408138
+    second: Armature|Armature|Armature|Idle|Armature|Idle
   - first:
-      74: -4274770991410265338
-    second: Armature|Walking
+      74: 8200771239797265567
+    second: Armature|Armature|Armature|Walking.001|Armature|Walking.001
   - first:
-      74: -2108476173976532896
-    second: Armature|Walking.001
+      74: -7813296339825084841
+    second: Armature|Armature|Armature|Walking|Armature|Walking
   - first:
-      74: -880265013929345132
-    second: Armature|Wolf_LOW|Take 001|BaseLayer
+      74: 372889059523713621
+    second: Armature|Armature|Armature|Wolf_LOW|Take 001|BaseLayer.001|Armature|Wolf
   - first:
-      74: -2736610890937959562
-    second: Armature|Wolf_LOW|Take 001|BaseLayer.001
+      74: -2454782802813345541
+    second: Armature|Armature|Armature|Wolf_LOW|Take 001|BaseLayer.002|Armature|Wolf
   - first:
-      74: 3583583649901497337
-    second: Armature|Wolf_LOW|Take 001|BaseLayer.002
+      74: 4481196876429347170
+    second: Armature|Armature|Armature|Wolf_LOW|Take 001|BaseLayer|Armature|Wolf_LOW
   externalObjects: {}
   materials:
     materialImportMode: 2

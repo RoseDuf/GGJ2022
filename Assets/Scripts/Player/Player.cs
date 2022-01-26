@@ -17,6 +17,9 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     private ThirdPersonController _controller;
     private Inventory _inventory;
 
+    [SerializeField] private GameObject daydoggo;
+    [SerializeField] private GameObject nightdoggo;
+
     private StarterAssetsInputs _input;
     private Coroutine LookCoroutine;
     private Coroutine AttackCoroutine;
