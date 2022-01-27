@@ -133,7 +133,12 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			_hasAnimator = TryGetComponent(out _animator);
+			_hasAnimator = (_animator != null);
+			if (!_hasAnimator)
+			{
+				_animator = GetComponentInChildren<Animator>();
+			}
+			//_hasAnimator = TryGetComponent(out _animator);
 
             //AllTime behaviour
             GroundedCheck();
@@ -331,6 +336,7 @@ namespace StarterAssets
 			if (_hasAnimator)
 			{
 				_animator.SetFloat("Speed", _animationBlend);
+				_animator.SetBool("IsWalking", (targetSpeed != 0.0f));
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
 		}

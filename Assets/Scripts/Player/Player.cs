@@ -8,8 +8,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     [SerializeField] private float _health = 10f;
     [SerializeField] private InteractionRadius _interactionRadius;
     [SerializeField] private float _attackDelay;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private ThirdPersonController _controller;
+    private Animator _animator;
+    private ThirdPersonController _controller;
     private Inventory _inventory;
 
     [SerializeField] private GameObject daydoggo;
@@ -40,6 +40,9 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _interactionRadius.OnGrab += OnGrab;
         _input = GetComponent<StarterAssetsInputs>();
         _inventory = GetComponent<Inventory>();
+
+        _controller = GetComponent<ThirdPersonController>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -135,16 +138,14 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         return transform;
     }
     protected override void OnDay(int dayNumber)
-    {
-        // TODO Switch visual to day visuals
-        
+    {        
         daydoggo.SetActive(true);
         nightdoggo.SetActive(false);
     }
 
     protected override void OnNight(int nightNumber)
     {
-        // TODO Switch visual to night visuals
+        
         daydoggo.SetActive(false);
         nightdoggo.SetActive(true);
     }
@@ -152,10 +153,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     protected override void OnDayNightTransitionStarted()
     {
         InputsActivated = false;
+        _animator.SetBool("IsDayNightTransition", true);
     }
 
     protected override void OnDayNightTransitionFinished()
     {
         InputsActivated = true;
+        _animator.SetBool("IsDayNightTransition", false);
     }
 }
