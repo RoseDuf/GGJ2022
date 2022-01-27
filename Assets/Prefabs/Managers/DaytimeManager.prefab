@@ -185,7 +185,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.058331802
+      time: 0.25
       value: 0
       inSlope: -0
       outSlope: 0.035496265
@@ -199,9 +199,18 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.30320618
+    - serializedVersion: 3
+      time: 0.75
+      value: 0
+      inSlope: -2.7252681
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 3
+      inWeight: 0.31426555
+      outWeight: 0.41240317
     - serializedVersion: 3
       time: 1
       value: 0
@@ -209,7 +218,7 @@ MonoBehaviour:
       outSlope: -0.039463818
       tangentMode: 0
       weightedMode: 1
-      inWeight: 0.19272614
+      inWeight: 0.23005205
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 1
@@ -249,15 +258,15 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
-      inSlope: -1.6666666
-      outSlope: -1.6666666
+      value: 1
+      inSlope: -4
+      outSlope: -4
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.3
+      time: 0.25
       value: 0
       inSlope: 0
       outSlope: 0
@@ -266,7 +275,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.70115966
+      time: 0.75
       value: 0
       inSlope: 0
       outSlope: 0
@@ -276,9 +285,9 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 1.6731342
-      outSlope: 1.6731342
+      value: 1
+      inSlope: 4
+      outSlope: 4
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -370,6 +379,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _skyboxDayMaterial: {fileID: 2100000, guid: cc9c057aaeddd304b88ad6cc63d3511f, type: 2}
+  _skyboxNightMaterial: {fileID: 2100000, guid: 8c2a24e4672228948be1d54033091380, type: 2}
 --- !u!1 &5725768680001235698
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayNightCycle: {fileID: 2923078375644960418}
-  CurrentTimeOfDay: 2
+  DayStartTime: 0.25
+  DayEndTime: 0.75
+  CurrentTimeOfDay: 0
 --- !u!1 &7898425800414385392
 GameObject:
   m_ObjectHideFlags: 0

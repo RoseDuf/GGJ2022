@@ -5,7 +5,11 @@ using UnityEngine;
 public class DaytimeManager : Singleton<DaytimeManager>
 {
     [SerializeField] private DayNightCycle dayNightCycle;
-
+    
+    [Range(0.0f, 1.0f)]
+    public static float DayStartTime = 0.25f;
+    [Range(0.0f, 1.0f)]
+    public static float DayEndTime = 0.75f;
     public enum TimeOfDay
     {
         Day,
@@ -37,7 +41,7 @@ public class DaytimeManager : Singleton<DaytimeManager>
         currentTime = dayNightCycle.time;
         lastTimeOfDay = CurrentTimeOfDay;
         
-        if (currentTime >= 0.25 && currentTime < 0.75)
+        if (currentTime > DayStartTime && currentTime < DayEndTime)
             CurrentTimeOfDay = TimeOfDay.Day;
         else
             CurrentTimeOfDay = TimeOfDay.Night;
