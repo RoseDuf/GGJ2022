@@ -70,14 +70,15 @@ public class VillagerMovement : MonoBehaviour
         Vector3 curPos = transform.position;
         if (curPos == lastPos && isWalking)
         {
-            _animator.SetBool("IsIdle", isWalking);
             isWalking = false;
         }
         else if (curPos != lastPos && !isWalking)
         {
             isWalking = true;
-            _animator.SetBool("IsWalking", isWalking);
+            
         }
+        _animator.SetBool("IsWalking", isWalking);
+        _animator.SetBool("IsIdle", !isWalking);
         lastPos = curPos;
     }
 
