@@ -381,6 +381,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _skyboxDayMaterial: {fileID: 2100000, guid: cc9c057aaeddd304b88ad6cc63d3511f, type: 2}
   _skyboxNightMaterial: {fileID: 2100000, guid: 8c2a24e4672228948be1d54033091380, type: 2}
+  cloudSpeed: 50
   timePause: 0
 --- !u!1 &5725768680001235698
 GameObject:

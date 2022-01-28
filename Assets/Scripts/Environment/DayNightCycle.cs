@@ -31,6 +31,7 @@ public class DayNightCycle : MonoBehaviour
     public AnimationCurve reflectiontIntensityMultiplier;
     public Material _skyboxDayMaterial;
     public Material _skyboxNightMaterial;
+    public float cloudSpeed = 1;
 
     public void Stop() => enabled = false;
     public void Resume() => enabled = true;
@@ -92,6 +93,9 @@ public class DayNightCycle : MonoBehaviour
         
         _skyboxDayMaterial.SetFloat("_Exposure", sun.intensity);
         _skyboxNightMaterial.SetFloat("_Exposure", moon.intensity);
+        
+        _skyboxDayMaterial.SetFloat("_Rotation", time * cloudSpeed);
+        _skyboxNightMaterial.SetFloat("_Rotation", time * cloudSpeed);
         
             
             
