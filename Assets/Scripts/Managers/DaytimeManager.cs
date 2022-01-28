@@ -5,11 +5,10 @@ using UnityEngine;
 public class DaytimeManager : Singleton<DaytimeManager>
 {
     [SerializeField] private DayNightCycle dayNightCycle;
-    
-    [Range(0.0f, 1.0f)]
-    public static float DayStartTime = 0.25f;
-    [Range(0.0f, 1.0f)]
-    public static float DayEndTime = 0.75f;
+
+    [Range(0.0f, 1.0f)] public static float DayStartTime = 0.25f;
+    [Range(0.0f, 1.0f)] public static float DayEndTime = 0.75f;
+
     public enum TimeOfDay
     {
         Day,
@@ -40,7 +39,7 @@ public class DaytimeManager : Singleton<DaytimeManager>
     {
         currentTime = dayNightCycle.time;
         lastTimeOfDay = CurrentTimeOfDay;
-        
+
         if (currentTime > DayStartTime && currentTime < DayEndTime)
             CurrentTimeOfDay = TimeOfDay.Day;
         else
@@ -53,31 +52,14 @@ public class DaytimeManager : Singleton<DaytimeManager>
         }
     }
 
+    public int flipvalue = 0;
+
     private void UpdateIndicatorPosition()
     {
         float timeAngle = (currentTime * -360);
 
-        Quaternion quat;
-        
-        if (currentTime > DayStartTime && currentTime < DayEndTime)
-        {
-            // Day
-            UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0,0,0);
-            quat = Quaternion.Euler(0,0,timeAngle);
-        }
-        else
-        {
-            // Night
-            UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0, 0, -180);
-            quat = Quaternion.Euler(0,0,timeAngle - 180);
-        }
-        
-        UIManager.Instance.IndicatorDayNightRectTransform.rotation = quat;
-    }
-
-    private void UpdateCycleCircle()
-    {
-        
+        UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0, 0, -flipvalue * 180);
+        UIManager.Instance.IndicatorDayNightRectTransform.rotation = Quaternion.Euler(0, 0, timeAngle - flipvalue * 180);
     }
 
     private void UpdateHourMinute()

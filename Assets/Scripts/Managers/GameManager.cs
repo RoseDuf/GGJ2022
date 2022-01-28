@@ -48,9 +48,6 @@ namespace Game
             {
                 StartCoroutine(TimeOfDayTransitionRoutine(timeOfDay));
             }
-
-            UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
-            
         }
 
         private IEnumerator TimeOfDayTransitionRoutine(DaytimeManager.TimeOfDay timeOfDay)
@@ -83,6 +80,9 @@ namespace Game
                 yield return null;
                 yield return new WaitUntil(() => UIManager.Instance.DayNightTransitionIsFinished);
             }
+            
+            UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
+            DaytimeManager.Instance.flipvalue = (DaytimeManager.Instance.flipvalue==0) ? 1 : 0;
             
             OnDayNightTransitionFinished?.Invoke();
             DaytimeManager.Instance.Resume();
