@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bac8eded00439b82d687b127b242ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
+  time: 0.39
   fullDayLength: 20
   startTime: 0.35
   noon: {x: 90, y: 0, z: 0}
@@ -258,19 +258,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: -4
-      outSlope: -4
-      tangentMode: 34
-      weightedMode: 0
+      value: 1.004715
+      inSlope: -0.0118550705
+      outSlope: -0.0118550705
+      tangentMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.79293793
     - serializedVersion: 3
-      time: 0.25
+      time: 0.25079346
       value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 1
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
@@ -286,11 +286,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 4
-      outSlope: 4
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inSlope: -0.009502675
+      outSlope: -0.009502675
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.9917929
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -381,6 +381,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _skyboxDayMaterial: {fileID: 2100000, guid: cc9c057aaeddd304b88ad6cc63d3511f, type: 2}
   _skyboxNightMaterial: {fileID: 2100000, guid: 8c2a24e4672228948be1d54033091380, type: 2}
+  timePause: 0
 --- !u!1 &5725768680001235698
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,8 +427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayNightCycle: {fileID: 2923078375644960418}
-  DayStartTime: 0.25
-  DayEndTime: 0.75
   CurrentTimeOfDay: 0
 --- !u!1 &7898425800414385392
 GameObject:
