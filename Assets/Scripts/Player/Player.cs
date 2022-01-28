@@ -129,8 +129,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         {
             if (DaytimeManager.HasInstance)
                 DaytimeManager.Instance.Stop();
+            
             gameObject.SetActive(false);
+            //_animator.SetTrigger("Die");
+            GameManager.Instance.PlayerDied();
         }
+        
     }
     
     public void Heal(int healValue)

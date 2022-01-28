@@ -11,6 +11,8 @@ namespace Game
         public event Action OnDayNightTransitionStarted;
         public event Action OnDayNightTransitionFinished;
 
+        public event Action OnPlayerDied;
+
         private int currentDay = 0;
 
         public int CurrentDay => currentDay;
@@ -84,6 +86,12 @@ namespace Game
             
             OnDayNightTransitionFinished?.Invoke();
             DaytimeManager.Instance.Resume();
+        }
+
+
+        public void PlayerDied()
+        {
+            OnPlayerDied?.Invoke();
         }
     }
 }

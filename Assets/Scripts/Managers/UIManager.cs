@@ -21,6 +21,11 @@ public class UIManager : Singleton<UIManager>
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
                                                 dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1;
 
+    private void Awake()
+    {
+        GameManager.Instance.OnPlayerDied += OnPlayerDied;
+    }
+    
     private void Start()
     {
         ShowHealthBar((DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night));
@@ -59,6 +64,11 @@ public class UIManager : Singleton<UIManager>
     public void ShowHealthBar(bool state)
     {
         _healthBar.gameObject.SetActive(state);
+    }
+
+    private void OnPlayerDied()
+    {
+        Debug.Log("END_SCREEN");
     }
     
 }
