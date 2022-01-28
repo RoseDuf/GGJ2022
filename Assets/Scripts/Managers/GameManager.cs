@@ -46,6 +46,9 @@ namespace Game
             {
                 StartCoroutine(TimeOfDayTransitionRoutine(timeOfDay));
             }
+
+            UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
+            
         }
 
         private IEnumerator TimeOfDayTransitionRoutine(DaytimeManager.TimeOfDay timeOfDay)

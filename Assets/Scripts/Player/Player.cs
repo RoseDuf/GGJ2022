@@ -46,6 +46,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _animator = GetComponentInChildren<Animator>();
 
         _maxHealth = _health;
+        UIManager.Instance.UpdatePlayerHealth(_health);
     }
 
     private void Update()
@@ -123,7 +124,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         _health -= damage;
 
-        UIManager.Instance.UpdateHealth(_health / _maxHealth);
+        UIManager.Instance.UpdatePlayerHealth(_health / _maxHealth);
         if (_health <= 0)
         {
             if (DaytimeManager.HasInstance)
@@ -136,7 +137,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         _health += healValue;
 
-        UIManager.Instance.UpdateHealth(_health / _maxHealth);
+        UIManager.Instance.UpdatePlayerHealth(_health / _maxHealth);
         if (_health > _maxHealth)
             _health = _maxHealth;
     }
