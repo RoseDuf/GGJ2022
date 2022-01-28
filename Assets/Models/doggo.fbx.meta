@@ -42,7 +42,22 @@ ModelImporter:
   - first:
       74: 3583583649901497337
     second: Armature|Wolf_LOW|Take 001|BaseLayer.002
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Basket
+    second: {fileID: 2100000, guid: d018a6c96bcfef94390d97686448a0d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 03cd305a6d27bab46b9d9c451b728d06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: a62bec7b05a250543adc71e102b23886, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
