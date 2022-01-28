@@ -6,6 +6,7 @@ using StarterAssets;
 public class Player : DayNightSensibleMonoBehaviour, IDamageable
 {
     [SerializeField] private float _health = 10f;
+    private float _maxHealth = 10f;
     [SerializeField] private InteractionRadius _interactionRadius;
     [SerializeField] private float _attackDelay;
     private Animator _animator;
@@ -43,6 +44,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
 
         _controller = GetComponent<ThirdPersonController>();
         _animator = GetComponentInChildren<Animator>();
+
+        _maxHealth = _health;
     }
 
     private void Update()
@@ -72,7 +75,6 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             {
                 AttackCoroutine = null;
             }
-
         }
     }
 
@@ -120,12 +122,23 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         _health -= damage;
+
+        UIManager.Instance.UpdateHealth(_health / _maxHealth);
         if (_health <= 0)
         {
             if (DaytimeManager.HasInstance)
                 DaytimeManager.Instance.Stop();
             gameObject.SetActive(false);
         }
+    }
+    
+    public void Heal(int healValue)
+    {
+        _health += healValue;
+
+        UIManager.Instance.UpdateHealth(_health / _maxHealth);
+        if (_health > _maxHealth)
+            _health = _maxHealth;
     }
 
     public void ReceiveItem()
@@ -137,15 +150,15 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         return transform;
     }
+
     protected override void OnDay(int dayNumber)
-    {        
+    {
         daydoggo.SetActive(true);
         nightdoggo.SetActive(false);
     }
 
     protected override void OnNight(int nightNumber)
     {
-        
         daydoggo.SetActive(false);
         nightdoggo.SetActive(true);
     }

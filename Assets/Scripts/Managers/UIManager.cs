@@ -2,6 +2,7 @@ using System;
 using Game;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -14,6 +15,8 @@ public class UIManager : Singleton<UIManager>
     
     public RectTransform DayNightCircleRectTransform;
     public RectTransform IndicatorDayNightRectTransform;
+
+    [SerializeField] private Slider _healthBar;
 
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
                                                 dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1;
@@ -41,6 +44,11 @@ public class UIManager : Singleton<UIManager>
         {
             dayNightTransitionAnimator.SetTrigger(Hide);
         }
+    }
+
+    public void UpdateHealth(float health)
+    {
+        _healthBar.value = health;
     }
     
 }
