@@ -78,7 +78,6 @@ public class VillagerMovement : MonoBehaviour
             
         }
         _animator.SetBool("IsWalking", isWalking);
-        _animator.SetBool("IsIdle", !isWalking);
         lastPos = curPos;
     }
 

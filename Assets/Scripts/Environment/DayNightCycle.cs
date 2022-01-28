@@ -35,6 +35,8 @@ public class DayNightCycle : MonoBehaviour
     public void Stop() => enabled = false;
     public void Resume() => enabled = true;
 
+    [SerializeField] private bool timePause = false;
+
     private void Start()
     {
         timeRate = 1.0f / fullDayLength;
@@ -52,7 +54,9 @@ public class DayNightCycle : MonoBehaviour
     private void Update()
     {
         timeRate = 1.0f / fullDayLength;
-        time += timeRate * Time.deltaTime;
+        
+        if(!timePause)
+            time += timeRate * Time.deltaTime;
 
         if (time > 1.0f)
             time = 0;

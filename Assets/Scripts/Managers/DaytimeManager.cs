@@ -59,7 +59,7 @@ public class DaytimeManager : Singleton<DaytimeManager>
 
         Quaternion quat;
         
-        if (timeAngle < -90 && timeAngle >= -270)
+        if (currentTime > DayStartTime && currentTime < DayEndTime)
         {
             // Day
             UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0,0,0);

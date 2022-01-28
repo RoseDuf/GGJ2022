@@ -44,11 +44,27 @@ public class Villager : PoolableObject, IDamageable
     private Coroutine AttackCoroutine;
     private bool _isMoving = true;
 
+    private float deathLength;
+
     private void Awake()
     {
         _meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         _interactionRadius.OnAttack += OnAttack;
         _interactionRadius.OnGive += OnGive;
+        
+        AnimationClip[] clips = _animator.runtimeAnimatorController.animationClips;
+        foreach(AnimationClip clip in clips)
+        {
+            if (clip.name == "Armature|Die")
+            {
+                deathLength = clip.length;
+            }
+        }
+    }
+
+    public void PlayHappyAnimation()
+    {
+        _animator.SetTrigger("Happy");
     }
 
     void Start()
@@ -77,9 +93,21 @@ public class Villager : PoolableObject, IDamageable
         LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
     }
 
+    private bool attackRight = true;
+
+    public void DebugAttack()
+    {
+        OnAttack(null);
+    }
+    
     private void OnAttack(IDamageable target)
     {
-        _animator.SetTrigger(k_Attack);
+        if (attackRight)
+            _animator.SetTrigger("AttackRight");
+        else
+            _animator.SetTrigger("AttackLeft");
+
+        attackRight = !attackRight;
 
         if (LookCoroutine != null)
         {
@@ -137,8 +165,15 @@ public class Villager : PoolableObject, IDamageable
         _health -= damage;
         if (_health <= 0) //Dies
         {
-            gameObject.SetActive(false);
+            _animator.SetTrigger("Die");
+            StartCoroutine(WaitForTime(deathLength));
         }
+    }
+
+    private IEnumerator WaitForTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 
     public void ReceiveItem()
