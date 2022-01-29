@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: T_House_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: 44245ab89240f51459a5077d7145c452, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7f0f4750fdccf8a4593a3ef4c9bc91c3, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -187,7 +187,7 @@ Material:
     m_Floats:
     - Vector1_2A455339: 0.5
     - Vector1_5A9E5888: 0
-    - Vector1_CD9CB9E8: 0.1
+    - Vector1_CD9CB9E8: 0
     - Vector1_F5DCAAE8: 0
     - _AlphaClip: 0
     - _BASE_COLOR_WEIGHT: 1
