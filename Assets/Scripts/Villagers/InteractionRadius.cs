@@ -14,36 +14,45 @@ public class InteractionRadius : MonoBehaviour
     private float _attackDelay = 0.5f;
     public delegate void AttackEvent(IDamageable target);
     public AttackEvent OnAttack;
-    public delegate void GiveEvent(IDamageable target);
+    public delegate bool GiveEvent(IDamageable target);
     public GiveEvent OnGive;
     public delegate void GrabEvent(IGrabable target);
     public GrabEvent OnGrab;
-    public bool CanDoAction;
 
     private void OnTriggerStay(Collider other)
     {
-        IDamageable damageable = other.GetComponent<IDamageable>();
-        if(damageable != null && !Damageables.Contains(damageable))
+        if ((transform.tag == "Target" && other.tag == "Player") || transform.tag != "Target")
         {
-            Damageables.Add(damageable);
-            CanDoAction = true;
+            IDamageable damageable = other.GetComponent<IDamageable>();
+            if (damageable != null && !Damageables.Contains(damageable))
+            {
+                Damageables.Add(damageable);
+            }
         }
+        
 
         IGrabable grabable = other.GetComponent<IGrabable>();
         if (grabable != null && !Grabables.Contains(grabable))
         {
             Grabables.Add(grabable);
-            CanDoAction = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        IDamageable damageable = other.GetComponent<IDamageable>();
-        if (damageable != null)
+        if ((transform.tag == "Target" && other.tag == "Player") || transform.tag != "Target")
         {
-            Damageables.Remove(damageable);
-            CanDoAction = false;
+            IDamageable damageable = other.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                Damageables.Remove(damageable);
+            }
+        }
+
+        IGrabable grabable = other.GetComponent<IGrabable>();
+        if (grabable != null)
+        {
+            Grabables.Remove(grabable);
         }
     }
 
@@ -90,10 +99,14 @@ public class InteractionRadius : MonoBehaviour
             }
         }
 
-        if (closestDamageable != null)
+        if (closestDamageable != null && OnGive != null)
         {
-            OnGive?.Invoke(closestDamageable);
-            closestDamageable.ReceiveItem();
+            bool success = OnGive.Invoke(closestDamageable);
+
+            if (success)
+            {
+                closestDamageable.ReceiveItem();
+            }
         }
 
         closestDamageable = null;
@@ -102,8 +115,6 @@ public class InteractionRadius : MonoBehaviour
     
     public IEnumerator Attack(AttackStyle style, float delay)
     {
-        CanDoAction = false;
-
         WaitForSeconds wait = new WaitForSeconds(delay);
 
         yield return wait;

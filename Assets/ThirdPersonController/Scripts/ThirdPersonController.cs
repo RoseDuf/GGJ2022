@@ -68,10 +68,6 @@ namespace StarterAssets
         private bool _isDashing;
         private bool _inTargetRange;
 
-        // inventory
-        private Inventory _inventory;
-        private GameObject _targetFood;
-
         // Interactions
         private bool _canDoAtion;
 
@@ -120,7 +116,6 @@ namespace StarterAssets
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
-            _inventory = GetComponent<Inventory>();
 
 			AssignAnimationIDs();
 

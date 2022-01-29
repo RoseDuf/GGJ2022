@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6495197723822908297}
   - component: {fileID: 2714778263206318565}
   - component: {fileID: 2113425554487726899}
-  - component: {fileID: 4546039730557905079}
   - component: {fileID: 4523888441216991845}
   - component: {fileID: 8117219036606193325}
   m_Layer: 6
@@ -240,20 +239,6 @@ MonoBehaviour:
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
---- !u!114 &4546039730557905079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714778263206318569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad2f44b25d456d48bcbfdf62d2e1168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _foodCapacity: 2
-  Food: []
 --- !u!114 &4523888441216991845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +254,9 @@ MonoBehaviour:
   _health: 10
   _interactionRadius: {fileID: 770556547635415920}
   _attackDelay: 0.2
-  _animator: {fileID: 8117219036606193325}
-  _controller: {fileID: 2714778263206318562}
+  _foodCapacity: 0
+  daydoggo: {fileID: 0}
+  nightdoggo: {fileID: 0}
 --- !u!95 &8117219036606193325
 Animator:
   serializedVersion: 3
