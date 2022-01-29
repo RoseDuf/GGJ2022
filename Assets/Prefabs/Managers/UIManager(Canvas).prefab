@@ -316,7 +316,7 @@ MonoBehaviour:
   TimeUI:
   - {fileID: 0}
   - {fileID: 0}
-  DayNightCircleImage: {fileID: 0}
+  DayNightCircleImage: {fileID: 1274702508071876332}
   DayColor: {r: 0, g: 0, b: 0, a: 0}
   NightColor: {r: 0, g: 0, b: 0, a: 0}
   IndicatorDayNightRectTransform: {fileID: 6756208840715766965}
