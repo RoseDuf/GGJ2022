@@ -27,10 +27,18 @@ public class Villager : PoolableObject, IDamageable
     private float _attackDelay;
     [SerializeField]
     private Animator _animator;
+    [SerializeField]
+    private Transform _villagerModel;
+    private Vector3 _scale;
+
     private Coroutine LookCoroutine;
 
     private SkinnedMeshRenderer _meshRenderer;
-    public int Fatness;
+    
+    public int Fatness { get; set; }
+    [SerializeField]
+    private int _maxFatness;
+    public int MaxFatness { get; set; }
     public int Aggressivity;
 
     [SerializeField]
@@ -72,10 +80,13 @@ public class Villager : PoolableObject, IDamageable
         InitializeVillager();
         
         UIArrow = GetComponentInChildren<UIArrow>();
-        Fatness = 0;
+        Fatness = 1;
+        MaxFatness = _maxFatness;
+        _meshRenderer.SetBlendShapeWeight(0, Fatness);
         Aggressivity = 1; //TODO: change this to increase per level
         _health = _baseHealth;
-        
+
+
         if (GameManager.HasInstance)
             UpdateStatsForDay(GameManager.Instance.CurrentDay);
     }
@@ -87,10 +98,10 @@ public class Villager : PoolableObject, IDamageable
         _meshRenderer.materials = newMaterials;
     }
 
-    private void OnGive(IDamageable target)
+    private bool OnGive(IDamageable target)
     {
-        _animator.SetTrigger(k_Attack);
         LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
+        return true;
     }
 
     private bool attackRight = true;
@@ -149,11 +160,11 @@ public class Villager : PoolableObject, IDamageable
         
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
-            if (_interactionRadius.CanDoAction && AttackCoroutine == null)
+            if (_interactionRadius.Damageables.Count > 0 && AttackCoroutine == null)
             {
                 AttackCoroutine = StartCoroutine(_interactionRadius.Attack(InteractionRadius.AttackStyle.Repeat, _attackDelay));
             }
-            if (!_interactionRadius.CanDoAction && AttackCoroutine != null)
+            if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
             {
                 AttackCoroutine = null;
             }
@@ -178,7 +189,12 @@ public class Villager : PoolableObject, IDamageable
 
     public void ReceiveItem()
     {
-        Fatness += 1;
+        if (Fatness < MaxFatness)
+        {
+            Fatness += 1;
+            _villagerModel.localScale = new Vector3(_villagerModel.localScale.x + 0.2f, _villagerModel.localScale.y + 0.2f, _villagerModel.localScale.z + 0.2f);
+            //_meshRenderer.SetBlendShapeWeight(0, Fatness * 50);
+        }
     }
 
     public Transform GetTransform()

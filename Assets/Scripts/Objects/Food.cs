@@ -19,6 +19,7 @@ public class Food : PoolableObject, IGrabable
 
     private MeshRenderer _meshRenderer;
     private MeshFilter _meshFilter;
+    public FoodData FoodData { get; set; }
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
     
@@ -51,8 +52,9 @@ public class Food : PoolableObject, IGrabable
 
     private void InitializeFood()
     {
-        _meshRenderer.material = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
-        _meshFilter.mesh = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Mesh;
+        FoodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
+        _meshRenderer.material = FoodData.Material;
+        _meshFilter.mesh = FoodData.Mesh;
     }
 
     public Transform GetTransform()
