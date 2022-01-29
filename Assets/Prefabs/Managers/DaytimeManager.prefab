@@ -145,9 +145,9 @@ MonoBehaviour:
   sun: {fileID: 4575596795498248219}
   sunColor:
     serializedVersion: 2
-    key0: {r: 1, g: 0.5390249, b: 0, a: 1}
+    key0: {r: 1, g: 0.79816157, b: 0, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 1, g: 0.5411765, b: 0, a: 0}
+    key2: {r: 1, g: 0.8, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -226,8 +226,8 @@ MonoBehaviour:
   moon: {fileID: 493303344209926584}
   moonColor:
     serializedVersion: 2
-    key0: {r: 0, g: 0.074182644, b: 0.31132078, a: 1}
-    key1: {r: 0, g: 0.074182644, b: 0.31132078, a: 1}
+    key0: {r: 0, g: 0.09302607, b: 0.38679248, a: 1}
+    key1: {r: 0, g: 0.09302607, b: 0.38679248, a: 1}
     key2: {r: 0, g: 0.015686275, b: 0.44313726, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -429,7 +429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayNightCycle: {fileID: 2923078375644960418}
   CurrentTimeOfDay: 0
-  flipvalue: 0
 --- !u!1 &7898425800414385392
 GameObject:
   m_ObjectHideFlags: 0
