@@ -13,7 +13,7 @@ namespace Game
 
         public event Action OnPlayerDied;
 
-        private int currentDay = 0;
+        private int currentDay = 1;
 
         public int CurrentDay => currentDay;
         public DaytimeManager.TimeOfDay CurrentTimeOfDay => DaytimeManager.HasInstance ? DaytimeManager.Instance.CurrentTimeOfDay : DaytimeManager.TimeOfDay.Day;
