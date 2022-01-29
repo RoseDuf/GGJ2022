@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class GameManager : Singleton<GameManager>
+    public class GameManager : MonoBehaviour
     {
         public event Action<int> OnDayStarted;
         public event Action<int> OnNightStarted;
@@ -18,7 +18,25 @@ namespace Game
         public int CurrentDay => currentDay;
         public DaytimeManager.TimeOfDay CurrentTimeOfDay => DaytimeManager.HasInstance ? DaytimeManager.Instance.CurrentTimeOfDay : DaytimeManager.TimeOfDay.Day;
         public bool IsStartOfGame => currentDay <= 1 && CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day;
-        
+
+
+        private UIManager _uiManager;
+
+        public static GameManager Instance { get; private set; }
+        public static bool HasInstance { get { return Instance != null; } }
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                DestroyImmediate(gameObject);
+                return;
+            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            _uiManager = UIManager.Instance;
+        }
+
         private void Start()
         {
             SoundSystem.Instance.PlayDayMusic(); // TODO Move that so we can play night music on swap
@@ -32,14 +50,12 @@ namespace Game
             DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
         }
 
-        protected override void OnDestroy()
+        protected void OnDestroy()
         {
             if (DaytimeManager.HasInstance)
             {
                 DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
             }
-            
-            base.OnDestroy();
         }
 
         private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
@@ -80,8 +96,11 @@ namespace Game
                 yield return null;
                 yield return new WaitUntil(() => UIManager.Instance.DayNightTransitionIsFinished);
             }
-            
-            UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
+
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
+            }
             
             OnDayNightTransitionFinished?.Invoke();
             DaytimeManager.Instance.Resume();

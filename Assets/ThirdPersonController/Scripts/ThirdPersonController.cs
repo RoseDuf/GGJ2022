@@ -111,7 +111,7 @@ namespace StarterAssets
 
             _targetScope =  _mainCamera.GetComponentInChildren<CameraTargetScope>();
 
-            _uiManager = _uiManager = FindObjectOfType<UIManager>();
+            _uiManager = _uiManager = UIManager.Instance;
         }
 
 		private void Start()

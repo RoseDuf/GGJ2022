@@ -44,7 +44,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
 
     private void Awake()
     {
-        _uiManager = FindObjectOfType<UIManager>();
+        _uiManager = UIManager.Instance;
     }
 
     private void Start()
@@ -125,7 +125,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             Food item = target.GetTransform().gameObject.GetComponent<Food>();
 
             _inventory.AddFood(item);
-            UIManager.Instance.UIinventory.UpdateInventory();
+            _uiManager.UIinventory.UpdateInventory();
             _interactionRadius.Grabables.Remove(target);
             target.GetTransform().gameObject.SetActive(false);
         }
@@ -144,7 +144,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                     if (food.FoodData.TypeOfFood.ToString() == villager.Type.ToString())
                     {
                         _inventory.RemoveFood(food);
-                        UIManager.Instance.UIinventory.UpdateInventory();
+                        _uiManager.UIinventory.UpdateInventory();
                         return true;
                     }
                 }
@@ -191,7 +191,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         _health -= damage;
 
-        UIManager.Instance.UpdatePlayerHealth(_health / _maxHealth);
+        _uiManager.UpdatePlayerHealth(_health / _maxHealth);
         if (_health <= 0)
         {
             if (DaytimeManager.HasInstance)
@@ -208,7 +208,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         _health += healValue;
 
-        UIManager.Instance.UpdatePlayerHealth(_health / _maxHealth);
+        _uiManager.UpdatePlayerHealth(_health / _maxHealth);
         if (_health > _maxHealth)
             _health = _maxHealth;
     }

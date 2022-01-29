@@ -2,7 +2,7 @@ using System;
 using Game;
 using UnityEngine;
 
-public class DaytimeManager : Singleton<DaytimeManager>
+public class DaytimeManager : MonoBehaviour
 {
     [SerializeField] private DayNightCycle dayNightCycle;
 
@@ -33,6 +33,21 @@ public class DaytimeManager : Singleton<DaytimeManager>
 
     public void Stop() => dayNightCycle.Stop();
     public void Resume() => dayNightCycle.Resume();
+
+    public static DaytimeManager Instance { get; private set; }
+    public static bool HasInstance { get { return Instance != null; } }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     private void Update()
     {

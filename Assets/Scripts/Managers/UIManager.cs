@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using StarterAssets;
 using UnityEngine.InputSystem;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour
 {
     private const int TIME_N = 2;
     private static readonly int Show = Animator.StringToHash("Show");
@@ -31,8 +31,19 @@ public class UIManager : Singleton<UIManager>
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
                                                 dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0)
                                                     .normalizedTime > 1;
+
+    public static UIManager Instance { get; private set; }
+    public static bool HasInstance { get { return Instance != null; } }
+
     private void Awake()
     {
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
         _pauseAction = new PauseAction();
     }
 

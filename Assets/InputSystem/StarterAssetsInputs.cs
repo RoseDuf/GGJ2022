@@ -29,7 +29,7 @@ namespace StarterAssets
 
         private void Awake()
         {
-            _uiManager = FindObjectOfType<UIManager>();
+            _uiManager = UIManager.Instance;
         }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
