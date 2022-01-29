@@ -93,6 +93,11 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 _inventory.RemoveFood(_inventory.Food.Last());
                 _uiManager.UIinventory.UpdateInventory();
             }
+
+            if (_input.dash)
+            {
+                _input.dash = false;
+            }
         }
         else if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
@@ -107,12 +112,17 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             {
                 AttackCoroutine = null;
             }
+
+            if (_inventory.Food.Count > 0)
+            {
+                _inventory.EmptyInventory();
+                _uiManager.UIinventory.UpdateInventory();
+            }
         }
 
-        if (_input.action || _input.dash)
+        if (_input.action)
         {
             _input.action = false;
-            _input.dash = false;
         }
     }
 

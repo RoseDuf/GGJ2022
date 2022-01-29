@@ -22,7 +22,8 @@ public class UIManager : MonoBehaviour
     public RectTransform IndicatorDayNightRectTransform;
 
     [SerializeField] private Slider _healthBar;
-    public UIInventory UIinventory;
+    [SerializeField] GameObject _uIinventoryObject;
+    public UIInventory UIinventory { get; set; }
 
     [SerializeField] private GameObject _pauseMenu;
     private PauseAction _pauseAction;
@@ -61,6 +62,8 @@ public class UIManager : MonoBehaviour
             ShowHealthBar(true);
             DayNightCircleImage.color = NightColor;
         }
+
+        UIinventory = _uIinventoryObject.GetComponent<UIInventory>();
     }
 
     private void OnEnable()
@@ -76,6 +79,26 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         UpdateDayIndicator();
+        UpdateInventory();
+    }
+
+    private void UpdateInventory()
+    {
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            if (!_uIinventoryObject.activeInHierarchy)
+            {
+                _uIinventoryObject.SetActive(true);
+            }
+        }
+
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            if (_uIinventoryObject.activeInHierarchy)
+            {
+                _uIinventoryObject.SetActive(false);
+            }
+        }
     }
 
     void OnValidate()

@@ -13,6 +13,8 @@ public class FoodSpawner : MonoBehaviour
     public List<Food> FoodPrefabs = new List<Food>();
     public SpawnMethod FoodSpawnMethod = SpawnMethod.RoundRobin;
 
+    private bool foodWasSpawned;
+
     private NavMeshTriangulation _triangulation;
     private Dictionary<int, ObjectPool> _FoodObjectPools = new Dictionary<int, ObjectPool>();
 
@@ -27,13 +29,23 @@ public class FoodSpawner : MonoBehaviour
     private void Start()
     {
         _triangulation = NavMesh.CalculateTriangulation();
+        foodWasSpawned = false;
+    }
 
-        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+    private void Update()
+    {
+        if (!foodWasSpawned && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             StartCoroutine(SpawnFoods());
+            foodWasSpawned = true;
+        }
+        if (foodWasSpawned && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            DespawnFoods();
+            foodWasSpawned = false;
         }
     }
-    
+
     private IEnumerator SpawnFoods()
     {
         WaitForSeconds Wait = new WaitForSeconds(_spawnDelay);
@@ -53,6 +65,21 @@ public class FoodSpawner : MonoBehaviour
 
             spawnedFoods++;
             yield return Wait;
+        }
+    }
+
+    private void DespawnFoods()
+    {
+        for (int i = 0; i < _FoodObjectPools.Count; i++)
+        {
+            PoolableObject poolableobject = _FoodObjectPools[i].GetObject();
+            if (poolableobject != null)
+            {
+                Food food = poolableobject.GetComponent<Food>();
+
+                food.gameObject.SetActive(false);
+                food.Agent.enabled = true;
+            }
         }
     }
 

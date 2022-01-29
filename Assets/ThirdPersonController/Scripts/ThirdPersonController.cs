@@ -175,6 +175,7 @@ namespace StarterAssets
                         closestCollider = collider;
                         break;
                     }
+
                     float distanceFromTarget = (collider.transform.position - transform.position).magnitude;
                     if (distanceFromTarget < closestDistance)
                     {
@@ -305,8 +306,7 @@ namespace StarterAssets
 			}
             
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-
+            
             if (_targetVillager != null && _input.dash)
             {
                 float distanceToTarget = (_targetVillager.transform.position - transform.position).magnitude;

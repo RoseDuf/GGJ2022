@@ -322,7 +322,7 @@ MonoBehaviour:
   NightColor: {r: 0.12609467, g: 0.27269077, b: 0.8679245, a: 1}
   IndicatorDayNightRectTransform: {fileID: 6756208840715766965}
   _healthBar: {fileID: 2464704895716762158}
-  UIinventory: {fileID: 4890599631295446}
+  _uIinventoryObject: {fileID: 6272697544792884083}
   _pauseMenu: {fileID: 4840220296914314786}
 --- !u!1 &1585763793205437215
 GameObject:
