@@ -317,8 +317,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   DayNightCircleImage: {fileID: 1274702508071876332}
-  DayColor: {r: 0, g: 0, b: 0, a: 0}
-  NightColor: {r: 0, g: 0, b: 0, a: 0}
+  DayColor: {r: 1, g: 0.56601495, b: 0, a: 1}
+  NightColor: {r: 0.12609467, g: 0.27269077, b: 0.8679245, a: 1}
   IndicatorDayNightRectTransform: {fileID: 6756208840715766965}
   _healthBar: {fileID: 2464704895716762158}
   UIinventory: {fileID: 4890599631295446}
