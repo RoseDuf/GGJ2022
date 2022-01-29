@@ -14,22 +14,20 @@ public class VillagerLineOfSightChecker : MonoBehaviour
 
     public delegate void GainSightEvent(Player player);
     public GainSightEvent OnGainSight;
-    public delegate void LoseSightEvent(Player player);
+    public delegate void LoseSightEvent();
     public LoseSightEvent OnLoseSight;
 
     private Coroutine CheckForLineOfSightoroutine;
+    private Player playerTarget;
 
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            Player player;
-            if (other.TryGetComponent<Player>(out player))
+            if (playerTarget == null)
             {
-                if (!CheckLineOfSight(player))
-                {
-                    CheckForLineOfSightoroutine = StartCoroutine(CheckForLineOfSight(player));
-                }
+                playerTarget = other.GetComponent<Player>();
+                OnGainSight?.Invoke(playerTarget);
             }
         }
     }
@@ -38,45 +36,23 @@ public class VillagerLineOfSightChecker : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Player player;
-            if (other.TryGetComponent<Player>(out player))
-            {
-                OnLoseSight?.Invoke(player);
-                if (CheckForLineOfSightoroutine != null)
-                {
-                    StopCoroutine(CheckForLineOfSightoroutine);
-                }
-            }
+            playerTarget = null;
+            OnLoseSight?.Invoke();
         }
     }
 
-    private bool CheckLineOfSight(Player player)
-    {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        //if (Vector3.Dot(transform.forward, direction) >= Mathf.Cos(_fieldOfView))
-        {
-            RaycastHit hit;
+    //private void CheckLineOfSight(Player player)
+    //{
+    //    OnGainSight?.Invoke(player);
+    //}
 
-            if (Physics.Raycast(transform.position, direction, out hit, _collider.radius, _lineOfSightLayers))
-            {
-                if (hit.transform.GetComponentInParent<Player>() != null)
-                {
-                    OnGainSight?.Invoke(player);
-                    return true;
-                }
-            }
-        }
+    //private IEnumerator CheckForLineOfSight(Player player)
+    //{
+    //    WaitForSeconds wait = new WaitForSeconds(0.1f);
 
-        return false;
-    }
-
-    private IEnumerator CheckForLineOfSight(Player player)
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.1f);
-
-        while (!CheckLineOfSight(player))
-        {
-            yield return wait;
-        }
-    }
+    //    while (!CheckLineOfSight(player))
+    //    {
+    //        yield return wait;
+    //    }
+    //}
 }

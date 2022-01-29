@@ -85,7 +85,7 @@ public class VillagerMovement : MonoBehaviour
     {
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
-            if (GetComponent<Villager>().Aggressivity == 0)
+            if (GetComponent<Villager>().Aggressivity == 1)
             {
                 State = VillagerState.RunAway;
             }
@@ -96,7 +96,7 @@ public class VillagerMovement : MonoBehaviour
         }
     }
 
-    private void HandleLoseSight(Player player)
+    private void HandleLoseSight()
     {
         State = DefaultState;
     }
@@ -137,7 +137,7 @@ public class VillagerMovement : MonoBehaviour
 
     private IEnumerator FollowTarget()
     {
-        WaitForSeconds wait = new WaitForSeconds(UpdateRate);
+        WaitForSeconds wait = new WaitForSeconds(0);
 
         if (Agent.enabled)
         {
@@ -158,7 +158,7 @@ public class VillagerMovement : MonoBehaviour
 
     private IEnumerator RunAwayFromTarget()
     {
-        WaitForSeconds wait = new WaitForSeconds(UpdateRate);
+        WaitForSeconds wait = new WaitForSeconds(0);
 
         Agent.speed = RunMoveSpeed;
         Agent.isStopped = true;

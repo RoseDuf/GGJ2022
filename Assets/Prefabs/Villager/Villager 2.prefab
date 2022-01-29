@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37687f21e8e894146a7b18c56e39ad84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpdateRate: 0.1
+  UpdateRate: 5
   Agent: {fileID: 113752521862656607}
   IdleLocationRadius: 8
   IdleMovespeed: 1
