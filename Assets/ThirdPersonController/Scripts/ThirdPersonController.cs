@@ -70,6 +70,7 @@ namespace StarterAssets
 
         // Interactions
         private bool _canDoAtion;
+        private UIManager _uiManager;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -109,7 +110,9 @@ namespace StarterAssets
             _mainCamera = Camera.main.gameObject;
 
             _targetScope =  _mainCamera.GetComponentInChildren<CameraTargetScope>();
-		}
+
+            _uiManager = _uiManager = FindObjectOfType<UIManager>();
+        }
 
 		private void Start()
 		{
@@ -124,10 +127,13 @@ namespace StarterAssets
 			_fallTimeoutDelta = FallTimeout;
             _isDashing = false;
 
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
 		private void Update()
 		{
+            if (_uiManager != null && _uiManager.GameIsPaused) return;
+
 			_hasAnimator = (_animator != null);
 			if (!_hasAnimator)
 			{

@@ -30,6 +30,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     private const string k_Grab = "Grab";
 
     private bool _inputsActivated = true;
+    private UIManager _uiManager;
 
     private bool InputsActivated
     {
@@ -39,6 +40,11 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             _inputsActivated = value;
             if (_controller) _controller.enabled = value;
         }
+    }
+
+    private void Awake()
+    {
+        _uiManager = FindObjectOfType<UIManager>();
     }
 
     private void Start()
@@ -53,12 +59,14 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _animator = GetComponentInChildren<Animator>();
 
         _maxHealth = _health;
-        UIManager.Instance.UpdatePlayerHealth(_health);
-        UIManager.Instance.UIinventory.SetInventory(_inventory);
+        _uiManager.UpdatePlayerHealth(_health);
+        _uiManager.UIinventory.SetInventory(_inventory);
     }
 
     private void Update()
     {
+        if (_uiManager != null && _uiManager.GameIsPaused) return;
+
         if (!_inputsActivated)
             return;
 
@@ -83,7 +91,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 foodPoolable.transform.position = transform.position;
                 foodPoolable.transform.gameObject.SetActive(true);
                 _inventory.RemoveFood(_inventory.Food.Last());
-                UIManager.Instance.UIinventory.UpdateInventory();
+                _uiManager.UIinventory.UpdateInventory();
             }
         }
         else if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)

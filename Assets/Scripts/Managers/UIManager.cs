@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using StarterAssets;
+using UnityEngine.InputSystem;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -21,13 +23,24 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] private Slider _healthBar;
     public UIInventory UIinventory;
-    
+
+    [SerializeField] private GameObject _pauseMenu;
+    private PauseAction _pauseAction;
+    public bool GameIsPaused { get; set; }
+
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
                                                 dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0)
                                                     .normalizedTime > 1;
+    private void Awake()
+    {
+        _pauseAction = new PauseAction();
+    }
 
     private void Start()
     {
+        _pauseAction.Pause.Pause.performed += _ => HandleInput();
+        Resume();
+
         GameManager.Instance.OnPlayerDied += OnPlayerDied;
         
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
@@ -37,8 +50,16 @@ public class UIManager : Singleton<UIManager>
             ShowHealthBar(true);
             DayNightCircleImage.color = NightColor;
         }
-            
-       
+    }
+
+    private void OnEnable()
+    {
+        _pauseAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _pauseAction.Disable();
     }
 
     private void Update()
@@ -101,5 +122,35 @@ public class UIManager : Singleton<UIManager>
     private void OnPlayerDied()
     {
         Debug.Log("END_SCREEN");
+    }
+
+    private void HandleInput()
+    {
+        if (GameIsPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    void Resume()
+    {
+        _pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        AkSoundEngine.WakeupFromSuspend();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Pause()
+    {
+        _pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        AkSoundEngine.Suspend();
+        Cursor.lockState = CursorLockMode.None;
     }
 }

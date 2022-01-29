@@ -176,7 +176,7 @@ namespace UnityTemplateProjects
 				#endif
             }
 
-            // Hide and lock cursor when right mouse button pressed
+            //Hide and lock cursor when right mouse button pressed
             if (IsRightMouseButtonDown())
             {
                 Cursor.lockState = CursorLockMode.Locked;
