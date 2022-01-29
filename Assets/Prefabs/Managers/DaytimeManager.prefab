@@ -42,7 +42,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -139,14 +139,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0.39
-  fullDayLength: 108.39
+  fullDayLength: 30
   startTime: 0.35
   noon: {x: 90, y: 0, z: 0}
   sun: {fileID: 4575596795498248219}
   sunColor:
     serializedVersion: 2
     key0: {r: 1, g: 0.79816157, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
     key2: {r: 1, g: 0.8, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -188,11 +188,11 @@ MonoBehaviour:
       time: 0.25
       value: 0
       inSlope: -0
-      outSlope: 0.035496265
+      outSlope: 8.700317
       tangentMode: 5
       weightedMode: 2
       inWeight: 0.51754296
-      outWeight: 0.21041729
+      outWeight: 0.48358595
     - serializedVersion: 3
       time: 0.5
       value: 1
@@ -204,12 +204,12 @@ MonoBehaviour:
       outWeight: 0.30320618
     - serializedVersion: 3
       time: 0.75
-      value: 0
-      inSlope: -2.7252681
-      outSlope: 0
+      value: 0.0023498535
+      inSlope: -9.001906
+      outSlope: -0.009399414
       tangentMode: 65
       weightedMode: 3
-      inWeight: 0.31426555
+      inWeight: 0.46843433
       outWeight: 0.41240317
     - serializedVersion: 3
       time: 1
@@ -226,8 +226,8 @@ MonoBehaviour:
   moon: {fileID: 493303344209926584}
   moonColor:
     serializedVersion: 2
-    key0: {r: 0, g: 0.09302607, b: 0.38679248, a: 1}
-    key1: {r: 0, g: 0.09302607, b: 0.38679248, a: 1}
+    key0: {r: 0.5981132, g: 0.6958269, b: 1, a: 1}
+    key1: {r: 0.5981132, g: 0.6958269, b: 1, a: 1}
     key2: {r: 0, g: 0.015686275, b: 0.44313726, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
