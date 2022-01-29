@@ -83,7 +83,7 @@ public class Villager : PoolableObject, IDamageable
         Fatness = 1;
         MaxFatness = _maxFatness;
         _meshRenderer.SetBlendShapeWeight(0, Fatness);
-        Aggressivity = 1; //TODO: change this to increase per level
+        Aggressivity = 1; 
         _health = _baseHealth;
 
 

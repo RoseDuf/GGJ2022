@@ -24,10 +24,15 @@ public class VillagerLineOfSightChecker : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (playerTarget == null)
+            if (playerTarget == null && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
             {
                 playerTarget = other.GetComponent<Player>();
                 OnGainSight?.Invoke(playerTarget);
+            }
+            if (playerTarget != null && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+            {
+                playerTarget = null;
+                OnLoseSight?.Invoke();
             }
         }
     }

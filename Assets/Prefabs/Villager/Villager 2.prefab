@@ -609,7 +609,7 @@ MonoBehaviour:
   _animator: {fileID: 437253727498218122}
   _villagerModel: {fileID: 962291882095767601}
   _maxFatness: 3
-  Aggressivity: 1
+  Aggressivity: 2
   _baseHealth: 1
   _health: 0
 --- !u!114 &7994778751428549114
@@ -628,7 +628,7 @@ MonoBehaviour:
   Agent: {fileID: 113752521862656607}
   IdleLocationRadius: 8
   IdleMovespeed: 1
-  RunMoveSpeed: 4
+  RunMoveSpeed: 3
   _lineOfSightChecker: {fileID: 8460479044678224333}
   _animator: {fileID: 437253727498218122}
   DefaultState: 1

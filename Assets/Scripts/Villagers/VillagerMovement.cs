@@ -146,7 +146,7 @@ public class VillagerMovement : MonoBehaviour
             Agent.ResetPath();
         }
 
-        while (gameObject.activeSelf)
+        while (State == VillagerState.Chase)
         {
             if (Agent.enabled)
             {
@@ -160,15 +160,22 @@ public class VillagerMovement : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(0);
 
-        Agent.speed = RunMoveSpeed;
-        Agent.isStopped = true;
-        Agent.ResetPath();
+        if (Agent.enabled)
+        {
+            Agent.speed = RunMoveSpeed;
+            Agent.isStopped = true;
+            Agent.ResetPath();
+        }
 
-        while (gameObject.activeSelf)
+        while (State == VillagerState.RunAway)
         {
             if (Agent.enabled)
-            {   
-                Agent.SetDestination(Target.position);
+            {
+                Vector3 moveDir = (Agent.transform.position - Target.position).normalized * 10;
+
+                moveDir.y = Target.position.y;
+
+                Agent.SetDestination(moveDir);
             }
             yield return wait;
         }
@@ -182,6 +189,8 @@ public class VillagerMovement : MonoBehaviour
             {
                 StopCoroutine(FollowCoroutine);
             }
+
+            _state = newState;
 
             switch (newState)
             {

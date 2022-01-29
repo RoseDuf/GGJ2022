@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Day4
   m_EditorClassIdentifier: 
   forDay: 4
-  baseAggressivity: 3
+  baseAggressivity: 4
   numberOfVillagers: 13
