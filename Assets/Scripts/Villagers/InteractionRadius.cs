@@ -144,7 +144,9 @@ public class InteractionRadius : MonoBehaviour
             OnAttack?.Invoke(closestDamageable);
             closestDamageable.TakeDamage(Damage);
 
-            if (closestDamageable.GetTransform().gameObject.GetComponent<Villager>().IsDead)
+            Villager villager;
+            closestDamageable.GetTransform().TryGetComponent<Villager>(out villager);
+            if (villager == null || (villager != null && !villager.IsDead))
             {
                 Damageables.Remove(closestDamageable);
             }
