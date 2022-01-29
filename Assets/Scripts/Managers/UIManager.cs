@@ -20,7 +20,8 @@ public class UIManager : Singleton<UIManager>
     public RectTransform IndicatorDayNightRectTransform;
 
     [SerializeField] private Slider _healthBar;
-
+    public UIInventory UIinventory;
+    
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
                                                 dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0)
                                                     .normalizedTime > 1;
