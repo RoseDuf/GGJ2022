@@ -2,6 +2,7 @@ using System;
 using Game;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -12,28 +13,57 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] private Animator dayNightTransitionAnimator;
     [HideInInspector] public TextMeshProUGUI[] TimeUI = new TextMeshProUGUI[TIME_N];
-    
-    public RectTransform DayNightCircleRectTransform;
+
+    public Image DayNightCircleImage;
+    [SerializeField] private Color DayColor;
+    [SerializeField] private Color NightColor;
     public RectTransform IndicatorDayNightRectTransform;
 
     [SerializeField] private Slider _healthBar;
 
     public bool DayNightTransitionIsFinished => !dayNightTransitionAnimator.IsInTransition(0) &&
-                                                dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1;
+                                                dayNightTransitionAnimator.GetCurrentAnimatorStateInfo(0)
+                                                    .normalizedTime > 1;
 
     private void Start()
     {
         GameManager.Instance.OnPlayerDied += OnPlayerDied;
-        ShowHealthBar((DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night));
+        
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+            DayNightCircleImage.color = DayColor;
+        else
+        {
+            ShowHealthBar(true);
+            DayNightCircleImage.color = NightColor;
+        }
+            
+       
+    }
+
+    private void Update()
+    {
+        UpdateDayIndicator();
     }
 
     void OnValidate()
     {
         if (TimeUI.Length != TIME_N)
         {
-            Debug.LogWarning("Don't change the number of possible object this object");
             Array.Resize(ref TimeUI, TIME_N);
+            Debug.LogWarning("Don't change the number of possible object this object");
         }
+    }
+
+    private void UpdateDayIndicator()
+    {
+        float timeAngle = (DaytimeManager.Instance.CurrentTime * -360);
+
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            timeAngle -= 180;
+        }
+
+        IndicatorDayNightRectTransform.rotation = Quaternion.Euler(0, 0, timeAngle);
     }
 
     public void ShowDayNightTransition()
@@ -49,7 +79,12 @@ public class UIManager : Singleton<UIManager>
         if (dayNightTransitionAnimator)
         {
             dayNightTransitionAnimator.SetTrigger(Hide);
-        }
+        } 
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+            DayNightCircleImage.color = DayColor;
+        else
+            DayNightCircleImage.color = NightColor;
+        
     }
 
     public void UpdatePlayerHealth(float health)
@@ -66,5 +101,4 @@ public class UIManager : Singleton<UIManager>
     {
         Debug.Log("END_SCREEN");
     }
-    
 }

@@ -82,7 +82,6 @@ namespace Game
             }
             
             UIManager.Instance.ShowHealthBar(timeOfDay == DaytimeManager.TimeOfDay.Night);
-            DaytimeManager.Instance.flipvalue = (DaytimeManager.Instance.flipvalue==0) ? 1 : 0;
             
             OnDayNightTransitionFinished?.Invoke();
             DaytimeManager.Instance.Resume();

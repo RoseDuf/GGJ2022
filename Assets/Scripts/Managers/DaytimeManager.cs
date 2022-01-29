@@ -19,10 +19,15 @@ public class DaytimeManager : Singleton<DaytimeManager>
     public event Action<TimeOfDay> OnTimeOfDayChanged;
 
     public TimeOfDay CurrentTimeOfDay;
-    private double hour = 0;
-    private double minute = 0;
 
-    [Range(0.0f, 1.0f)] private float currentTime;
+    [Range(0.0f, 1.0f)] private float _currentTime;
+
+    [HideInInspector]
+    public float CurrentTime
+    {
+        get { return _currentTime; }
+        private set { _currentTime = value; }
+    }
 
     private TimeOfDay lastTimeOfDay;
 
@@ -32,15 +37,14 @@ public class DaytimeManager : Singleton<DaytimeManager>
     private void Update()
     {
         UpdateTimeOfDay();
-        UpdateIndicatorPosition();
     }
 
     private void UpdateTimeOfDay()
     {
-        currentTime = dayNightCycle.time;
+        _currentTime = dayNightCycle.time;
         lastTimeOfDay = CurrentTimeOfDay;
 
-        if (currentTime > DayStartTime && currentTime < DayEndTime)
+        if (_currentTime > DayStartTime && _currentTime < DayEndTime)
             CurrentTimeOfDay = TimeOfDay.Day;
         else
             CurrentTimeOfDay = TimeOfDay.Night;
@@ -51,21 +55,5 @@ public class DaytimeManager : Singleton<DaytimeManager>
             Debug.Log("Time of Day: " + CurrentTimeOfDay);
         }
     }
-
-    public int flipvalue = 0;
-
-    private void UpdateIndicatorPosition()
-    {
-        float timeAngle = (currentTime * -360);
-
-        UIManager.Instance.DayNightCircleRectTransform.rotation = Quaternion.Euler(0, 0, -flipvalue * 180);
-        UIManager.Instance.IndicatorDayNightRectTransform.rotation = Quaternion.Euler(0, 0, timeAngle - flipvalue * 180);
-    }
-
-    private void UpdateHourMinute()
-    {
-        double time24 = currentTime * 24;
-        hour = Math.Truncate(time24);
-        minute = (time24 - hour) * 60;
-    }
+    
 }
