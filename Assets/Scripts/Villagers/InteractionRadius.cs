@@ -8,8 +8,7 @@ public class InteractionRadius : MonoBehaviour
 {
     public List<IDamageable> Damageables = new List<IDamageable>();
     public List<IGrabable> Grabables = new List<IGrabable>();
-    [SerializeField]
-    private int _damage = 1;
+    public int Damage { get; set; }
     [SerializeField]
     private float _attackDelay = 0.5f;
     public delegate void AttackEvent(IDamageable target);
@@ -24,9 +23,15 @@ public class InteractionRadius : MonoBehaviour
         if ((transform.tag == "Target" && other.tag == "Player") || transform.tag != "Target")
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
+            
             if (damageable != null && !Damageables.Contains(damageable))
             {
-                Damageables.Add(damageable);
+                Villager villager;
+                damageable.GetTransform().TryGetComponent<Villager>(out villager);
+                if (villager == null || (villager != null && !villager.IsDead))
+                {
+                    Damageables.Add(damageable);
+                }
             }
         }
         
@@ -122,28 +127,38 @@ public class InteractionRadius : MonoBehaviour
         IDamageable closestDamageable = null;
         float closestDistance = float.MaxValue;
 
-        while (Damageables.Count > 0)
+        for (int i = 0; i < Damageables.Count; i++)
         {
-            for(int i = 0; i < Damageables.Count; i++)
+            Transform damageableTransform = Damageables[i].GetTransform();
+            float distance = Vector3.Distance(transform.position, damageableTransform.position);
+
+            if (distance < closestDistance)
             {
-                Transform damageableTransform = Damageables[i].GetTransform();
-                float distance = Vector3.Distance(transform.position, damageableTransform.position);
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestDamageable = Damageables[i];
-                }
+                closestDistance = distance;
+                closestDamageable = Damageables[i];
             }
+        }
 
+        if (closestDamageable != null)
+        {
+            OnAttack?.Invoke(closestDamageable);
+            closestDamageable.TakeDamage(Damage);
+
+            if (closestDamageable.GetTransform().gameObject.GetComponent<Villager>().IsDead)
+            {
+                Damageables.Remove(closestDamageable);
+            }
+        }
+
+        yield return wait;
+
+        while (style == AttackStyle.Repeat)
+        {
             if (closestDamageable != null)
             {
                 OnAttack?.Invoke(closestDamageable);
-                closestDamageable.TakeDamage(_damage);
+                closestDamageable.TakeDamage(Damage);
             }
-
-            closestDamageable = null;
-            closestDistance = float.MaxValue;
 
             yield return wait;
 

@@ -52,6 +52,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _interactionRadius.OnAttack += OnAttack;
         _interactionRadius.OnGrab += OnGrab;
         _interactionRadius.OnGive += OnGive;
+        _interactionRadius.Damage = 10;
         _input = GetComponent<StarterAssetsInputs>();
         _inventory = new Inventory();
 
@@ -75,13 +76,11 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             if (_interactionRadius.Grabables.Count > 0 && _input.action)
             {
                 _interactionRadius.GrabItem();
-                _input.action = false;
             }
 
             if (_interactionRadius.Damageables.Count > 0 && _input.action)
             {
                 _interactionRadius.GiveItem();
-                _input.action = false;
             }
 
             if (_inventory.Food.Count > 0 && _input.dash)
@@ -105,7 +104,6 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             {
                 AttackCoroutine =
                     StartCoroutine(_interactionRadius.Attack(InteractionRadius.AttackStyle.Singular, _attackDelay));
-                _input.action = false;
             }
             
             if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
@@ -176,6 +174,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         }
 
         LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
+
+        Villager villager = target.GetTransform().GetComponent<Villager>();
+        if (villager != null)
+        {
+            _interactionRadius.Damageables.Remove(target);
+        }
     }
 
     private IEnumerator LookAt(Transform target)

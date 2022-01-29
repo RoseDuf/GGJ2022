@@ -43,7 +43,8 @@ public class Villager : PoolableObject, IDamageable
 
     [SerializeField]
     private int _baseHealth;
-    public int _health;
+    public int Health;
+    public bool IsDead { get; set; }
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
 
@@ -84,8 +85,8 @@ public class Villager : PoolableObject, IDamageable
         MaxFatness = _maxFatness;
         _meshRenderer.SetBlendShapeWeight(0, Fatness);
         Aggressivity = 1; 
-        _health = _baseHealth;
-
+        Health = _baseHealth;
+        IsDead = false;
 
         if (GameManager.HasInstance)
             UpdateStatsForDay(GameManager.Instance.CurrentDay);
@@ -113,19 +114,22 @@ public class Villager : PoolableObject, IDamageable
     
     private void OnAttack(IDamageable target)
     {
-        if (attackRight)
-            _animator.SetTrigger("AttackRight");
-        else
-            _animator.SetTrigger("AttackLeft");
-
-        attackRight = !attackRight;
-
-        if (LookCoroutine != null)
+        if (Aggressivity > 1)
         {
-            StopCoroutine(LookCoroutine);
-        }
+            if (attackRight)
+                _animator.SetTrigger("AttackRight");
+            else
+                _animator.SetTrigger("AttackLeft");
 
-        LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
+            attackRight = !attackRight;
+
+            if (LookCoroutine != null)
+            {
+                StopCoroutine(LookCoroutine);
+            }
+
+            LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
+        }
     }
 
     private IEnumerator LookAt(Transform target)
@@ -173,9 +177,10 @@ public class Villager : PoolableObject, IDamageable
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
-        if (_health <= 0) //Dies
+        Health -= damage;
+        if (Health <= 0) //Dies
         {
+            IsDead = true;
             _animator.SetTrigger("Die");
             StartCoroutine(WaitForTime(deathLength));
         }
@@ -206,6 +211,7 @@ public class Villager : PoolableObject, IDamageable
     {
         var stats = DayStatsSystem.Instance.GetForDay(dayNumber);
         Aggressivity = (int) stats.BaseAggressivity;
+        _interactionRadius.Damage = Aggressivity - 1;
     }
 
     public void StopMoving()
