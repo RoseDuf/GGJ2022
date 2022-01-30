@@ -1205,7 +1205,6 @@ GameObject:
   - component: {fileID: 7446298599478881145}
   - component: {fileID: 3401294158312266991}
   - component: {fileID: 8168948923604497458}
-  - component: {fileID: 7663780477044275517}
   m_Layer: 8
   m_Name: Hat1
   m_TagString: Untagged
@@ -1276,19 +1275,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7663780477044275517
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6536571066780302585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6786437530631470064
 GameObject:
   m_ObjectHideFlags: 0

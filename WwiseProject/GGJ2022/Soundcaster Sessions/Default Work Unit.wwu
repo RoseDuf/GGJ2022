@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{A9AED7D4-17C7-4AC3-AD4E-DF5F2A7DF3B4}" SchemaVersion="103">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{A9AED7D4-17C7-4AC3-AD4E-DF5F2A7DF3B4}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{A9AED7D4-17C7-4AC3-AD4E-DF5F2A7DF3B4}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="Soundcaster" ID="{867C36D3-573B-48D7-A413-CA0931B776AA}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="DayMusic" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Dog_Step" ID="{B6C02108-3C16-4BF2-8D49-3E870F7E2371}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Give_Food" ID="{08F71173-2B36-494F-82D4-2877908581A2}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="0" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="EveningMusic" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Pickup_Food" ID="{EADAA40F-1766-41BB-8B07-5ECE612493D8}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Wolf_Hurt" ID="{E4069EF0-0BDD-4CF4-BC29-761B24ED77BF}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="NightMusic" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Villager_Attack" ID="{0C9BB235-EEB6-481A-88B3-A264084C0AE4}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Villager_Death" ID="{C4E69676-44C6-4694-A630-3D8F3166C16A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="MenuMusic" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Wolf_attack" ID="{45C99332-AD0D-4179-A5AF-195CC76EA4B5}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="Master_Volume" ID="{FD1B52BE-14E8-40A6-99D0-B63EF2CA9B62}"/>
+							<Value>75</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="SFX_Volume" ID="{9008485E-79EE-47CC-98C2-3E9644522FF1}"/>
+							<Value>75</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Music_Volume" ID="{B2BD537D-2F5B-4DF9-9BAF-4CF5A30F60C1}"/>
+							<Value>75</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="Jour" ID="{FB5B4610-C7A7-4DC1-AC35-E0983CBA9D3C}"/>
+					</CurrentStateList>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>
