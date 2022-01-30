@@ -161,7 +161,13 @@ public class Villager : PoolableObject, IDamageable
     {
         if (!_isMoving)
             return;
-        
+
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day && AttackCoroutine != null)
+        {
+            StopCoroutine(AttackCoroutine);
+            AttackCoroutine = null;
+        }
+
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
             if (_interactionRadius.Damageables.Count > 0 && AttackCoroutine == null)
@@ -170,6 +176,7 @@ public class Villager : PoolableObject, IDamageable
             }
             if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
             {
+                StopCoroutine(AttackCoroutine);
                 AttackCoroutine = null;
             }
         }
