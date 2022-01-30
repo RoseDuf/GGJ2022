@@ -44,6 +44,8 @@ public class Villager : PoolableObject, IDamageable
     [SerializeField]
     private int _baseHealth;
     public int Health;
+
+    [SerializeField] private ParticleSystem BloodFX;
     public bool IsDead { get; set; }
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
@@ -195,10 +197,26 @@ public class Villager : PoolableObject, IDamageable
 
     private IEnumerator WaitForTimeBeforeDying(float time)
     {
+        BloodFX.Play(true);
+        yield return new WaitForSeconds(time);
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        // TODO Play FX
+        if (BloodFX != null)
+        {
+            StartCoroutine(WaitBeforeDisableVillager(BloodFX.GetComponent<ParticleSystem>().main.startLifetime.constantMax));
+        }
+        else
+        {
+            Debug.LogWarning("BloodFX not link with Villager Script");
+        }
+        
+        AddScoreFromDeath();
+    }
+
+    private IEnumerator WaitBeforeDisableVillager(float time)
+    {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
-        // TODO Play FX
-        AddScoreFromDeath();
     }
 
     private void AddScoreFromDeath()
