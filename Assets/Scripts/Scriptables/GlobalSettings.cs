@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utils;
 
 namespace Game
 {
@@ -16,6 +17,11 @@ namespace Game
         [SerializeField] private float secondsOfNight = 30;
         [SerializeField] private bool startAtNight = false;
 
+        [Header("Scenes")] 
+        [SerializeField] private SceneField mainMenuScene;
+        [SerializeField] private SceneField mainScene;
+        [SerializeField] private SceneField endScene;
+
         public int BasePointsForKilling => basePointsForKilling;
         public float FatnessMultiplier => fatnessMultiplier;
         public float ComboScoreMultiplier => comboScoreMultiplier;
@@ -24,5 +30,9 @@ namespace Game
         public float SecondsOfDay => secondsOfDay;
         public float SecondsOfNight => secondsOfNight;
         public bool StartAtNight => startAtNight;
+
+        public string MainMenuScene => mainMenuScene.SceneName;
+        public string MainScene => mainScene.SceneName;
+        public string EndScene => endScene.SceneName;
     }
 }
