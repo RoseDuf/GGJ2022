@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\</ProjectRoot>
-		<SourceFilesRoot>D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>/Users/jeremielapointe/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/GGJ2022/WwiseProject/GGJ2022/</ProjectRoot>
+		<SourceFilesRoot>/Users/jeremielapointe/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/GGJ2022/WwiseProject/GGJ2022/.cache/Windows/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/jeremielapointe/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/GGJ2022/WwiseProject/GGJ2022/GeneratedSoundBanks/Windows/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Users\William\UnityProjects\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/jeremielapointe/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Documents/GitHub/GGJ2022/WwiseProject/GGJ2022/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="702482391" Language="SFX" Hash="3976592823">
+		<SoundBank Id="702482391" Language="SFX" Hash="965450277">
 			<ObjectPath>\SoundBanks\Default Work Unit\Game</ObjectPath>
 			<ShortName>Game</ShortName>
 			<Path>Game.bnk</Path>
 			<IncludedEvents>
 				<Event Id="1588368213" Name="Bababooey" ObjectPath="\Events\Default Work Unit\Bababooey" DurationType="OneShot" DurationMin="0.862041" DurationMax="0.862041"/>
-				<Event Id="3231935906" Name="DayMusic" ObjectPath="\Events\Default Work Unit\DayMusic" DurationType="OneShot" DurationMin="70.968002" DurationMax="70.968002"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="417442959" Language="SFX">
-					<ShortName>DayMusic.wav</ShortName>
-					<Path>SFX\DayMusic_D79FB2B7.wem</Path>
-				</File>
 				<File Id="1064851420" Language="SFX">
 					<ShortName>bababooey.wav</ShortName>
-					<Path>SFX\bababooey_10C4C929.wem</Path>
+					<Path>SFX/bababooey_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3690994985">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3126699476">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
+			<GameParameters>
+				<GameParameter Id="1006694123" Name="Music_Volume" ObjectPath="\Game Parameters\Default Work Unit\Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume" ObjectPath="\Game Parameters\Default Work Unit\SFX_Volume"/>
+				<GameParameter Id="4179668880" Name="Master_Volume" ObjectPath="\Game Parameters\Default Work Unit\Master_Volume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
