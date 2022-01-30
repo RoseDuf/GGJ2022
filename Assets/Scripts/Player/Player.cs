@@ -6,6 +6,8 @@ using StarterAssets;
 
 public class Player : DayNightSensibleMonoBehaviour, IDamageable
 {
+    [SerializeField]
+    private UIPlayerCanvas _uiPlayerCanvas;
     [SerializeField] private float _health = 10f;
     private float _maxHealth = 10f;
     [SerializeField] private InteractionRadius _interactionRadius;
@@ -207,13 +209,16 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         {
             case 0:
                 _animator.SetTrigger("AttackRight");
+                _uiPlayerCanvas.ShowScratch(1);
                 break;
             case 1:
                 _animator.SetTrigger("AttackLeft");
+                _uiPlayerCanvas.ShowScratch(2);
                 break;
             case 2:
             default:
                 _animator.SetTrigger("AttackJump");
+                _uiPlayerCanvas.ShowScratch(3);
                 break;
         }
 
