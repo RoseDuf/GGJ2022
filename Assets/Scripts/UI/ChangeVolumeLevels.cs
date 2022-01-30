@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Game;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +16,9 @@ public class ChangeVolumeLevels : MonoBehaviour
 
     private void Start()
     {
+        if (_slider == null)
+            _slider = GetComponent<Slider>();
+        
         switch (_type)
         {
             case SoundType.Master:
