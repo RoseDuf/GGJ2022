@@ -39,6 +39,13 @@ public class InteractionRadius : MonoBehaviour
         IGrabable grabable = other.GetComponent<IGrabable>();
         if (grabable != null && !Grabables.Contains(grabable))
         {
+            Food food;
+            grabable.GetTransform().TryGetComponent<Food>(out food);
+            if (food != null)
+            {
+                food.GetUIFood.ShowArrow(true);
+            }
+
             Grabables.Add(grabable);
         }
     }
@@ -57,6 +64,13 @@ public class InteractionRadius : MonoBehaviour
         IGrabable grabable = other.GetComponent<IGrabable>();
         if (grabable != null)
         {
+            Food food;
+            grabable.GetTransform().TryGetComponent<Food>(out food);
+            if (food != null)
+            {
+                food.GetUIFood.ShowArrow(false);
+            }
+
             Grabables.Remove(grabable);
         }
     }

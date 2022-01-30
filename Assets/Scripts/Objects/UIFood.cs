@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPlayerCanvas : MonoBehaviour
+public class UIFood : MonoBehaviour
 {
     [SerializeField]
     private Image _image;
@@ -11,11 +11,6 @@ public class UIPlayerCanvas : MonoBehaviour
     [SerializeField]
     private Camera cameraToLookAt;
 
-    [SerializeField]
-    private Animator _animator;
-
-
-    // Start is called before the first frame update
     void Awake()
     {
         _image.enabled = false;
@@ -32,24 +27,9 @@ public class UIPlayerCanvas : MonoBehaviour
         FaceCamera();
     }
 
-    public void ShowScratch(int sratchNumber)
+    public void ShowArrow(bool canShow)
     {
-        _image.enabled = sratchNumber == 1 || sratchNumber == 2 || sratchNumber == 3;
-        _animator.enabled = _image.enabled;
-
-        switch (sratchNumber)
-        {
-            case 1:
-                _animator.SetTrigger("Scratch1");
-                break;
-            case 2:
-                _animator.SetTrigger("Scratch2");
-                break;
-            case 3:
-            default:
-                _animator.SetTrigger("Scratch3");
-                break;
-        }
+        _image.enabled = canShow;
     }
 
     void FaceCamera()
