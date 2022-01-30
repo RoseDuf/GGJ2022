@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlobalSettings
   m_EditorClassIdentifier: 
   basePointsForKilling: 100
-  fatnessMultiplier: 2.5
+  fatnessMultiplier: 1.5
   comboScoreMultiplier: 0.5
   secondsBeforeEndOfCombo: 5
   secondsOfDay: 60

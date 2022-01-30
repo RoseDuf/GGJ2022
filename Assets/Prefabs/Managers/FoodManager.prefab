@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770e9f1eafe9e584786c740be0ae5b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberFoodsToSpawn: 10
+  _numberFoodsToSpawn: 15
   _spawnDelay: 0
   FoodPrefabs:
   - {fileID: 1333331183099501765, guid: 49c595b5bce150846aa71aa98733d606, type: 3}
