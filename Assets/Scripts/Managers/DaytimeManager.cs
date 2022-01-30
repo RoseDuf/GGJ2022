@@ -59,7 +59,6 @@ public class DaytimeManager : MonoBehaviour
         else
         {
             dayNightCycle.fullDayLength = settings.SecondsOfDay * 2;
-            dayNightCycle.startTime = DayStartTime;
         }
 
         if (GameManager.HasInstance)
