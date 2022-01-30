@@ -31,7 +31,7 @@ public class UIPlayerCanvas : MonoBehaviour
     {
         FaceCamera();
 
-        //if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch1") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch2") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch3"))
+        //if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch1") && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch2") && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Scratch3"))
         //{
         //    _image.enabled = false;
         //    _animator.enabled = false;

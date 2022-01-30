@@ -213,12 +213,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 break;
             case 1:
                 _animator.SetTrigger("AttackLeft");
-                _uiPlayerCanvas.ShowScratch(2);
+                _uiPlayerCanvas.ShowScratch(3);
                 break;
             case 2:
             default:
                 _animator.SetTrigger("AttackJump");
-                _uiPlayerCanvas.ShowScratch(3);
+                _uiPlayerCanvas.ShowScratch(2);
                 break;
         }
 
