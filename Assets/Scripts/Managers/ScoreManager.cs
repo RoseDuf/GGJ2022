@@ -12,11 +12,13 @@ namespace Game
         
         private int score = 0;
         private int currentCombo = 0;
+        private float currentpoints = 0;
 
         private Coroutine comboEndCoroutine = null;
         
         public int Score => score;
         public int CurrentCombo => currentCombo;
+        public float CurrentPoints => currentpoints;
 
         private float ComboMultiplier => 1.0f + currentCombo * settings.ComboScoreMultiplier;
 
@@ -27,6 +29,7 @@ namespace Game
 
         public void AddScoreForKilling(int fatnessLevel)
         {
+            currentpoints = (int)(settings.BasePointsForKilling * Math.Pow(settings.FatnessMultiplier, fatnessLevel) * ComboMultiplier);
             score += (int) (settings.BasePointsForKilling * Math.Pow(settings.FatnessMultiplier, fatnessLevel) * ComboMultiplier);
             
             ++currentCombo;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Game;
 
 public class UIPlayerCanvas : MonoBehaviour
 {
@@ -12,9 +14,11 @@ public class UIPlayerCanvas : MonoBehaviour
     private Camera cameraToLookAt;
 
     [SerializeField]
+    private TextMeshProUGUI _textMeshPro;
+
+    [SerializeField]
     private Animator _animator;
-
-
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,6 +28,17 @@ public class UIPlayerCanvas : MonoBehaviour
         {
             cameraToLookAt = Camera.main;
         }
+    }
+
+    private void Start()
+    {
+        ScoreManager.Instance.OnScoreAdded += OnScoreAdded;
+    }
+
+    private void OnDestroy()
+    {
+        if (ScoreManager.HasInstance)
+            ScoreManager.Instance.OnScoreAdded -= OnScoreAdded;
     }
 
     // Update is called once per frame
@@ -50,6 +65,26 @@ public class UIPlayerCanvas : MonoBehaviour
                 _animator.SetTrigger("Scratch3");
                 break;
         }
+    }
+
+    private void OnScoreAdded()
+    {
+        GivePoints(ScoreManager.Instance.CurrentPoints);
+    }
+
+    public void GivePoints(float amount)
+    {
+        StartCoroutine(DisplayTextCoroutine(amount));
+    }
+
+    private IEnumerator DisplayTextCoroutine(float amount)
+    {
+        if (amount > 0)
+        {
+            _textMeshPro.text = amount.ToString();
+        }
+        yield return new WaitForSeconds(1f);
+        _textMeshPro.text = "";
     }
 
     void FaceCamera()
