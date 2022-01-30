@@ -169,6 +169,8 @@ public class VillagerMovement : MonoBehaviour
 
         while (State == VillagerState.RunAway)
         {
+            _animator.SetBool("IsRunningAway", true);
+
             if (Agent.enabled)
             {
                 Vector3 moveDir = (Agent.transform.position - Target.position).normalized * 10;
@@ -179,6 +181,8 @@ public class VillagerMovement : MonoBehaviour
             }
             yield return wait;
         }
+        
+        _animator.SetBool("IsRunningAway", false);
     }
 
     private void HandleStateChange(VillagerState oldSatte, VillagerState newState)

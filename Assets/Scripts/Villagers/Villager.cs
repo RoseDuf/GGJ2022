@@ -161,7 +161,13 @@ public class Villager : PoolableObject, IDamageable
     {
         if (!_isMoving)
             return;
-        
+
+        if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day && AttackCoroutine != null)
+        {
+            StopCoroutine(AttackCoroutine);
+            AttackCoroutine = null;
+        }
+
         if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
         {
             if (_interactionRadius.Damageables.Count > 0 && AttackCoroutine == null)
@@ -170,6 +176,7 @@ public class Villager : PoolableObject, IDamageable
             }
             if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
             {
+                StopCoroutine(AttackCoroutine);
                 AttackCoroutine = null;
             }
         }
@@ -206,6 +213,7 @@ public class Villager : PoolableObject, IDamageable
     {
         if (Fatness < MaxFatness)
         {
+            _animator.SetTrigger("Happy");
             Fatness += 1;
             _villagerModel.localScale = new Vector3(_villagerModel.localScale.x + 0.2f, _villagerModel.localScale.y + 0.2f, _villagerModel.localScale.z + 0.2f);
             //_meshRenderer.SetBlendShapeWeight(0, Fatness * 50);
