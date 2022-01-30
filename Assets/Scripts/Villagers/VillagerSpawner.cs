@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Game;
 
 public class VillagerSpawner : MonoBehaviour
 {
@@ -30,6 +31,24 @@ public class VillagerSpawner : MonoBehaviour
     {
         _triangulation = NavMesh.CalculateTriangulation();
         StartCoroutine(SpawnVillagers());
+        DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
+    }
+
+    protected void OnDestroy()
+    {
+        if (DaytimeManager.HasInstance)
+        {
+            DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+        }
+    }
+
+    private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
+    {
+        if (timeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            DespawnVillagers();
+            StartCoroutine(SpawnVillagers());
+        }
     }
 
     private IEnumerator SpawnVillagers()
@@ -37,6 +56,7 @@ public class VillagerSpawner : MonoBehaviour
         WaitForSeconds Wait = new WaitForSeconds(_spawnDelay);
 
         int spawnedVillagers = 0;
+        //var stats = DayStatsSystem.Instance.GetForDay(); //TODO get current day somehow
 
         while (spawnedVillagers < _numberVillagersToSpawn)
         {
@@ -51,6 +71,14 @@ public class VillagerSpawner : MonoBehaviour
 
             spawnedVillagers++;
             yield return Wait;
+        }
+    }
+
+    private void DespawnVillagers()
+    {
+        for (int i = 0; i < _villagerObjectPools.Count; i++)
+        {
+            _villagerObjectPools[i].ReturnAllObjectsToPool();
         }
     }
 
@@ -81,6 +109,7 @@ public class VillagerSpawner : MonoBehaviour
 
             villager.Agent.Warp(randomPoint);
             villager.Movement.Target = FindObjectOfType<Player>().transform;
+            villager.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             villager.Agent.enabled = true;
             villager.Type = foodTypes[randomFoodType];
             villager.Movement.Spawn();

@@ -13,8 +13,6 @@ public class FoodSpawner : MonoBehaviour
     public List<Food> FoodPrefabs = new List<Food>();
     public SpawnMethod FoodSpawnMethod = SpawnMethod.RoundRobin;
 
-    private bool foodWasSpawned;
-
     private NavMeshTriangulation _triangulation;
     private Dictionary<int, ObjectPool> _FoodObjectPools = new Dictionary<int, ObjectPool>();
 
@@ -29,20 +27,32 @@ public class FoodSpawner : MonoBehaviour
     private void Start()
     {
         _triangulation = NavMesh.CalculateTriangulation();
-        foodWasSpawned = false;
+
+        StartCoroutine(SpawnFoods());
+        DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
     }
 
     private void Update()
     {
-        if (!foodWasSpawned && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+    }
+
+    protected void OnDestroy()
+    {
+        if (DaytimeManager.HasInstance)
+        {
+            DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+        }
+    }
+    
+    private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
+    {
+        if (timeOfDay == DaytimeManager.TimeOfDay.Day)
         {
             StartCoroutine(SpawnFoods());
-            foodWasSpawned = true;
         }
-        if (foodWasSpawned && DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+        if (timeOfDay == DaytimeManager.TimeOfDay.Night)
         {
             DespawnFoods();
-            foodWasSpawned = false;
         }
     }
 
@@ -72,14 +82,7 @@ public class FoodSpawner : MonoBehaviour
     {
         for (int i = 0; i < _FoodObjectPools.Count; i++)
         {
-            PoolableObject poolableobject = _FoodObjectPools[i].GetObject();
-            if (poolableobject != null)
-            {
-                Food food = poolableobject.GetComponent<Food>();
-
-                food.gameObject.SetActive(false);
-                food.Agent.enabled = true;
-            }
+            _FoodObjectPools[i].ReturnAllObjectsToPool();
         }
     }
 
@@ -101,15 +104,14 @@ public class FoodSpawner : MonoBehaviour
 
         if (poolableobject != null)
         {
-            Food Food = poolableobject.GetComponent<Food>();
+            Food food = poolableobject.GetComponent<Food>();
 
             Food.FoodType[] foodTypes = { Food.FoodType.Apple, Food.FoodType.Fish, Food.FoodType.Cake, Food.FoodType.Cheese };
             int randomFoodType = Random.Range(0, foodTypes.Length);
 
-            Food.Agent.Warp(GetRandomLocation());
-            Food.Agent.enabled = true;
-            Food.Type = foodTypes[randomFoodType];
-
+            food.Agent.Warp(GetRandomLocation());
+            food.Agent.enabled = true;
+            food.Type = foodTypes[randomFoodType];
         }
         else
         {

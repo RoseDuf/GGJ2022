@@ -6,11 +6,14 @@ public class ObjectPool
 {
     private PoolableObject _prefab;
     private List<PoolableObject> _availableobjects;
+    private List<PoolableObject> _allobjects;
+    public static GameObject poolobject { get; set; }
 
     private ObjectPool(PoolableObject prefab, int size)
     {
         _prefab = prefab;
         _availableobjects = new List<PoolableObject>(size);
+        _allobjects = new List<PoolableObject>();
     } 
 
     public static ObjectPool CreateInstance(PoolableObject prefab, int size)
@@ -30,6 +33,7 @@ public class ObjectPool
             PoolableObject poolableObject = GameObject.Instantiate(_prefab, Vector3.zero, Quaternion.identity, parent.transform);
             poolableObject.Parent = this;
             poolableObject.gameObject.SetActive(false);
+            _allobjects.Add(poolableObject);
         }
     }
 
@@ -53,6 +57,14 @@ public class ObjectPool
         {
             Debug.LogWarning($"Could not get object from pool {_prefab.name}.");
             return null;
+        }
+    }
+
+    public void ReturnAllObjectsToPool()
+    {
+        foreach(PoolableObject pool in _allobjects)
+        {
+            pool.gameObject.SetActive(false);
         }
     }
 }

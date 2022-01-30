@@ -146,10 +146,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     {
         if (timeOfDay == DaytimeManager.TimeOfDay.Day)
         {
+            _animator.SetBool("IsDayNightTransition", true);
             _animator = DayAnimator;
         }
         if (timeOfDay == DaytimeManager.TimeOfDay.Night)
         {
+            _animator.SetBool("IsDayNightTransition", true);
             _animator = NightAnimator;
         }
     }
