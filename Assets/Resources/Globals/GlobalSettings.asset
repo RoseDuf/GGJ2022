@@ -16,6 +16,15 @@ MonoBehaviour:
   fatnessMultiplier: 2.5
   comboScoreMultiplier: 0.5
   secondsBeforeEndOfCombo: 5
-  secondsOfDay: 60
+  secondsOfDay: 5
   secondsOfNight: 30
   startAtNight: 0
+  mainMenuScene:
+    _sceneAsset: {fileID: 102900000, guid: a804d16b304491040b59372f80f285db, type: 3}
+    _sceneName: MainMenu
+  mainScene:
+    _sceneAsset: {fileID: 102900000, guid: 0a9146519340112438aff202bf582336, type: 3}
+    _sceneName: Main
+  endScene:
+    _sceneAsset: {fileID: 102900000, guid: 414b9dbb415e668409b6dda780894c99, type: 3}
+    _sceneName: EndScene
