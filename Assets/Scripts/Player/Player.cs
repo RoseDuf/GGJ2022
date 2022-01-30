@@ -35,6 +35,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     private bool _inputsActivated = true;
     private UIManager _uiManager;
 
+    public bool IsDead { get; set; }
+
     private bool InputsActivated
     {
         get => _inputsActivated;
@@ -256,6 +258,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _uiManager.UpdatePlayerHealth(_health / _maxHealth);
         if (_health <= 0)
         {
+            InputsActivated = false;
+
             if (DaytimeManager.HasInstance)
                 DaytimeManager.Instance.Stop();
 
@@ -265,7 +269,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 _bloodFX.Play();
             }
             gameObject.SetActive(false);
-            _animator.SetTrigger("Die");
+            //_animator.SetBool("IsDead", true);
             GameManager.Instance.PlayerDied();
         }
         

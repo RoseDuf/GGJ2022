@@ -32,6 +32,8 @@ public class UIFood : MonoBehaviour
         _image.enabled = canShow;
     }
 
+    public bool IsShowing { get { return _image.enabled; } }
+
     void FaceCamera()
     {
         Vector3 v = cameraToLookAt.transform.position - transform.position;
