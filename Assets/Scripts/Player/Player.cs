@@ -9,6 +9,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     [SerializeField] private float _health = 10f;
     private float _maxHealth = 10f;
     [SerializeField] private InteractionRadius _interactionRadius;
+    [SerializeField] private ParticleSystem _bloodFX;
     [SerializeField] private float _attackDelay;
     private ThirdPersonController _controller;
     private Animator _animator;
@@ -250,7 +251,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         {
             if (DaytimeManager.HasInstance)
                 DaytimeManager.Instance.Stop();
-            
+
+            if (_bloodFX)
+            {
+                _bloodFX.transform.parent = null;
+                _bloodFX.Play();
+            }
             gameObject.SetActive(false);
             _animator.SetTrigger("Die");
             GameManager.Instance.PlayerDied();

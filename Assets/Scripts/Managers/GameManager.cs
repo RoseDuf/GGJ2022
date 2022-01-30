@@ -110,6 +110,15 @@ namespace Game
         public void PlayerDied()
         {
             OnPlayerDied?.Invoke();
+
+            StartCoroutine(DeathRoutine());
+        }
+
+        private IEnumerator DeathRoutine()
+        {
+            yield return new WaitForSeconds(5f);
+            
+            SceneManager.Instance.LoadScene(SettingsSystem.Instance.Settings.EndScene);
         }
     }
 }
