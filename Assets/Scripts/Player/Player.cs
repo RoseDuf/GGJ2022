@@ -10,8 +10,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     private float _maxHealth = 10f;
     [SerializeField] private InteractionRadius _interactionRadius;
     [SerializeField] private float _attackDelay;
-    private Animator _animator;
     private ThirdPersonController _controller;
+    private Animator _animator;
 
     [SerializeField]
     private int _foodCapacity;
@@ -22,12 +22,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     [SerializeField] private GameObject daydoggo;
     [SerializeField] private GameObject nightdoggo;
 
+    public Animator DayAnimator { get { return daydoggo.GetComponent<Animator>(); } }
+    public Animator NightAnimator { get { return nightdoggo.GetComponent<Animator>(); } }
+
     private StarterAssetsInputs _input;
     private Coroutine LookCoroutine;
     private Coroutine AttackCoroutine;
-
-    private const string k_Attack = "Attack";
-    private const string k_Grab = "Grab";
 
     private bool _inputsActivated = true;
     private UIManager _uiManager;
@@ -55,13 +55,23 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         _interactionRadius.Damage = 10;
         _input = GetComponent<StarterAssetsInputs>();
         _inventory = new Inventory();
+        _animator = daydoggo.GetComponent<Animator>();
 
         _controller = GetComponent<ThirdPersonController>();
-        _animator = GetComponentInChildren<Animator>();
 
         _maxHealth = _health;
         _uiManager.UpdatePlayerHealth(_health);
         _uiManager.UIinventory.SetInventory(_inventory);
+
+        DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
+    }
+
+    protected void OnDestroy()
+    {
+        if (DaytimeManager.HasInstance)
+        {
+            DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+        }
     }
 
     private void Update()
@@ -93,6 +103,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 _uiManager.UIinventory.UpdateInventory();
             }
 
+            if (AttackCoroutine != null)
+            {
+                StopCoroutine(AttackCoroutine);
+                AttackCoroutine = null;
+            }
+
             if (_input.dash)
             {
                 _input.dash = false;
@@ -108,6 +124,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             
             if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
             {
+                StopCoroutine(AttackCoroutine);
                 AttackCoroutine = null;
             }
 
@@ -124,12 +141,22 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         }
     }
 
+    private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
+    {
+        if (timeOfDay == DaytimeManager.TimeOfDay.Day)
+        {
+            _animator = DayAnimator;
+        }
+        if (timeOfDay == DaytimeManager.TimeOfDay.Night)
+        {
+            _animator = NightAnimator;
+        }
+    }
+
     private void OnGrab(IGrabable target)
     {
         if (_inventory.Food.Count < _foodCapacity)
         {
-            _animator.SetTrigger(k_Grab);
-
             Food item = target.GetTransform().gameObject.GetComponent<Food>();
 
             _inventory.AddFood(item);
@@ -166,20 +193,28 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
     
     private void OnAttack(IDamageable target)
     {
-        _animator.SetTrigger(k_Attack);
-
         if (LookCoroutine != null)
         {
             StopCoroutine(LookCoroutine);
         }
 
-        LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
+        int randAnimation = Random.Range(0, 3);
 
-        Villager villager = target.GetTransform().GetComponent<Villager>();
-        if (villager != null)
+        switch(randAnimation)
         {
-            _interactionRadius.Damageables.Remove(target);
+            case 0:
+                _animator.SetTrigger("AttackRight");
+                break;
+            case 1:
+                _animator.SetTrigger("AttackLeft");
+                break;
+            case 2:
+            default:
+                _animator.SetTrigger("AttackJump");
+                break;
         }
+
+        LookCoroutine = StartCoroutine(LookAt(target.GetTransform()));
     }
 
     private IEnumerator LookAt(Transform target)
@@ -203,6 +238,11 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (damage > 0)
+        {
+            _animator.SetTrigger("Hurt");
+        }
+
         _health -= damage;
 
         _uiManager.UpdatePlayerHealth(_health / _maxHealth);
@@ -212,7 +252,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 DaytimeManager.Instance.Stop();
             
             gameObject.SetActive(false);
-            //_animator.SetTrigger("Die");
+            _animator.SetTrigger("Die");
             GameManager.Instance.PlayerDied();
         }
         
