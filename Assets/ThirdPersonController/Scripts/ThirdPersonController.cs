@@ -230,8 +230,8 @@ namespace StarterAssets
 
                     if (_targetVillager != null)
                     {
-                        float distanecToTarget = (closestCollider.transform.position - transform.position).magnitude;
-                        if (_inTargetRange || distanecToTarget < _targetScope.StopDistance)
+                        float distanceToTarget = (closestCollider.transform.position - transform.position).magnitude;
+                        if (_inTargetRange || distanceToTarget < _targetScope.StopDistance)
                         {
                             _targetVillager.UIArrow.ShowArrow(false);
                             _targetScope.TargetList.Remove(closestCollider);
