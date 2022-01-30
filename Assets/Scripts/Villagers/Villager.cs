@@ -19,33 +19,49 @@ public class Villager : PoolableObject, IDamageable
 
     public UIArrow UIArrow { get; set; }
 
-    [SerializeField] private MeshRenderer _hatMeshRenderer;
-    [SerializeField] private MeshFilter _hatMeshFilter;
+    [SerializeField] private List<MeshRenderer> _hatMeshRenderers;
+    [SerializeField] private List<MeshFilter> _hatMeshFilters;
     
     [SerializeField]
     private FoodType _typeOfFood;
+    
     [SerializeField]
     private InteractionRadius _interactionRadius;
+    
     [SerializeField]
     private float _attackDelay;
+    
     [SerializeField]
     private Animator _animator;
+    
     [SerializeField]
     private Transform _villagerModel;
     private Vector3 _scale;
+    
+    [SerializeField]
+    private int _maxFatness;
+    
+    [SerializeField]
+    private int _baseHealth;
 
     private Coroutine LookCoroutine;
 
     private SkinnedMeshRenderer _meshRenderer;
-    
-    public int Fatness { get; set; }
-    [SerializeField]
-    private int _maxFatness;
-    public int MaxFatness { get; set; }
-    public int Aggressivity;
 
-    [SerializeField]
-    private int _baseHealth;
+    private int _fatness = 1;
+    
+    public int Fatness
+    {
+        get => _fatness;
+        set
+        {
+            _fatness = value;
+            UpdateHats();
+        } 
+    }
+    public int MaxFatness { get; set; }
+    
+    public int Aggressivity;
     public int Health;
 
     [SerializeField] private ParticleSystem BloodFX;
@@ -77,6 +93,20 @@ public class Villager : PoolableObject, IDamageable
         }
     }
 
+    public void UpdateHats()
+    {
+        var i = 0;
+        for (; i < _hatMeshFilters.Count && i < Fatness; ++i)
+        {
+            _hatMeshFilters[i].gameObject.SetActive(true);
+        }
+
+        for (; i < _hatMeshFilters.Count; ++i)
+        {
+            _hatMeshFilters[i].gameObject.SetActive(false);
+        }
+    }
+
     public void PlayHappyAnimation()
     {
         _animator.SetTrigger("Happy");
@@ -101,14 +131,25 @@ public class Villager : PoolableObject, IDamageable
     private void InitializeVillager()
     {
         Material[] newMaterials = new Material[1];
-        newMaterials[0] = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
+        var villagerData = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
+        newMaterials[0] = villagerData.Material;
         _meshRenderer.materials = newMaterials;
         
         var foodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
-        _hatMeshRenderer.material = foodData.Material;
-        _hatMeshFilter.mesh = foodData.Mesh;
-        _hatMeshFilter.transform.eulerAngles = foodData.Rotation;
-        _hatMeshFilter.transform.localScale = new Vector3(foodData.Scale, foodData.Scale, foodData.Scale) / 1000;
+        for (var i = 0; i < _hatMeshRenderers.Count; i++)
+        {
+            _hatMeshRenderers[i].material = foodData.Material;
+            
+            var postition = _hatMeshRenderers[i].transform.localPosition;
+            postition.y = _hatMeshRenderers[0].transform.localPosition.y + i * villagerData.DistanceBetweenHats;
+            _hatMeshRenderers[i].transform.localPosition = postition;
+        }
+        foreach (var meshFilter in _hatMeshFilters)
+        {
+            meshFilter.mesh = foodData.Mesh;
+            meshFilter.transform.eulerAngles = foodData.Rotation;
+            meshFilter.transform.localScale = new Vector3(foodData.Scale, foodData.Scale, foodData.Scale) / 1000;
+        }
     }
 
     private bool OnGive(IDamageable target)
@@ -202,6 +243,11 @@ public class Villager : PoolableObject, IDamageable
             IsDead = true;
             _animator.SetTrigger("Die");
             StartCoroutine(WaitForTimeBeforeDying(deathLength));
+
+            foreach (var hat in _hatMeshRenderers)
+            {
+                hat.gameObject.SetActive(false);
+            }
         }
     }
 
