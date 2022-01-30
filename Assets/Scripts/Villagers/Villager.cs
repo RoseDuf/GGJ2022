@@ -117,7 +117,7 @@ public class Villager : PoolableObject, IDamageable
         InitializeVillager();
         
         UIArrow = GetComponentInChildren<UIArrow>();
-        Fatness = 3;
+        Fatness = 1;
         MaxFatness = _maxFatness;
         _meshRenderer.SetBlendShapeWeight(0, Fatness);
         Aggressivity = 1; 
@@ -243,6 +243,11 @@ public class Villager : PoolableObject, IDamageable
             IsDead = true;
             _animator.SetTrigger("Die");
             StartCoroutine(WaitForTimeBeforeDying(deathLength));
+
+            foreach (var hat in _hatMeshRenderers)
+            {
+                hat.gameObject.SetActive(false);
+            }
         }
     }
 
