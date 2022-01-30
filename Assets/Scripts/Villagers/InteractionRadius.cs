@@ -137,37 +137,42 @@ public class InteractionRadius : MonoBehaviour
             }
         }
 
-        if (closestDamageable != null)
-        {
-            OnAttack?.Invoke(closestDamageable);
-            yield return wait;
-            closestDamageable.TakeDamage(Damage);
-
-            Villager villager;
-            closestDamageable.GetTransform().TryGetComponent<Villager>(out villager);
-            if (villager == null || (villager != null && villager.IsDead))
-            {
-                Damageables.Remove(closestDamageable);
-            }
-        }
-
-        yield return wait;
-
-        while (style == AttackStyle.Repeat)
+        if (style == AttackStyle.Singular)
         {
             if (closestDamageable != null)
             {
                 OnAttack?.Invoke(closestDamageable);
+                yield return wait;
                 closestDamageable.TakeDamage(Damage);
-            }
 
+                Villager villager;
+                closestDamageable.GetTransform().TryGetComponent<Villager>(out villager);
+                if (villager == null || (villager != null && villager.IsDead))
+                {
+                    Damageables.Remove(closestDamageable);
+                }
+            }
+        }
+        else if(style == AttackStyle.Repeat)
+        {
             yield return wait;
 
-            Damageables.RemoveAll(DisabledDamageables);
-
-            if (style == AttackStyle.Singular)
+            while (style == AttackStyle.Repeat)
             {
-                break;
+                if (closestDamageable != null)
+                {
+                    OnAttack?.Invoke(closestDamageable);
+                    closestDamageable.TakeDamage(Damage);
+                }
+
+                yield return wait;
+
+                Damageables.RemoveAll(DisabledDamageables);
+
+                if (style == AttackStyle.Singular)
+                {
+                    break;
+                }
             }
         }
     }
