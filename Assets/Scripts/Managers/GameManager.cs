@@ -151,7 +151,8 @@ namespace Game
         private IEnumerator DeathRoutine()
         {
             yield return new WaitForSeconds(5f);
-            
+
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.Instance.LoadScene(SettingsSystem.Instance.Settings.EndScene);
         }
     }

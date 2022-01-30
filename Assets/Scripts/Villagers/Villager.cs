@@ -91,6 +91,8 @@ public class Villager : PoolableObject, IDamageable
                 deathLength = clip.length;
             }
         }
+
+        OriginalScale = _villagerModel.localScale;
     }
 
     public void UpdateHats()
@@ -127,6 +129,7 @@ public class Villager : PoolableObject, IDamageable
 
     public void InitializeVillager()
     {
+        _villagerModel.localScale = Vector3.one;
         Fatness = 1;
         _meshRenderer.SetBlendShapeWeight(0, Fatness);
         IsDead = false;
