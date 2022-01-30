@@ -3,6 +3,7 @@
 using UnityEngine.InputSystem;
 #endif
 using System.Collections;
+using Game;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -133,13 +134,48 @@ namespace StarterAssets
             Cursor.lockState = CursorLockMode.Locked;
 
             DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
-        }
+
+            walkingSound = StartCoroutine(WalkingSound());
+		}
+
+		private Coroutine walkingSound = null;
+		
+		private IEnumerator WalkingSound()
+		{
+			while (true)
+			{
+				yield return new WaitForSeconds(0.5f);
+			
+				float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+				if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+
+				if (targetSpeed != 0.0f)
+				{
+					if (GameManager.HasInstance)
+					{
+						if (GameManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+						{
+							SoundSystem.Instance.PlayDogStepSound(gameObject);
+						}
+						else
+						{
+							SoundSystem.Instance.PlayWolfStepSound(gameObject);
+						}
+					}
+				}
+			}
+		}
 
         protected void OnDestroy()
         {
             if (DaytimeManager.HasInstance)
             {
                 DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+            }
+
+            if (walkingSound != null)
+            {
+	            StopCoroutine(walkingSound);
             }
         }
 

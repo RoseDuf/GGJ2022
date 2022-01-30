@@ -7,6 +7,7 @@ public class DaytimeManager : MonoBehaviour
     [SerializeField] private DayNightCycle dayNightCycle;
 
     [Range(0.0f, 1.0f)] public static float DayStartTime = 0.25f;
+    [Range(0.0f, 1.0f)] public static float EveningStartTime = 0.60f;
     [Range(0.0f, 1.0f)] public static float DayEndTime = 0.75f;
 
     public enum TimeOfDay
@@ -17,6 +18,7 @@ public class DaytimeManager : MonoBehaviour
     }
 
     public event Action<TimeOfDay> OnTimeOfDayChanged;
+    public event Action OnEvening;
 
     public TimeOfDay CurrentTimeOfDay;
 
@@ -30,6 +32,7 @@ public class DaytimeManager : MonoBehaviour
     }
 
     private TimeOfDay lastTimeOfDay;
+    private bool evening = false;
 
     public void Stop() => dayNightCycle.Stop();
     public void Resume() => dayNightCycle.Resume();
@@ -102,6 +105,19 @@ public class DaytimeManager : MonoBehaviour
             CurrentTimeOfDay = TimeOfDay.Day;
         else
             CurrentTimeOfDay = TimeOfDay.Night;
+
+        if (_currentTime > EveningStartTime && _currentTime < DayEndTime)
+        {
+            if (evening == false)
+            {
+                evening = true;
+                OnEvening?.Invoke();
+            }
+        }
+        else
+        {
+            evening = false;
+        }
 
         if (CurrentTimeOfDay != lastTimeOfDay)
         {

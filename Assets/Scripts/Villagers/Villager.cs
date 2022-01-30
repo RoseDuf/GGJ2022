@@ -176,6 +176,7 @@ public class Villager : PoolableObject, IDamageable
                 _animator.SetTrigger("AttackLeft");
 
             attackRight = !attackRight;
+            SoundSystem.Instance.PlayVillagerAttackSound(gameObject);
 
             if (LookCoroutine != null)
             {
@@ -260,7 +261,7 @@ public class Villager : PoolableObject, IDamageable
         BloodFX.Play(true);
         yield return new WaitForSeconds(time);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-        // TODO Play FX
+        SoundSystem.Instance.PlayVillagerDeathSound(gameObject);
         if (BloodFX != null)
         {
             StartCoroutine(WaitBeforeDisableVillager(BloodFX.GetComponent<ParticleSystem>().main.startLifetime.constantMax));
@@ -293,6 +294,7 @@ public class Villager : PoolableObject, IDamageable
         {
             HeartFX.Play(true);
             _animator.SetTrigger("Happy");
+            SoundSystem.Instance.PlayVillagerJoySound(gameObject);
             Fatness += 1;
             _villagerModel.localScale = new Vector3(_villagerModel.localScale.x + 0.2f, _villagerModel.localScale.y + 0.2f, _villagerModel.localScale.z + 0.2f);
             //_meshRenderer.SetBlendShapeWeight(0, Fatness * 50);

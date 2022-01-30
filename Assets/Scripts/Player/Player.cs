@@ -165,6 +165,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         if (_inventory.Food.Count < _foodCapacity)
         {
             Food item = target.GetTransform().gameObject.GetComponent<Food>();
+            
+            SoundSystem.Instance.PlayPickupFoodSound(gameObject);
 
             _inventory.AddFood(item);
             _uiManager.UIinventory.UpdateInventory();
@@ -186,6 +188,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                     if (food.FoodData.TypeOfFood.ToString() == villager.Type.ToString())
                     {
                         _inventory.RemoveFood(food);
+                        // SoundSystem.Instance.PlayGiveFoodSound(gameObject); Overwhelming?
                         _uiManager.UIinventory.UpdateInventory();
                         return true;
                     }
@@ -206,6 +209,8 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         }
 
         int randAnimation = Random.Range(0, 3);
+        
+        SoundSystem.Instance.PlayWolfAttackSound(gameObject);
 
         switch(randAnimation)
         {
@@ -254,6 +259,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
         }
 
         _health -= damage;
+        SoundSystem.Instance.PlayWolfHurtSound(gameObject);
 
         _uiManager.UpdatePlayerHealth(_health / _maxHealth);
         if (_health <= 0)
