@@ -23,9 +23,8 @@ public class Food : PoolableObject, IGrabable
     
     void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _meshFilter = GetComponent<MeshFilter>();
-        
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _meshFilter = GetComponentInChildren<MeshFilter>();
     }
 
     void Start()

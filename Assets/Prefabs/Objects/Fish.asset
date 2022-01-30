@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   TypeOfFood: 1
-  Material: {fileID: 2100000, guid: 04258cb0d04e4dd42961631626c0ad88, type: 2}
-  Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  Material: {fileID: 2100000, guid: 676f5ae3d0ea57343a8c3eec12a3fc18, type: 2}
+  Mesh: {fileID: -6883867050887224820, guid: 5bbb5da2301ed8d4ea1b6b2fe68260c6, type: 3}
   Image: {fileID: 21300000, guid: c1dc0ab808fd2c5449881c42274208b5, type: 3}
