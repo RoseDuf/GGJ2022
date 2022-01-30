@@ -50,14 +50,14 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.06
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -170,7 +170,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5.66
+      scalar: 14.92
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7169812, g: 0.08454966, b: 0.08454966, a: 0.8039216}
+      maxColor: {r: 0.8962264, g: 0.05411173, b: 0.05411173, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -286,7 +286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.01
+      scalar: 10.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -608,7 +608,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.39
+      scalar: 3.69
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -867,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 11.07
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1305,7 +1305,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.8980392, g: 0.05490196, b: 0.05490196, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0.6764706}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1322,7 +1322,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 22166
+        atime1: 47609
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -4846,22 +4846,22 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3463688424432097403}
   serializedVersion: 7
-  lengthInSec: 0.25
-  simulationSpeed: 1.4
+  lengthInSec: 0.2
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.06
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4921,7 +4921,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.41
       minScalar: 0.3
       maxCurve:
         serializedVersion: 2
@@ -4974,7 +4974,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.49
+      scalar: 23.97
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -5028,7 +5028,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3490566, g: 0.12019401, b: 0.12019401, a: 1}
+      maxColor: {r: 0.8980392, g: 0.05490196, b: 0.05490196, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5090,7 +5090,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.11
       minScalar: 0.05
       maxCurve:
         serializedVersion: 2
@@ -5412,7 +5412,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5671,7 +5671,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 1080.3
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7045,7 +7045,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -8
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9667,14 +9667,14 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.06
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9841,7 +9841,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.745283, g: 0.2214756, b: 0.2214756, a: 1}
+      maxColor: {r: 0.8980392, g: 0.05490196, b: 0.05490196, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
