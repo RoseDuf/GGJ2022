@@ -113,6 +113,7 @@ public class VillagerSpawner : MonoBehaviour
             villager.Agent.enabled = true;
             villager.IsDead = false;
             villager.Type = foodTypes[randomFoodType];
+            villager.InitializeVillager();
             villager.Movement.Spawn();
 
         }

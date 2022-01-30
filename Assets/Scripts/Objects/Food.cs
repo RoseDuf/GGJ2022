@@ -11,9 +11,8 @@ public class Food : PoolableObject, IGrabable
         Cheese
     }
     public NavMeshAgent Agent;
-
-    [SerializeField]
-    private FoodType _typeOfFood;
+    
+    public FoodType _typeOfFood;
 
     private MeshRenderer _meshRenderer;
     private MeshFilter _meshFilter;
@@ -38,7 +37,7 @@ public class Food : PoolableObject, IGrabable
         Agent.enabled = false;
     }
 
-    private void InitializeFood()
+    public void InitializeFood()
     {
         FoodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
         _meshRenderer.material = FoodData.Material;

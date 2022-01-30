@@ -117,19 +117,20 @@ public class Villager : PoolableObject, IDamageable
         InitializeVillager();
         
         UIArrow = GetComponentInChildren<UIArrow>();
-        Fatness = 1;
         MaxFatness = _maxFatness;
-        _meshRenderer.SetBlendShapeWeight(0, Fatness);
         Aggressivity = 1; 
         Health = _baseHealth;
-        IsDead = false;
 
         if (GameManager.HasInstance)
             UpdateStatsForDay(GameManager.Instance.CurrentDay);
     }
 
-    private void InitializeVillager()
+    public void InitializeVillager()
     {
+        Fatness = 1;
+        _meshRenderer.SetBlendShapeWeight(0, Fatness);
+        IsDead = false;
+
         Material[] newMaterials = new Material[1];
         var villagerData = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
         newMaterials[0] = villagerData.Material;
