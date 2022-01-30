@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeOfFood: 3
   Material: {fileID: 2100000, guid: 7c30038505a17c74086bf6216faaf2b3, type: 2}
+  DistanceBetweenHats: 0.0006
