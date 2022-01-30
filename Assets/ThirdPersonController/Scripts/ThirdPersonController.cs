@@ -68,9 +68,10 @@ namespace StarterAssets
         private bool _isDashing;
         private bool _inTargetRange;
 
-        // Interactions
+        // Added stuff
         private bool _canDoAtion;
         private UIManager _uiManager;
+        private Player _player;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -116,7 +117,9 @@ namespace StarterAssets
 
 		private void Start()
 		{
-			_hasAnimator = TryGetComponent(out _animator);
+            _player = GetComponent<Player>();
+            _animator = _player.DayAnimator;
+            _hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 
@@ -128,18 +131,34 @@ namespace StarterAssets
             _isDashing = false;
 
             Cursor.lockState = CursorLockMode.Locked;
+
+            DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
         }
 
-		private void Update()
+        protected void OnDestroy()
+        {
+            if (DaytimeManager.HasInstance)
+            {
+                DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+            }
+        }
+
+        private void Update()
 		{
             if (_uiManager != null && _uiManager.GameIsPaused) return;
 
 			_hasAnimator = (_animator != null);
 			if (!_hasAnimator)
 			{
-				_animator = GetComponentInChildren<Animator>();
+                if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Day)
+                {
+                    _animator = _player.DayAnimator;
+                }
+                if (DaytimeManager.Instance.CurrentTimeOfDay == DaytimeManager.TimeOfDay.Night)
+                {
+                    _animator = _player.NightAnimator;
+                }
 			}
-			//_hasAnimator = TryGetComponent(out _animator);
 
             //AllTime behaviour
             GroundedCheck();
@@ -159,7 +178,19 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
-        #region Attacking
+        #region Added Stuff
+
+        private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
+        {
+            if (timeOfDay == DaytimeManager.TimeOfDay.Day)
+            {
+                _animator = _player.DayAnimator;
+            }
+            if (timeOfDay == DaytimeManager.TimeOfDay.Night)
+            {
+                _animator = _player.NightAnimator;
+            }
+        }
 
         private void DetectTarget()
         {
@@ -309,6 +340,7 @@ namespace StarterAssets
             
             if (_targetVillager != null && _input.dash)
             {
+                _animator.SetBool("IsDashing", true);
                 float distanceToTarget = (_targetVillager.transform.position - transform.position).magnitude;
                 float rotationToTarget = Vector3.Angle(_targetVillager.transform.position, transform.forward);
                 Vector3 direction = (_targetVillager.transform.position - transform.position).normalized;
@@ -321,6 +353,7 @@ namespace StarterAssets
                 }
                 else
                 {
+                    _animator.SetBool("IsDashing", false);
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                     float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);

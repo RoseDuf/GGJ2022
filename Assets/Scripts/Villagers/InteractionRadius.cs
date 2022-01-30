@@ -122,8 +122,6 @@ public class InteractionRadius : MonoBehaviour
     {
         WaitForSeconds wait = new WaitForSeconds(delay);
 
-        yield return wait;
-        
         IDamageable closestDamageable = null;
         float closestDistance = float.MaxValue;
 
@@ -142,6 +140,7 @@ public class InteractionRadius : MonoBehaviour
         if (closestDamageable != null)
         {
             OnAttack?.Invoke(closestDamageable);
+            yield return wait;
             closestDamageable.TakeDamage(Damage);
 
             Villager villager;
