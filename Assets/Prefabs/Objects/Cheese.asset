@@ -16,3 +16,5 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 1c4774a2a64d52a4585848d093d434a8, type: 2}
   Mesh: {fileID: -7035472077342074795, guid: 8b222fbd60feb744d8691a7048d2222d, type: 3}
   Image: {fileID: 21300000, guid: b9c5d380f7cae214c820bcedc8d3f8f4, type: 3}
+  Rotation: {x: -90, y: 0, z: 0}
+  Scale: 4

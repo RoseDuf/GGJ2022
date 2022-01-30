@@ -43,6 +43,8 @@ public class Food : PoolableObject, IGrabable
         FoodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
         _meshRenderer.material = FoodData.Material;
         _meshFilter.mesh = FoodData.Mesh;
+        _meshFilter.transform.eulerAngles = FoodData.Rotation;
+        _meshFilter.transform.localScale = new Vector3(FoodData.Scale, FoodData.Scale, FoodData.Scale);
     }
 
     public Transform GetTransform()
