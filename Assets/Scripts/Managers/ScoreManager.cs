@@ -25,25 +25,15 @@ namespace Game
             settings = SettingsSystem.Instance.Settings;
         }
 
-        public void AddScoreForSmallGuy()
+        public void AddScoreForKilling(int fatnessLevel)
         {
-            score += (int) (settings.PointsForSmallGuy * ComboMultiplier);
-            FinalizeAddingScore();
-        }
-
-        public void AddScoreForBigGuy()
-        {
-            score += (int) (settings.PointsForBigGuy * ComboMultiplier);
-            FinalizeAddingScore();
-        }
-
-        private void FinalizeAddingScore()
-        {
+            score += (int) (settings.BasePointsForKilling * Math.Pow(settings.FatnessMultiplier, fatnessLevel) * ComboMultiplier);
+            
             ++currentCombo;
             StartComboEndTimer();
             OnScoreAdded?.Invoke();
         }
-
+        
         private void StartComboEndTimer()
         {
             if (comboEndCoroutine != null)

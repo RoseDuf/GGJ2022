@@ -182,16 +182,24 @@ public class Villager : PoolableObject, IDamageable
         {
             IsDead = true;
             _animator.SetTrigger("Die");
-            StartCoroutine(WaitForTime(deathLength));
+            StartCoroutine(WaitForTimeBeforeDying(deathLength));
         }
     }
 
-    private IEnumerator WaitForTime(float time)
+    private IEnumerator WaitForTimeBeforeDying(float time)
     {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
         // TODO Play FX
-        // TODO Add score
+        AddScoreFromDeath();
+    }
+
+    private void AddScoreFromDeath()
+    {
+        if (!ScoreManager.HasInstance)
+            return;
+        
+        ScoreManager.Instance.AddScoreForKilling(Fatness);
     }
 
     public void ReceiveItem()
