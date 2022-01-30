@@ -54,5 +54,11 @@ namespace Game
         public void SetMasterVolume(float volume) => events.MasterVolumeParam.SetValue(gameObject, volume * 100);
         public void SetMusicVolume(float volume) => events.MusicVolumeParam.SetValue(gameObject, volume * 100);
         public void SetSfxVolume(float volume) => events.SfxVolumeParam.SetValue(gameObject, volume * 100);
+        public float GetMasterVolume() => events.MasterVolumeParam.GetValue(gameObject) / 100f;
+        public float GetMusicVolume() => events.MusicVolumeParam.GetValue(gameObject) / 100f;
+        public float GetSfxVolume() => events.SfxVolumeParam.GetValue(gameObject) / 100f;
+
+
+
     }
 }
