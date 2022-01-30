@@ -20,7 +20,7 @@ MonoBehaviour:
   menuMusic:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c656d8d9f8d6b2649a9b3da0269ace4c, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 9bcf228bb9085a140aaa8e1c926a9d7c, type: 2}
   dayMusic:
     idInternal: 0
     valueGuidInternal: 
@@ -28,4 +28,4 @@ MonoBehaviour:
   nightMusic:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: c656d8d9f8d6b2649a9b3da0269ace4c, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 6870b327ccbd4f24f8d6f44ad3e7286b, type: 2}
