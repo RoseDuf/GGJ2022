@@ -11,7 +11,10 @@ public class Food : PoolableObject, IGrabable
         Cheese
     }
     public NavMeshAgent Agent;
-    
+
+    [SerializeField]
+    private UIFood _uiFood;
+    public UIFood GetUIFood {get { return _uiFood; } }
     public FoodType _typeOfFood;
 
     private MeshRenderer _meshRenderer;
