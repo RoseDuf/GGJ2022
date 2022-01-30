@@ -374,7 +374,7 @@ namespace StarterAssets
             
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
             
-            if (_targetVillager != null && _input.dash)
+            if (_targetVillager != null && _input.dash && !_targetVillager.IsDead)
             {
                 _animator.SetBool("IsDashing", true);
                 float distanceToTarget = (_targetVillager.transform.position - transform.position).magnitude;
@@ -397,6 +397,12 @@ namespace StarterAssets
                     _targetVillager = null;
                     _input.dash = false;
                 }
+            }
+
+            else if (_input.dash)
+            {
+                _animator.SetBool("IsDashing", false);
+                _input.dash = false;
             }
 
             // move the player

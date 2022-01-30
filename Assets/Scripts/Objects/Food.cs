@@ -53,4 +53,20 @@ public class Food : PoolableObject, IGrabable
     {
         return transform;
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            _uiFood.ShowArrow(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            _uiFood.ShowArrow(false);
+        }
+    }
 }
