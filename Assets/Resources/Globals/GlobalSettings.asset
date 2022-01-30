@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdd9554a928410fb09a5c3b3147bf11, type: 3}
   m_Name: GlobalSettings
   m_EditorClassIdentifier: 
-  pointsForSmallGuy: 100
-  pointsForBigGuy: 250
+  basePointsForKilling: 100
+  fatnessMultiplier: 2.5
   comboScoreMultiplier: 0.5
+  secondsBeforeEndOfCombo: 5
+  secondsOfDay: 60
+  secondsOfNight: 30
+  startAtNight: 0

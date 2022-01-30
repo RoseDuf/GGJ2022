@@ -48,6 +48,46 @@ public class DaytimeManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        var settings = SettingsSystem.Instance.Settings;
+        if (settings.StartAtNight)
+        {
+            dayNightCycle.fullDayLength = settings.SecondsOfNight * 2;
+            dayNightCycle.startTime = DayEndTime;
+        }
+        else
+        {
+            dayNightCycle.fullDayLength = settings.SecondsOfDay * 2;
+            dayNightCycle.startTime = DayStartTime;
+        }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.OnDayStarted += OnDayStarted;
+            GameManager.Instance.OnNightStarted += OnNightStarted;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.OnDayStarted -= OnDayStarted;
+            GameManager.Instance.OnNightStarted -= OnNightStarted;
+        }
+    }
+
+    private void OnDayStarted(int dayNumber)
+    {
+        dayNightCycle.fullDayLength = SettingsSystem.Instance.Settings.SecondsOfDay * 2;
+    }
+
+    private void OnNightStarted(int dayNumber)
+    {
+        dayNightCycle.fullDayLength = SettingsSystem.Instance.Settings.SecondsOfNight * 2;
+    }
+
 
     private void Update()
     {
