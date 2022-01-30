@@ -112,6 +112,7 @@ public class FoodSpawner : MonoBehaviour
             food.Agent.Warp(GetRandomLocation());
             food.Agent.enabled = true;
             food.Type = foodTypes[randomFoodType];
+            food.GetUIFood.ShowArrow(false);
             food.InitializeFood();
         }
         else
