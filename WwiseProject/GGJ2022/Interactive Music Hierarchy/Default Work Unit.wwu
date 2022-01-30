@@ -611,6 +611,11 @@
 				<MusicPlaylistContainer Name="Musique du menu" ID="{09CEE5B0-4DB2-438A-B873-856ADD04B825}" ShortID="1048807207">
 					<PropertyList>
 						<Property Name="Tempo" Type="Real64" Value="115"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-5</Value>
+							</ValueList>
+						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -801,6 +806,184 @@
 						</MusicPlaylistItem>
 					</Playlist>
 				</MusicPlaylistContainer>
+				<MusicSegment Name="Stinger_Mort" ID="{E55BD06E-D3D9-4F0B-ADC5-DE8DF35D5EA2}" ShortID="803212977">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="14117.6666666667"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{69D4BD79-01EF-4DDE-AD55-018F0F9F689F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{914FDA31-AB70-416C-BAAF-0DA6885A9457}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="Stinger nuit " ID="{FCAF19CB-842D-4FC1-90E1-1E154ECC9D47}" ShortID="722405036">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stinger nuit " ID="{EEAD4D76-58B3-4461-9EDA-2AC0C2CCEA20}">
+									<Language>SFX</Language>
+									<AudioFile>Stinger nuit .wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="783428428"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{AF1FD882-EEB0-47FD-B2F3-9341DB3B8DB0}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{C737633B-7A09-417D-9CFD-072BA6AB0401}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="Stinger nuit " ID="{6923AC05-80A2-47F6-8FEF-3724C29F8945}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="14117.6666666667"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Stinger nuit " ID="{EEAD4D76-58B3-4461-9EDA-2AC0C2CCEA20}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{A91ABB58-E893-4539-82D2-CF43E5E39493}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{AC8D0D89-C985-4CC3-B02E-4A3217E81866}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="1000"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
+				<MusicSegment Name="Stinger Bonne fin" ID="{270C9C6A-AA84-45A7-8987-C8D77AE31C95}" ShortID="380141277">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="11764.7083333333"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-9</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{69D4BD79-01EF-4DDE-AD55-018F0F9F689F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{914FDA31-AB70-416C-BAAF-0DA6885A9457}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="Stinger jour V1" ID="{14E4800F-02D9-4F7C-A4BB-4CBFE83C5F13}" ShortID="122713523">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stinger jour V1" ID="{44694949-73AA-45A0-BE7D-11010CE5762A}">
+									<Language>SFX</Language>
+									<AudioFile>Stinger jour V1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="438625505"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{6F63E59F-5584-466D-8E91-D01F8411BDE7}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<ObjectLists>
+								<ObjectList Name="Sequences">
+									<Reference>
+										<Local>
+											<MusicTrackSequence Name="" ID="{B723613B-9518-4068-A01D-366460CDC111}">
+												<ObjectLists>
+													<ObjectList Name="Clips">
+														<Reference>
+															<Local>
+																<MusicClip Name="Stinger jour V1" ID="{9BBD78F1-7C47-4F4B-B76F-1978B929C36E}">
+																	<PropertyList>
+																		<Property Name="EndTrimOffset" Type="Real64" Value="11764.7083333333"/>
+																		<Property Name="FadeInMode" Type="int16" Value="0"/>
+																		<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																	</PropertyList>
+																	<AudioSourceRef Name="Stinger jour V1" ID="{44694949-73AA-45A0-BE7D-11010CE5762A}"/>
+																</MusicClip>
+															</Local>
+														</Reference>
+													</ObjectList>
+												</ObjectLists>
+											</MusicTrackSequence>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicTrack>
+					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="Cues">
+							<Reference>
+								<Local>
+									<MusicCue Name="Entry Cue" ID="{80499807-C189-4748-873F-C7D441A96C13}"/>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MusicCue Name="Exit Cue" ID="{1E02311B-F3A8-436A-8320-EA775DD6C351}">
+										<PropertyList>
+											<Property Name="CueType" Type="int16" Value="1"/>
+											<Property Name="TimeMs" Type="Real64" Value="1000"/>
+										</PropertyList>
+									</MusicCue>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSegment>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>

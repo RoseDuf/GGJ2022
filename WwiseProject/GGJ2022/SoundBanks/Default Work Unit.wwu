@@ -5,20 +5,22 @@
 			<ChildrenList>
 				<SoundBank Name="Game" ID="{9FDC36CB-8031-4A4B-AB97-99A553A4AE57}">
 					<ObjectInclusionList>
-						<ObjectRef Name="DayMusic" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Day_Music" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Wolf_attack" ID="{45C99332-AD0D-4179-A5AF-195CC76EA4B5}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Pickup_Food" ID="{EADAA40F-1766-41BB-8B07-5ECE612493D8}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="NightMusic" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="EveningMusic" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Night_Music" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Evening_Music" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Bababooey" ID="{75794CF3-E439-4524-B254-F127CF295A2D}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Villager_Joy" ID="{E9FD8D76-4B89-4631-B3F5-3925AFEF09AE}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Villager_Death" ID="{C4E69676-44C6-4694-A630-3D8F3166C16A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Villager_Attack" ID="{0C9BB235-EEB6-481A-88B3-A264084C0AE4}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Good_Ending_Escape" ID="{5EEE1E39-1516-48CD-9AB3-7A3DD98D5232}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Give_Food" ID="{08F71173-2B36-494F-82D4-2877908581A2}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="MenuMusic" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Menu_Music" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Wolf_Steps" ID="{F71FB80C-4BA3-4B00-80EA-8E8AED7B64C3}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Dog_Step" ID="{B6C02108-3C16-4BF2-8D49-3E870F7E2371}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Wolf_Hurt" ID="{E4069EF0-0BDD-4CF4-BC29-761B24ED77BF}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Bad_Ending_Death" ID="{7F6870C0-F8C3-4F87-BE12-C63FC636AC21}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

@@ -1106,7 +1106,7 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</RandomSequenceContainer>
-				<RandomSequenceContainer Name="Pas Loup_Garou" ID="{4618A70B-B439-42E3-B06E-916C8FFA4460}" ShortID="593363355">
+				<RandomSequenceContainer Name="Pas_Loup_Garou" ID="{4618A70B-B439-42E3-B06E-916C8FFA4460}" ShortID="593363355">
 					<PropertyList>
 						<Property Name="Pitch" Type="int32">
 							<ModifierList>
