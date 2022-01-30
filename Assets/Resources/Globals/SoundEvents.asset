@@ -17,6 +17,50 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e5b5a2414c2c1e3429ca97d19c1cb010, type: 2}
+  goodEndingEscape:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a1821d2e58e808f4eb72179b359f00d5, type: 2}
+  badEndingDeath:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 350dab190a38f9447986e94924c4d80e, type: 2}
+  villagerAttack:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 895768ba1e0dce34188791e8dfa2385e, type: 2}
+  villagerDeath:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 980c42f4fcc6bb146a0d0342f6d4e4d2, type: 2}
+  villagerJoy:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: dca76d03045cdcb4fabb8ad11db4ba3b, type: 2}
+  giveFood:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 030b5fd14e1d197459eb89271ea68859, type: 2}
+  pickupFood:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8a70e49ac5b073945b85216c121d7dcd, type: 2}
+  dogStep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d8559fe2381191e448f5fbb79d23f05e, type: 2}
+  wolfHurt:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 527653cf9faf66d4993c317ad2a92256, type: 2}
+  wolfSteps:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 62be14c7300e6704699751a5477673f1, type: 2}
+  wolfAttack:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c64767c3f4f0a384da65f5b73199a3dd, type: 2}
   menuMusic:
     idInternal: 0
     valueGuidInternal: 
@@ -25,7 +69,23 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: c656d8d9f8d6b2649a9b3da0269ace4c, type: 2}
+  eveningMusic:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ea8f83d0bd09b2d4c90fbda27ea15ffd, type: 2}
   nightMusic:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 6870b327ccbd4f24f8d6f44ad3e7286b, type: 2}
+  masterVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f633d25d6ccc2604bafce8ed9268d629, type: 2}
+  musicVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 13f59fb24945aa248bad2a2e67fd195e, type: 2}
+  sfxVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 773a5a9b21578d8449728f4f9f385e67, type: 2}
