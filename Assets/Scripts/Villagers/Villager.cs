@@ -91,8 +91,6 @@ public class Villager : PoolableObject, IDamageable
                 deathLength = clip.length;
             }
         }
-
-        OriginalScale = _villagerModel.localScale;
     }
 
     public void UpdateHats()
