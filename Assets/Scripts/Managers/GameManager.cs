@@ -133,9 +133,16 @@ namespace Game
             DaytimeManager.Instance.Resume();
         }
 
-
+        private bool gameEnded = false;
+        
         public void PlayerDied()
         {
+            if (gameEnded)
+                return;
+
+            gameEnded = true;
+            
+            SoundSystem.Instance.PlayBadEndingSound();
             OnPlayerDied?.Invoke();
 
             StartCoroutine(DeathRoutine());

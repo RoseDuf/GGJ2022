@@ -58,7 +58,5 @@ namespace Game
         public float GetMusicVolume() => events.MusicVolumeParam.GetValue(gameObject) / 100f;
         public float GetSfxVolume() => events.SfxVolumeParam.GetValue(gameObject) / 100f;
 
-
-
     }
 }
