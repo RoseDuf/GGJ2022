@@ -240,6 +240,9 @@ public class Villager : PoolableObject, IDamageable
         Health -= damage;
         if (Health <= 0) //Dies
         {
+            if (IsDead) 
+                return;
+            
             IsDead = true;
             _animator.SetTrigger("Die");
             StartCoroutine(WaitForTimeBeforeDying(deathLength));
