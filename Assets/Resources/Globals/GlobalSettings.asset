@@ -16,7 +16,7 @@ MonoBehaviour:
   fatnessMultiplier: 2.5
   comboScoreMultiplier: 0.5
   secondsBeforeEndOfCombo: 5
-  secondsOfDay: 60
+  secondsOfDay: 1000
   secondsOfNight: 30
   startAtNight: 0
   mainMenuScene:

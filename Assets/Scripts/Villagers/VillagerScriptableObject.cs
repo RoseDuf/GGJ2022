@@ -7,4 +7,5 @@ public class VillagerScriptableObject : ScriptableObject
 {
     public FoodData.FoodType TypeOfFood;
     public Material Material;
+    public float DistanceBetweenHats;
 }
