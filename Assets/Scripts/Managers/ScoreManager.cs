@@ -31,6 +31,7 @@ namespace Game
             
             ++currentCombo;
             StartComboEndTimer();
+            LastScoreSystem.Instance.UpdateLastScore(score);
             OnScoreAdded?.Invoke();
         }
         
