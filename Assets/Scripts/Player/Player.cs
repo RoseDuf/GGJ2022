@@ -103,6 +103,12 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
                 _uiManager.UIinventory.UpdateInventory();
             }
 
+            if (AttackCoroutine != null)
+            {
+                StopCoroutine(AttackCoroutine);
+                AttackCoroutine = null;
+            }
+
             if (_input.dash)
             {
                 _input.dash = false;
@@ -118,6 +124,7 @@ public class Player : DayNightSensibleMonoBehaviour, IDamageable
             
             if (_interactionRadius.Damageables.Count == 0 && AttackCoroutine != null)
             {
+                StopCoroutine(AttackCoroutine);
                 AttackCoroutine = null;
             }
 
