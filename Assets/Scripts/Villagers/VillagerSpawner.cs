@@ -30,35 +30,32 @@ public class VillagerSpawner : MonoBehaviour
     private void Start()
     {
         _triangulation = NavMesh.CalculateTriangulation();
-        StartCoroutine(SpawnVillagers());
-        DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
+        StartCoroutine(SpawnVillagers(GameManager.Instance.CurrentDay));
+        GameManager.Instance.OnDayStarted += OnDayStarted;
     }
 
     protected void OnDestroy()
     {
-        if (DaytimeManager.HasInstance)
+        if (GameManager.HasInstance)
         {
-            DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+            GameManager.Instance.OnDayStarted -= OnDayStarted;
         }
     }
 
-    private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
+    private void OnDayStarted(int dayNumber)
     {
-        if (timeOfDay == DaytimeManager.TimeOfDay.Day)
-        {
-            DespawnVillagers();
-            StartCoroutine(SpawnVillagers());
-        }
+        DespawnVillagers();
+        StartCoroutine(SpawnVillagers(dayNumber));
     }
 
-    private IEnumerator SpawnVillagers()
+    private IEnumerator SpawnVillagers(int numberOfVillagers)
     {
         WaitForSeconds Wait = new WaitForSeconds(_spawnDelay);
 
         int spawnedVillagers = 0;
-        //var stats = DayStatsSystem.Instance.GetForDay(); //TODO get current day somehow
+        int numberOfVillagersToSpawn = DayStatsSystem.Instance.GetForDay(numberOfVillagers).NumberOfVillagers;
 
-        while (spawnedVillagers < _numberVillagersToSpawn)
+        while (spawnedVillagers < numberOfVillagersToSpawn)
         {
             if (villagerSpawnMethod == SpawnMethod.RoundRobin)
             {
