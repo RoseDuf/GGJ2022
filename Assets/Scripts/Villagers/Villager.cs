@@ -65,6 +65,7 @@ public class Villager : PoolableObject, IDamageable
     public int Health;
 
     [SerializeField] private ParticleSystem BloodFX;
+    [SerializeField] private ParticleSystem HeartFX;
     public bool IsDead { get; set; }
 
     public FoodType Type { get { return _typeOfFood; } set { _typeOfFood = value; } }
@@ -281,6 +282,7 @@ public class Villager : PoolableObject, IDamageable
     {
         if (Fatness < MaxFatness)
         {
+            HeartFX.Play(true);
             _animator.SetTrigger("Happy");
             Fatness += 1;
             _villagerModel.localScale = new Vector3(_villagerModel.localScale.x + 0.2f, _villagerModel.localScale.y + 0.2f, _villagerModel.localScale.z + 0.2f);
