@@ -18,4 +18,6 @@ public class FoodData : ScriptableObject
     public Material Material;
     public Mesh Mesh;
     public Sprite Image;
+    public Vector3 Rotation;
+    public float Scale;
 }

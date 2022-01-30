@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,9 +23,8 @@ public class Food : PoolableObject, IGrabable
     
     void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _meshFilter = GetComponent<MeshFilter>();
-        
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _meshFilter = GetComponentInChildren<MeshFilter>();
     }
 
     void Start()
@@ -46,6 +43,8 @@ public class Food : PoolableObject, IGrabable
         FoodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
         _meshRenderer.material = FoodData.Material;
         _meshFilter.mesh = FoodData.Mesh;
+        _meshFilter.transform.eulerAngles = FoodData.Rotation;
+        _meshFilter.transform.localScale = new Vector3(FoodData.Scale, FoodData.Scale, FoodData.Scale);
     }
 
     public Transform GetTransform()

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   TypeOfFood: 0
-  Material: {fileID: 2100000, guid: 9f59ccdf448664b499fd406b7e0296e9, type: 2}
-  Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  Material: {fileID: 2100000, guid: 9b70c1b48002e5a43800f7024e2aaaea, type: 2}
+  Mesh: {fileID: 6151752400867563518, guid: 28fe1bc2302c7b448ad328e47b6aaaae, type: 3}
   Image: {fileID: 21300000, guid: 33c92c991ed68ad418491366b525ee33, type: 3}
+  Rotation: {x: -90, y: 0, z: 0}
+  Scale: 5
