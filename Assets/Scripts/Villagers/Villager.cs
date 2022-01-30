@@ -19,6 +19,9 @@ public class Villager : PoolableObject, IDamageable
 
     public UIArrow UIArrow { get; set; }
 
+    [SerializeField] private MeshRenderer _hatMeshRenderer;
+    [SerializeField] private MeshFilter _hatMeshFilter;
+    
     [SerializeField]
     private FoodType _typeOfFood;
     [SerializeField]
@@ -99,6 +102,12 @@ public class Villager : PoolableObject, IDamageable
         Material[] newMaterials = new Material[1];
         newMaterials[0] = VillagerDatabase.Instance.VillagerData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString()).Material;
         _meshRenderer.materials = newMaterials;
+        
+        var foodData = FoodDatabase.Instance.FoodData.Find(x => x.TypeOfFood.ToString() == _typeOfFood.ToString());
+        _hatMeshRenderer.material = foodData.Material;
+        _hatMeshFilter.mesh = foodData.Mesh;
+        _hatMeshFilter.transform.eulerAngles = foodData.Rotation;
+        _hatMeshFilter.transform.localScale = new Vector3(foodData.Scale, foodData.Scale, foodData.Scale) / 1000;
     }
 
     private bool OnGive(IDamageable target)
