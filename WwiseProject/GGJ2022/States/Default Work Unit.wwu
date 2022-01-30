@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{D16C9E1B-2341-4841-89CA-813141AC1CA5}" SchemaVersion="103">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{D16C9E1B-2341-4841-89CA-813141AC1CA5}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{D16C9E1B-2341-4841-89CA-813141AC1CA5}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Jours" ID="{FE2C7234-3162-40D5-8598-6273DA32D6A8}">
+					<ChildrenList>
+						<State Name="None" ID="{833A55A2-A49C-4E5E-B948-1BD51EC031C0}"/>
+						<State Name="Jour" ID="{FB5B4610-C7A7-4DC1-AC35-E0983CBA9D3C}"/>
+						<State Name="Soir" ID="{C73F9418-FE8A-4705-888A-8F938AB6EF2E}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

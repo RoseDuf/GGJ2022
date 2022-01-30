@@ -16,10 +16,220 @@
 				</Event>
 				<Event Name="DayMusic" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}">
 					<ChildrenList>
-						<Action Name="" ID="{928B4C70-0EBD-4B60-9C16-8D5F82FC8D30}" ShortID="507732996">
+						<Action Name="" ID="{74347BB3-FC8D-42DA-8670-AEFF88E449B7}" ShortID="1041597292">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="DayMusic" ID="{8CF2A7FB-1E50-4595-991E-AE76B68EE7BC}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+									<ObjectRef Name="Musique du menu" ID="{09CEE5B0-4DB2-438A-B873-856ADD04B825}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{4CD0C62E-B9AC-4FE7-8691-641A60EFDF3F}" ShortID="1056417710">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique_Nuit" ID="{769D4BFB-673C-4B94-AB8D-8E587B44965E}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{1FF349AF-1DF3-4242-B4F3-AD6CF4770C58}" ShortID="385119453">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Jour" ID="{FB5B4610-C7A7-4DC1-AC35-E0983CBA9D3C}" WorkUnitID="{D16C9E1B-2341-4841-89CA-813141AC1CA5}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{DDB5996F-45C1-498F-9816-0F74DB7C1A32}" ShortID="1037497165">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique_Jour" ID="{31357E38-F8F5-46B9-BCDB-2F28E0CCBFF6}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="EveningMusic" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}">
+					<ChildrenList>
+						<Action Name="" ID="{06E6117A-A2A5-4ABF-A882-DBE62C252933}" ShortID="521001387">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Soir" ID="{C73F9418-FE8A-4705-888A-8F938AB6EF2E}" WorkUnitID="{D16C9E1B-2341-4841-89CA-813141AC1CA5}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="NightMusic" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}">
+					<ChildrenList>
+						<Action Name="" ID="{A3A94A6C-A48F-4AD7-8096-DCA928309E50}" ShortID="331503687">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique du menu" ID="{09CEE5B0-4DB2-438A-B873-856ADD04B825}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{FF4B2532-3728-4DE6-878F-FF1CE9378434}" ShortID="621742438">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique_Jour" ID="{31357E38-F8F5-46B9-BCDB-2F28E0CCBFF6}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{BCAAA6D4-8484-42B0-80E3-0CB321C90142}" ShortID="1030342203">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique_Nuit" ID="{769D4BFB-673C-4B94-AB8D-8E587B44965E}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MenuMusic" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}">
+					<ChildrenList>
+						<Action Name="" ID="{E10052F4-A520-453C-9612-F9C566C97D9D}" ShortID="359911741">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+							</PropertyList>
+							<ReferenceList/>
+						</Action>
+						<Action Name="" ID="{4D856A99-AB7A-4C2E-957D-E045D4D86F85}" ShortID="87279799">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Musique du menu" ID="{09CEE5B0-4DB2-438A-B873-856ADD04B825}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Villager_Joy" ID="{E9FD8D76-4B89-4631-B3F5-3925AFEF09AE}">
+					<ChildrenList>
+						<Action Name="" ID="{9A597701-9F3B-458E-BBB3-ED33830A6E6B}" ShortID="693381970">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Joie_Villageois" ID="{92857ED5-FD38-43BE-993D-B357F58DFA11}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Dog_Step" ID="{B6C02108-3C16-4BF2-8D49-3E870F7E2371}">
+					<ChildrenList>
+						<Action Name="" ID="{3E8E0D5A-B025-439C-92C0-C07A039E16BE}" ShortID="335059735">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pas_Chien" ID="{F6B0B246-3B36-4080-830D-7A7CE830D461}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Pickup_Food" ID="{EADAA40F-1766-41BB-8B07-5ECE612493D8}">
+					<ChildrenList>
+						<Action Name="" ID="{2D31F5EE-22C9-4E7E-BA8F-9166880E5E48}" ShortID="329205508">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ramasse_Nourriture" ID="{4D8C852C-F84D-4B94-897E-6168FBD52432}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Give_Food" ID="{08F71173-2B36-494F-82D4-2877908581A2}">
+					<ChildrenList>
+						<Action Name="" ID="{7F6528B8-35CA-4731-BFAA-9D0FDB4C1238}" ShortID="495258523">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Donne Nourriture" ID="{7FF20CDC-754F-411B-B82C-F0B941BC53B4}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{0C953F48-270D-42F7-9668-20FC3AFED219}" ShortID="1021203975">
+							<PropertyList>
+								<Property Name="Delay" Type="Real64" Value="0.2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Joie_Villageois" ID="{92857ED5-FD38-43BE-993D-B357F58DFA11}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Wolf_Hurt" ID="{E4069EF0-0BDD-4CF4-BC29-761B24ED77BF}">
+					<ChildrenList>
+						<Action Name="" ID="{1EAFDB03-B35C-4B46-A178-F3D35954770C}" ShortID="800517225">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Loup_Hurt" ID="{A037FDED-3411-4F45-9ABC-5B83BC5D5243}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Wolf_Steps" ID="{F71FB80C-4BA3-4B00-80EA-8E8AED7B64C3}">
+					<ChildrenList>
+						<Action Name="" ID="{71DA4549-7708-4171-A7F2-9887A662E346}" ShortID="419566514">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Pas Loup_Garou" ID="{4618A70B-B439-42E3-B06E-916C8FFA4460}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Wolf_attack" ID="{45C99332-AD0D-4179-A5AF-195CC76EA4B5}">
+					<ChildrenList>
+						<Action Name="" ID="{5B719048-457F-4627-A7E9-C57E36F53263}" ShortID="525490528">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Loup_Griffes" ID="{3B483960-2D8C-4CD2-9061-4B9C4E157A29}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Villager_Attack" ID="{0C9BB235-EEB6-481A-88B3-A264084C0AE4}">
+					<ChildrenList>
+						<Action Name="" ID="{05571051-45C6-4766-A4EC-1D87A9CA5454}" ShortID="941575912">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Attaque Villageois" ID="{ED13E761-BDE3-4898-9CC2-4269062AB9C4}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Villager_Death" ID="{C4E69676-44C6-4694-A630-3D8F3166C16A}">
+					<ChildrenList>
+						<Action Name="" ID="{7BA5F88C-6342-4E72-B570-FFF306E21804}" ShortID="364282767">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Mort_Villageois" ID="{C04274E0-D54B-45B2-B9AF-775AE19BD548}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{D631F89A-E013-452B-8B0F-D076004CB666}" ShortID="635183773">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Explosion_Sang" ID="{84761F26-8F00-4ACE-831C-16976B313F16}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

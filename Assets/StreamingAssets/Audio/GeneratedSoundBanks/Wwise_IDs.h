@@ -14,8 +14,30 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID BABABOOEY = 1588368213U;
-        static const AkUniqueID DAYMUSIC = 3231935906U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace JOURS
+        {
+            static const AkUniqueID GROUP = 975447124U;
+
+            namespace STATE
+            {
+                static const AkUniqueID JOUR = 3896524701U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID SOIR = 687380154U;
+            } // namespace STATE
+        } // namespace JOURS
+
+    } // namespace STATES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MASTER_VOLUME = 4179668880U;
+        static const AkUniqueID MUSIC_VOLUME = 1006694123U;
+        static const AkUniqueID SFX_VOLUME = 1564184899U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {
@@ -26,6 +48,8 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SFX = 393239870U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
