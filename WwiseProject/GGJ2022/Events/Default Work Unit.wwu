@@ -14,7 +14,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="DayMusic" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}">
+				<Event Name="Day_Music" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}">
 					<ChildrenList>
 						<Action Name="" ID="{74347BB3-FC8D-42DA-8670-AEFF88E449B7}" ShortID="1041597292">
 							<PropertyList>
@@ -29,6 +29,7 @@
 						<Action Name="" ID="{4CD0C62E-B9AC-4FE7-8691-641A60EFDF3F}" ShortID="1056417710">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="Delay" Type="Real64" Value="1"/>
 								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
 							</PropertyList>
 							<ReferenceList>
@@ -40,6 +41,7 @@
 						<Action Name="" ID="{1FF349AF-1DF3-4242-B4F3-AD6CF4770C58}" ShortID="385119453">
 							<PropertyList>
 								<Property Name="ActionType" Type="int16" Value="22"/>
+								<Property Name="Delay" Type="Real64" Value="1.5"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
@@ -48,6 +50,9 @@
 							</ReferenceList>
 						</Action>
 						<Action Name="" ID="{DDB5996F-45C1-498F-9816-0F74DB7C1A32}" ShortID="1037497165">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Musique_Jour" ID="{31357E38-F8F5-46B9-BCDB-2F28E0CCBFF6}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
@@ -56,7 +61,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="EveningMusic" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}">
+				<Event Name="Evening_Music" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}">
 					<ChildrenList>
 						<Action Name="" ID="{06E6117A-A2A5-4ABF-A882-DBE62C252933}" ShortID="521001387">
 							<PropertyList>
@@ -70,7 +75,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="NightMusic" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}">
+				<Event Name="Night_Music" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}">
 					<ChildrenList>
 						<Action Name="" ID="{A3A94A6C-A48F-4AD7-8096-DCA928309E50}" ShortID="331503687">
 							<PropertyList>
@@ -102,7 +107,7 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="MenuMusic" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}">
+				<Event Name="Menu_Music" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}">
 					<ChildrenList>
 						<Action Name="" ID="{E10052F4-A520-453C-9612-F9C566C97D9D}" ShortID="359911741">
 							<PropertyList>
@@ -189,7 +194,7 @@
 						<Action Name="" ID="{71DA4549-7708-4171-A7F2-9887A662E346}" ShortID="419566514">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Pas Loup_Garou" ID="{4618A70B-B439-42E3-B06E-916C8FFA4460}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+									<ObjectRef Name="Pas_Loup_Garou" ID="{4618A70B-B439-42E3-B06E-916C8FFA4460}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -230,6 +235,50 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Explosion_Sang" ID="{84761F26-8F00-4ACE-831C-16976B313F16}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Good_Ending_Escape" ID="{5EEE1E39-1516-48CD-9AB3-7A3DD98D5232}">
+					<ChildrenList>
+						<Action Name="" ID="{3DD6E5B8-23C6-4D45-99BC-B5EDF0F950B3}" ShortID="538343530">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList/>
+						</Action>
+						<Action Name="" ID="{3BB6AF25-6917-4B21-9228-C87F18DF6F2F}" ShortID="661031337">
+							<PropertyList>
+								<Property Name="Delay" Type="Real64" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stinger Bonne fin" ID="{270C9C6A-AA84-45A7-8987-C8D77AE31C95}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Bad_Ending_Death" ID="{7F6870C0-F8C3-4F87-BE12-C63FC636AC21}">
+					<ChildrenList>
+						<Action Name="" ID="{F71EE32C-8E71-4986-B66D-6622713C2B90}" ShortID="610496443">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+								<Property Name="FadeTime" Type="Real64" Value="2.5"/>
+							</PropertyList>
+							<ReferenceList/>
+						</Action>
+						<Action Name="" ID="{757B26DE-B7CC-4879-AB4F-BFBC8397FE5F}" ShortID="950372131">
+							<PropertyList>
+								<Property Name="Delay" Type="Real64" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stinger_Mort" ID="{E55BD06E-D3D9-4F0B-ADC5-DE8DF35D5EA2}" WorkUnitID="{FEEC8EB5-E161-460E-A11F-6F9EB2D0C28D}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

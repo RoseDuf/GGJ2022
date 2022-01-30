@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7011fccce6209894faea3fe2d64112d3, type: 3}
   m_Name: 389709A0-0DD5-40D0-925F-96FEDE48F397
   m_EditorClassIdentifier: 
-  objectName: DayMusic
-  id: 3231935906
+  objectName: Day_Music
+  id: 3703337933
   guid: 389709A0-0DD5-40D0-925F-96FEDE48F397

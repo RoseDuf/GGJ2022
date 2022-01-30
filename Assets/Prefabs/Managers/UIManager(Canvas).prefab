@@ -859,7 +859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4547052943262431272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 297.86694, y: -227.69}
+  m_AnchoredPosition: {x: 297.86694, y: -335.46948}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4547052943262431279
@@ -1547,6 +1547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f402ef50bbe3aa548bf73df9b2305612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  _slider: {fileID: 4547052943584686200}
 --- !u!1 &4547052943650808920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,6 +1664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f402ef50bbe3aa548bf73df9b2305612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _slider: {fileID: 4547052943650808925}
 --- !u!1 &4547052943718184844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,7 +2076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 297.86694, y: -227.69}
+  m_AnchoredPosition: {x: 297.86694, y: -111.82316}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4547052943971121511
@@ -2392,7 +2396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4547052943981536818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2411,7 +2415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 297.86694, y: -379.48334}
+  m_AnchoredPosition: {x: 297.86694, y: -559.1158}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4547052943981536817
@@ -3218,7 +3222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Music Volume
+  m_text: 'Effects Volume
 
 '
   m_isRightToLeft: 0
@@ -3755,8 +3759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.1987305, y: -29.684998}
-  m_SizeDelta: {x: -770.2661, y: -312.62}
+  m_AnchoredPosition: {x: -2.1987305, y: -190.35509}
+  m_SizeDelta: {x: -770.2661, y: -633.9603}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4547052944466206382
 CanvasRenderer:
@@ -5056,6 +5060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f402ef50bbe3aa548bf73df9b2305612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 2
+  _slider: {fileID: 4547052945246984810}
 --- !u!1 &4547052945321737608
 GameObject:
   m_ObjectHideFlags: 0

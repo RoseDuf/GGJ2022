@@ -6,7 +6,7 @@
 				<SoundcasterSession Name="Soundcaster" ID="{867C36D3-573B-48D7-A413-CA0931B776AA}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="DayMusic" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<ObjectRef Name="Day_Music" ID="{389709A0-0DD5-40D0-925F-96FEDE48F397}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
@@ -18,7 +18,7 @@
 							<Position X="0" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="EveningMusic" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<ObjectRef Name="Evening_Music" ID="{6B2871AA-C780-443F-B157-CC393FD455A9}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
 							<Position X="1" Y="0"/>
 						</Module>
 						<Module>
@@ -30,7 +30,7 @@
 							<Position X="1" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="NightMusic" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<ObjectRef Name="Night_Music" ID="{3F9EDA60-F734-42B3-9277-040A57E0223A}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
 							<Position X="2" Y="0"/>
 						</Module>
 						<Module>
@@ -42,12 +42,20 @@
 							<Position X="2" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="MenuMusic" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<ObjectRef Name="Menu_Music" ID="{B9D8FC35-FFCB-4AAF-9284-28C3435AA450}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Wolf_attack" ID="{45C99332-AD0D-4179-A5AF-195CC76EA4B5}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
 							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Bad_Ending_Death" ID="{7F6870C0-F8C3-4F87-BE12-C63FC636AC21}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="4" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Good_Ending_Escape" ID="{5EEE1E39-1516-48CD-9AB3-7A3DD98D5232}" WorkUnitID="{5C6A4459-A73C-4204-BEF4-007430E56653}"/>
+							<Position X="4" Y="1"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">

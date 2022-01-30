@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="702482391" Language="SFX" Hash="700705746">
+		<SoundBank Id="702482391" Language="SFX" Hash="2256348195">
 			<ObjectPath>\SoundBanks\Default Work Unit\Game</ObjectPath>
 			<ShortName>Game</ShortName>
 			<Path>Game.bnk</Path>
@@ -24,7 +24,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3231935906" Name="DayMusic" ObjectPath="\Events\Default Work Unit\DayMusic" DurationType="Infinite">
+				<Event Id="3828033603" Name="Bad_Ending_Death" ObjectPath="\Events\Default Work Unit\Bad_Ending_Death" DurationType="OneShot" DurationMin="15.117667" DurationMax="15.117667">
+					<IncludedMemoryFiles>
+						<File Id="783428428" Language="SFX">
+							<ShortName>Stinger nuit .wav</ShortName>
+							<Path>SFX\Stinger nuit _D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3703337933" Name="Day_Music" ObjectPath="\Events\Default Work Unit\Day_Music" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="201211901" Language="SFX">
 							<ShortName>Musique Jour LOOP  SOIR FINALE.wav</ShortName>
@@ -71,7 +79,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4213427124" Name="EveningMusic" ObjectPath="\Events\Default Work Unit\EveningMusic" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+				<Event Id="2103116335" Name="Evening_Music" ObjectPath="\Events\Default Work Unit\Evening_Music" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="687380154" Name="Soir" ObjectPath="\States\Default Work Unit\Jours\Soir"/>
 					</ActionSetState>
@@ -132,7 +140,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="679636833" Name="MenuMusic" ObjectPath="\Events\Default Work Unit\MenuMusic" DurationType="Infinite">
+				<Event Id="3340552290" Name="Good_Ending_Escape" ObjectPath="\Events\Default Work Unit\Good_Ending_Escape" DurationType="OneShot" DurationMin="12.764708" DurationMax="12.764708">
+					<IncludedMemoryFiles>
+						<File Id="438625505" Language="SFX">
+							<ShortName>Stinger jour V1.wav</ShortName>
+							<Path>SFX\Stinger jour V1_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4055567060" Name="Menu_Music" ObjectPath="\Events\Default Work Unit\Menu_Music" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="23305701" Language="SFX">
 							<ShortName>Musique Jour LOOP  SOIR FINALE MENU.wav</ShortName>
@@ -140,7 +156,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1030219198" Name="NightMusic" ObjectPath="\Events\Default Work Unit\NightMusic" DurationType="Infinite">
+				<Event Id="1071872601" Name="Night_Music" ObjectPath="\Events\Default Work Unit\Night_Music" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="528776803" Language="SFX">
 							<ShortName>Musique nuit LOOP FINALE.wav</ShortName>

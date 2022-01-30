@@ -48,6 +48,7 @@ namespace Game
             }
 
             DaytimeManager.Instance.OnTimeOfDayChanged += OnTimeOfDayChanged;
+            DaytimeManager.Instance.OnEvening += OnEvening;
         }
 
         protected void OnDestroy()
@@ -55,14 +56,40 @@ namespace Game
             if (DaytimeManager.HasInstance)
             {
                 DaytimeManager.Instance.OnTimeOfDayChanged -= OnTimeOfDayChanged;
+                DaytimeManager.Instance.OnEvening -= OnEvening;
             }
         }
 
         private void OnTimeOfDayChanged(DaytimeManager.TimeOfDay timeOfDay)
         {
+            PlayMusic(timeOfDay);
+
             if (timeOfDay == DaytimeManager.TimeOfDay.Day || timeOfDay == DaytimeManager.TimeOfDay.Night)
             {
                 StartCoroutine(TimeOfDayTransitionRoutine(timeOfDay));
+            }
+        }
+
+        private void OnEvening()
+        {
+            PlayMusic(DaytimeManager.TimeOfDay.Evening);
+        }
+
+        private void PlayMusic(DaytimeManager.TimeOfDay timeOfDay)
+        {
+            switch (timeOfDay)
+            {
+                case DaytimeManager.TimeOfDay.Day:
+                    SoundSystem.Instance.PlayDayMusic();
+                    break;
+                case DaytimeManager.TimeOfDay.Evening:
+                    SoundSystem.Instance.PlayEveningMusic();
+                    break;
+                case DaytimeManager.TimeOfDay.Night:
+                    SoundSystem.Instance.PlayNightMusic();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(timeOfDay), timeOfDay, null);
             }
         }
 
@@ -106,9 +133,16 @@ namespace Game
             DaytimeManager.Instance.Resume();
         }
 
-
+        private bool gameEnded = false;
+        
         public void PlayerDied()
         {
+            if (gameEnded)
+                return;
+
+            gameEnded = true;
+            
+            SoundSystem.Instance.PlayBadEndingSound();
             OnPlayerDied?.Invoke();
 
             StartCoroutine(DeathRoutine());
