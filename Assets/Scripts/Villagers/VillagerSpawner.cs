@@ -111,6 +111,7 @@ public class VillagerSpawner : MonoBehaviour
             villager.Movement.Target = FindObjectOfType<Player>().transform;
             villager.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             villager.Agent.enabled = true;
+            villager.IsDead = false;
             villager.Type = foodTypes[randomFoodType];
             villager.Movement.Spawn();
 
