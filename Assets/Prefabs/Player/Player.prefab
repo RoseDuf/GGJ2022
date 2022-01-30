@@ -450,7 +450,7 @@ MonoBehaviour:
   _health: 10
   _interactionRadius: {fileID: 3591188180307555359}
   _bloodFX: {fileID: 7766565404072777826}
-  _attackDelay: 0.7
+  _attackDelay: 0.2
   _foodCapacity: 2
   daydoggo: {fileID: 626081000299593668}
   nightdoggo: {fileID: 6004858269450968294}
