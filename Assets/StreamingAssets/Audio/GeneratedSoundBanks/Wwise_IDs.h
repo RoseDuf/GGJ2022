@@ -14,6 +14,19 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID BABABOOEY = 1588368213U;
+        static const AkUniqueID DAYMUSIC = 3231935906U;
+        static const AkUniqueID DOG_STEP = 1037114814U;
+        static const AkUniqueID EVENINGMUSIC = 4213427124U;
+        static const AkUniqueID GIVE_FOOD = 1523757769U;
+        static const AkUniqueID MENUMUSIC = 679636833U;
+        static const AkUniqueID NIGHTMUSIC = 1030219198U;
+        static const AkUniqueID PICKUP_FOOD = 3883316396U;
+        static const AkUniqueID VILLAGER_ATTACK = 1255929906U;
+        static const AkUniqueID VILLAGER_DEATH = 724937496U;
+        static const AkUniqueID VILLAGER_JOY = 2417366356U;
+        static const AkUniqueID WOLF_ATTACK = 1571748476U;
+        static const AkUniqueID WOLF_HURT = 2471571571U;
+        static const AkUniqueID WOLF_STEPS = 2741237465U;
     } // namespace EVENTS
 
     namespace STATES
