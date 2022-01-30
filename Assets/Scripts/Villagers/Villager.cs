@@ -190,6 +190,8 @@ public class Villager : PoolableObject, IDamageable
     {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
+        // TODO Play FX
+        // TODO Add score
     }
 
     public void ReceiveItem()

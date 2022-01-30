@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 namespace Game
 {
-    public class SettingsSystem : PersistentSingleton<SoundSystem>
+    public class SettingsSystem : PersistentSingleton<SettingsSystem>
     {
         private const string SETTINGS_FOLDER_PATH = "Globals";
 
@@ -15,7 +14,7 @@ namespace Game
         protected override void Awake()
         {
             base.Awake();
-
+            
             LoadGlobalSettings();
         }
 

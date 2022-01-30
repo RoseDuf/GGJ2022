@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsForSmallGuy: 100
   pointsForBigGuy: 250
-  comboScoreMultiplier: 0.1
+  comboScoreMultiplier: 0.5
