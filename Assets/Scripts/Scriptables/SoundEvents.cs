@@ -11,8 +11,6 @@ namespace Game
         [Header("SFX")]
         [SerializeField] private AK.Wwise.Event bababooey;
         
-        [SerializeField] private AK.Wwise.Event oogaBoogaSplash;
-        
         [SerializeField] private AK.Wwise.Event goodEndingEscape;
         [SerializeField] private AK.Wwise.Event badEndingDeath;
         
@@ -41,7 +39,6 @@ namespace Game
 
         public GameObject SoundBankPrefab => soundBankPrefab;
         
-        public AK.Wwise.Event OogaBoogaSplashEvent => oogaBoogaSplash;
         public AK.Wwise.Event BababooeyEvent => bababooey;
         public AK.Wwise.Event BadEndingDeathEvent => badEndingDeath;
         public AK.Wwise.Event GiveFoodEvent => giveFood;
