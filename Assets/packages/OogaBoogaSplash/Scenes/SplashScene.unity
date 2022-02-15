@@ -243,6 +243,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3853140990023624586, guid: 59acc26f828affa4abc12515514768c1, type: 3}
+      propertyPath: NextSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853140990023624586, guid: 59acc26f828affa4abc12515514768c1, type: 3}
       propertyPath: SecondToWaitBeforeTrigger
       value: 1
       objectReference: {fileID: 0}

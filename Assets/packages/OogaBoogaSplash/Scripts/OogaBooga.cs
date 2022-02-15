@@ -34,25 +34,6 @@ namespace Game
             StartCoroutine(OogaBoogaRoutine());
         }
 
-        private void FindAnimationLength()
-        {
-            
-            var animatorClipInfos = SplashAnimator.GetCurrentAnimatorClipInfo(0);
-            Debug.Log("FINNNNNDDD : "  +animatorClipInfos.Length);
-            foreach (var clipInfo in animatorClipInfos)
-            {
-                Debug.Log("clipName: " + clipInfo.clip.name);
-                if (clipInfo.clip.name == "SplashAnimation")
-                {
-                    
-                    AnimationLength = clipInfo.clip.length;
-                    break;
-                }
-            }
-            
-            Debug.Log("AnimationLength: "+AnimationLength);
-        }
-
         private IEnumerator OogaBoogaRoutine()
         {
             Debug.Log("OOGA BOOGA");
@@ -60,23 +41,19 @@ namespace Game
 
             SplashAnimator.SetTrigger("SplashTrigger");
             SplashSound.Play();
+            SoundSystem.Instance.PlaySplashSound();
         }
 
+        /**
+         * Link to an animation event a then of the animation
+         */
         public void AnimationObservers(string message)
         {
             if (message == "AnimationEnded")
             {
                 Debug.Log("LOAAD NEXT SCENE" );
+                SceneManager.LoadScene(NextSceneIndex, LoadSceneMode.Single);
             }
-        }
-        
-        private IEnumerator LoadNextSceneAfter()
-        {
-            yield return new WaitForSeconds(AnimationLength);
-                
-            Debug.Log("LOAAD NEXT SCENE" );
-            
-            SceneManager.LoadScene(NextSceneIndex, LoadSceneMode.Single);
         }
     }
 }

@@ -17,6 +17,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e5b5a2414c2c1e3429ca97d19c1cb010, type: 2}
+  splash:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e5b5a2414c2c1e3429ca97d19c1cb010, type: 2}
   goodEndingEscape:
     idInternal: 0
     valueGuidInternal: 

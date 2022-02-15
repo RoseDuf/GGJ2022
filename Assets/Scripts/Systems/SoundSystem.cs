@@ -34,6 +34,7 @@ namespace Game
         }
 
         public void PlayBababooeySound() => events.BababooeyEvent.Post(gameObject);
+        public void PlaySplashSound() => events.SplashEvent.Post(gameObject);
         public void PlayBadEndingSound() => events.BadEndingDeathEvent.Post(gameObject);
         public void PlayGoodEndingSound() => events.GoodEndingEscapeEvent.Post(gameObject);
         public void PlayGiveFoodSound(GameObject player) => events.GiveFoodEvent.Post(player);
