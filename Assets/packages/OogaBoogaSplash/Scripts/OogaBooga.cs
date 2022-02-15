@@ -18,8 +18,8 @@ namespace Game
         
         [SerializeField] private float SecondToWaitBeforeTrigger = 1.0f;
         
-        [Tooltip("Set this scene index to the last one and et your first scene index here (probably 0)"), SerializeField]
-        private int NextSceneIndex = 0;
+        [Tooltip("Set this scene index to the first on and set your first scene index here (probably 1)"), SerializeField]
+        private int NextSceneIndex = 1;
 
         private void Start()
         {
@@ -40,7 +40,7 @@ namespace Game
             yield return new WaitForSeconds(SecondToWaitBeforeTrigger);
 
             SplashAnimator.SetTrigger("SplashTrigger");
-            SplashSound.Play();
+            //SplashSound.Play();
             SoundSystem.Instance.PlaySplashSound();
         }
 
