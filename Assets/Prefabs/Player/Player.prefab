@@ -172,7 +172,8 @@ MonoBehaviour:
   MoveSpeed: 4
   SprintSpeed: 6
   RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
+  Acceleration: 2
+  Deceleration: 10
   JumpHeight: 1.2
   Gravity: -15
   JumpTimeout: 0.5
@@ -874,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53a87f3b8955b4548be241bb19ca1950, type: 3}
       propertyPath: m_Name
-      value: doggo2
+      value: doggo
       objectReference: {fileID: 0}
     - target: {fileID: 3078023919453430577, guid: 53a87f3b8955b4548be241bb19ca1950, type: 3}
       propertyPath: m_LocalPosition.y
