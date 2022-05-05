@@ -5964,6 +5964,36 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &849534040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849534041}
+  m_Layer: 6
+  m_Name: headTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &849534041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849534040}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 12.08}
+  m_LocalScale: {x: 0.24764, y: 0.24764, z: 0.24764001}
+  m_Children: []
+  m_Father: {fileID: 949395356}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &858948164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6963,6 +6993,11 @@ MonoBehaviour:
 --- !u!20 &949395355 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+  m_PrefabInstance: {fileID: 821578322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &949395356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
   m_PrefabInstance: {fileID: 821578322}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &952027574 stripped
@@ -15550,6 +15585,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256433201, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
+      propertyPath: m_Effectors.Array.data[0].m_Transform
+      value: 
+      objectReference: {fileID: 849534041}
+    - target: {fileID: 417439907, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
+      propertyPath: m_Data.m_SourceObjects.m_Item0.transform
+      value: 
+      objectReference: {fileID: 849534041}
+    - target: {fileID: 1583166913, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
+      propertyPath: m_Data.m_SourceObjects.m_Item0.transform
+      value: 
+      objectReference: {fileID: 849534041}
     - target: {fileID: 1548673835849808247, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -15601,18 +15648,6 @@ PrefabInstance:
     - target: {fileID: 2218924369099648646, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2218924369099648653, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
-      propertyPath: SprintSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2218924369099648653, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
-      propertyPath: Acceleration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2218924369099648653, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
-      propertyPath: SpeedChangeRate
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2dedc1af9db6b4e83339a4a4aa43d4, type: 3}
