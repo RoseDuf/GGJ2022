@@ -25,7 +25,8 @@ namespace StarterAssets
 		[Range(0.0f, 0.3f)]
 		public float RotationSmoothTime = 0.12f;
 		[Tooltip("Acceleration and deceleration")]
-		public float SpeedChangeRate = 10.0f;
+		public float Acceleration = 10.0f;
+		public float Deceleration = 10.0f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -342,12 +343,20 @@ namespace StarterAssets
 			float speedOffset = 0.1f;
 			float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
+			float acceleration = Acceleration;
+
 			// accelerate or decelerate to target speed
 			if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
 			{
+				if (_input.move == Vector2.zero)
+				{
+					acceleration = Deceleration;
+				}
+
 				// creates curved result rather than a linear one giving a more organic speed change
 				// note T in Lerp is clamped, so we don't need to clamp our speed
-				_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+				
+				_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * acceleration);
 
 				// round speed to 3 decimal places
 				_speed = Mathf.Round(_speed * 1000f) / 1000f;
@@ -356,7 +365,8 @@ namespace StarterAssets
 			{
 				_speed = targetSpeed;
 			}
-			_animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+
+			_animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * acceleration);
             
             // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
@@ -383,7 +393,7 @@ namespace StarterAssets
 
                 if (distanceToTarget > _targetScope.StopDistance)
                 {
-                    _speed = _dashSpeed;
+					_speed = _dashSpeed;
                     targetDirection = direction;
                     transform.LookAt(_targetVillager.transform.position);
                 }
@@ -393,7 +403,7 @@ namespace StarterAssets
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                     float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                    _speed = 0;
+					_speed = 0;
                     _targetVillager = null;
                     _input.dash = false;
                 }
@@ -406,12 +416,12 @@ namespace StarterAssets
             }
 
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            _controller.Move((targetDirection.normalized * _speed + new Vector3(0.0f, _verticalVelocity, 0.0f)) * Time.deltaTime);
 
 			// update animator if using character
 			if (_hasAnimator)
 			{
-				_animator.SetFloat("Speed", _animationBlend);
+				_animator.SetFloat(_animIDSpeed, _animationBlend);
 				_animator.SetBool("IsWalking", (targetSpeed != 0.0f));
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
