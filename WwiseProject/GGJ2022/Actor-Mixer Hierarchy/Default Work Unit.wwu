@@ -1505,6 +1505,29 @@
 					</ChildrenList>
 					<ObjectLists/>
 				</RandomSequenceContainer>
+				<Sound Name="Ooga_Booga_team_audio" ID="{D21DF8AD-5CB3-49B2-AB35-3657425DF6D5}" ShortID="535306252">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{69D4BD79-01EF-4DDE-AD55-018F0F9F689F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8AC7D525-E7F1-44CD-994E-5125E5716466}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Ooga_Booga_team_audio" ID="{1789D0BA-A066-4164-B3B9-03CB0C3D0307}">
+							<Language>SFX</Language>
+							<AudioFile>Ooga_Booga_team_audio.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="850544827"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="Ooga_Booga_team_audio" ID="{1789D0BA-A066-4164-B3B9-03CB0C3D0307}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

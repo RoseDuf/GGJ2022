@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\Users\willi\Desktop\GGJ2022\WwiseProject\GGJ2022\</ProjectRoot>
-		<SourceFilesRoot>D:\Users\willi\Desktop\GGJ2022\WwiseProject\GGJ2022\.cache\Mac\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Users\willi\Desktop\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\jonny\Documents\Unity\Project\GGJ2022\WwiseProject\GGJ2022\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\jonny\Documents\Unity\Project\GGJ2022\WwiseProject\GGJ2022\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\jonny\Documents\Unity\Project\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Mac\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Users\willi\Desktop\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\jonny\Documents\Unity\Project\GGJ2022\WwiseProject\GGJ2022\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="702482391" Language="SFX" Hash="2256348195">
+		<SoundBank Id="702482391" Language="SFX" Hash="1944898211">
 			<ObjectPath>\SoundBanks\Default Work Unit\Game</ObjectPath>
 			<ShortName>Game</ShortName>
 			<Path>Game.bnk</Path>
@@ -173,6 +173,14 @@
 						<File Id="1024017031" Language="SFX">
 							<ShortName>Ramasse_Nourriture.wav</ShortName>
 							<Path>SFX\Ramasse_Nourriture_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4037605400" Name="Splash_ooga_booga" ObjectPath="\Events\Default Work Unit\Splash_ooga_booga" DurationType="OneShot" DurationMin="8.916463" DurationMax="8.916463">
+					<IncludedMemoryFiles>
+						<File Id="850544827" Language="SFX">
+							<ShortName>Ooga_Booga_team_audio.wav</ShortName>
+							<Path>SFX\Ooga_Booga_team_audio_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

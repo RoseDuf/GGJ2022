@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID MENU_MUSIC = 4055567060U;
         static const AkUniqueID NIGHT_MUSIC = 1071872601U;
         static const AkUniqueID PICKUP_FOOD = 3883316396U;
+        static const AkUniqueID SPLASH_OOGA_BOOGA = 4037605400U;
         static const AkUniqueID VILLAGER_ATTACK = 1255929906U;
         static const AkUniqueID VILLAGER_DEATH = 724937496U;
         static const AkUniqueID VILLAGER_JOY = 2417366356U;

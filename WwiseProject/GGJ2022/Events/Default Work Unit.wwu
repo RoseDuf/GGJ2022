@@ -284,6 +284,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Splash_ooga_booga" ID="{BF6C8B24-E474-43EE-AC74-C457B7D69456}">
+					<ChildrenList>
+						<Action Name="" ID="{9705BFBF-E6C2-41E1-80FA-D2E0943DCE3B}" ShortID="499238904">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ooga_Booga_team_audio" ID="{D21DF8AD-5CB3-49B2-AB35-3657425DF6D5}" WorkUnitID="{0EA58522-DE7A-498D-AF5A-EA920B035552}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
